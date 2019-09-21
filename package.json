@@ -1,0 +1,19 @@
+{
+  "name": "msl",
+  "version": "1.0.0",
+  "description": "My Shows List",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js"
+  },
+  "author": "Anand Chembarpu",
+  "license": "MIT",
+  "dependencies": {
+    "config": "^3.2.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
