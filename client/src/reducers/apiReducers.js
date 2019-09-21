@@ -1,7 +1,8 @@
-import { SET_NOW_PLAYING } from "../actions/types";
+import { SET_NOW_PLAYING, SET_MOVIE_DETAILS } from "../actions/types";
 
 const initialState = {
-  nowPlaying: []
+  nowPlaying: [],
+  details: []
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const apiReducer = (state = initialState, action) => {
       return {
         ...state,
         nowPlaying: action.nowPlaying
+      };
+    }
+    case SET_MOVIE_DETAILS: {
+      return {
+        ...state,
+        details: action.details
       };
     }
     default:

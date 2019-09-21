@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { getNowPlaying } from "../apiCalls";
+import { getNowPlaying, getMovieDetails } from "../apiCalls";
 
 class Home extends Component {
   componentDidMount = () => {
     getNowPlaying();
+  };
+
+  setMovieDetails = id => {
+    getMovieDetails(id);
   };
 
   render() {
@@ -14,7 +19,11 @@ class Home extends Component {
     return (
       <>
         {nowPlaying.map(movie => (
-          <p key={movie.id}>{movie.original_title}</p>
+          <Link to={`/movie/${movie.id}`}>
+            <p key={movie.id} onClick={() => this.setMovieDetails(movie.id)}>
+              {movie.original_title}
+            </p>
+          </Link>
         ))}
       </>
     );
