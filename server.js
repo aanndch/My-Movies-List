@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
 
+const profiles = require("./routes/api/profiles");
+
 const app = express();
 
 app.use(express.json());
@@ -11,14 +13,14 @@ const db = config.get("mongoURI");
 mongoose
   .connect(db, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useUnifiedTopology: true
   })
   .then(() => console.log("MongoDB connected..."))
   .catch(error => console.log(error));
 
-app.get("/", (req, res) => {
-  res.send("MSL - MY SHOWS LIST");
-});
+// Routes
+app.use("/api/profiles", profiles);
 
 const PORT = process.env.PORT || 5000;
 
