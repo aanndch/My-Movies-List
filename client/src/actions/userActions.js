@@ -31,6 +31,10 @@ export const checkUser = user => dispatch => {
 export const loginUser = user => {
   return {
     type: LOGIN_USER,
-    user
+    email: user.email
   };
 };
+
+export const logoutUser = () => ({
+  type: LOGOUT_USER
+});

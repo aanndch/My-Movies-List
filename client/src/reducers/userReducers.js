@@ -1,8 +1,7 @@
 import { LOGIN_USER, LOGOUT_USER } from "../actions/types";
 
 const initialState = {
-  email: "",
-  password: ""
+  email: ""
 };
 
 const userReducer = (state = initialState, action) => {
@@ -10,8 +9,13 @@ const userReducer = (state = initialState, action) => {
     case LOGIN_USER: {
       return {
         ...state,
-        email: action.user.email,
-        password: action.user.password
+        email: action.email
+      };
+    }
+    case LOGOUT_USER: {
+      return {
+        ...state,
+        email: ""
       };
     }
     default:

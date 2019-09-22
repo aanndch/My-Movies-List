@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Cookie from "js-cookie";
 
 import {
   Button,
@@ -11,6 +12,7 @@ import {
   Typography
 } from "@material-ui/core";
 import { getNowPlaying } from "../apiCalls";
+import { logoutUser } from "../actions/userActions";
 
 import "./Home.css";
 
@@ -19,8 +21,20 @@ class Home extends Component {
     getNowPlaying();
   };
 
+  logout = () => {
+    const { logoutUser } = this.props;
+    Cookie.remove("token");
+    logoutUser();
+    window.location.reload(false);
+  };
+
   render() {
     const { nowPlaying } = this.props;
+
+    const token = Cookie.get("token");
+    if (!token) {
+      return <h1>ACCESS DENIED</h1>;
+    }
 
     return (
       <div>
@@ -53,11 +67,7 @@ class Home extends Component {
             </Link>
           ))}
         </div>
-        <Button
-          variant="contained"
-          color="primary"
-          // onClick={}
-        >
+        <Button variant="contained" color="primary" onClick={this.logout}>
           LOG OUT
         </Button>
       </div>
@@ -71,4 +81,13 @@ const mapStateToProps = ({ api }) => {
   };
 };
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => {
+  return {
+    logoutUser: () => dispatch(logoutUser())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
