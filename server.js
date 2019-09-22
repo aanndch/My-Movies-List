@@ -1,9 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
+const cors = require("cors");
+
+const register = require("./routes/api/auth");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 const db = config.get("mongoURI");
@@ -19,6 +23,7 @@ mongoose
 
 // Routes
 // app.use("/api/profiles", profiles);
+app.use("/api/user", register);
 
 const PORT = process.env.PORT || 5000;
 
