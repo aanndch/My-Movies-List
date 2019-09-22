@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const register = require("./routes/api/auth");
+const favorites = require("./routes/api/favorites");
 
 const app = express();
 
@@ -16,13 +17,15 @@ mongoose
   .connect(process.env.DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(() => console.log("MongoDB connected..."))
   .catch(error => console.log(error));
 
 // Routes
 app.use("/api/user", register);
+app.use("/api/user/favorites", favorites);
 
 const PORT = process.env.PORT || 5000;
 

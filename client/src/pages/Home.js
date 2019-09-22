@@ -9,12 +9,15 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  Typography
+  Typography,
+  Fab
 } from "@material-ui/core";
+import { Favorite, FavoriteBorder } from "@material-ui/icons";
 import { getNowPlaying } from "../apiCalls";
 import { logoutUser } from "../actions/userActions";
 
 import "./Home.css";
+import axios from "axios";
 
 class Home extends Component {
   componentDidMount = () => {
@@ -28,31 +31,53 @@ class Home extends Component {
     window.location.reload(false);
   };
 
+  favorite = (id, title, poster) => {
+    const token = Cookie.get("token");
+    const movie = {
+      showId: id,
+      token,
+      title,
+      poster
+    };
+
+    axios
+      .post(`http://localhost:5000/api/user/favorites/${id}`, movie)
+      .then(() => console.log("Success!"))
+      .catch(error => console.log(error.response.data));
+  };
+
   render() {
     const { nowPlaying } = this.props;
-
-    const token = Cookie.get("token");
-    if (!token) {
-      return <h1>ACCESS DENIED</h1>;
-    }
 
     return (
       <div>
         <div className="now-playing">
           {nowPlaying.map(movie => (
-            <Link
-              key={movie.id}
-              to={`/movie/${movie.id}`}
-              style={{ textDecoration: "none" }}
-            >
-              <Card className="movie-card">
-                <CardActionArea className="movie-card-inner">
+            <Card key={movie.id} className="movie-card">
+              <CardActionArea className="movie-card-inner">
+                <Fab
+                  color="secondary"
+                  size="small"
+                  aria-label="favorite"
+                  className="favorite-button"
+                  onClick={() =>
+                    this.favorite(
+                      movie.id,
+                      movie.original_title,
+                      movie.poster_path
+                    )
+                  }
+                >
+                  <Favorite style={{ color: "#333" }} />
+                </Fab>
+                <Link to={`/movie/${movie.id}`}>
                   <CardMedia
                     className="movie-image"
                     image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    title="Poster"
+                    title={movie.original_title}
                   />
-                  {/* <CardContent className="movie-card-bottom">
+                </Link>
+                {/* <CardContent className="movie-card-bottom">
                     <Typography
                       gutterBottom
                       variant="h5"
@@ -62,9 +87,8 @@ class Home extends Component {
                       {movie.title}
                     </Typography>
                   </CardContent> */}
-                </CardActionArea>
-              </Card>
-            </Link>
+              </CardActionArea>
+            </Card>
           ))}
         </div>
         <Button variant="contained" color="primary" onClick={this.logout}>

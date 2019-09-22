@@ -19,6 +19,18 @@
   height: inherit;
 }
 
+.favorite-button {
+  top: 7px;
+  right: 7px;
+  position: absolute !important;
+  z-index: 5;
+}
+
+.MuiSvgIcon-root {
+  height: 1.2em !important;
+  width: 1.2em !important;
+}
+
 .movie-card-bottom {
   position: absolute;
   top: 350px;

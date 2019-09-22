@@ -25,9 +25,18 @@ const userSchema = new mongoose.Schema({
   },
   favorites: [
     {
-      showId: String,
-      title: String,
-      poster: String
+      showId: {
+        type: String,
+        required: true
+      },
+      title: {
+        type: String,
+        required: true
+      },
+      poster: {
+        type: String,
+        required: true
+      }
     }
   ]
 });

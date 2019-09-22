@@ -6,14 +6,11 @@ export const createUser = user => dispatch => {
   axios
     .post("http://localhost:5000/api/user/register", user)
     .then(({ data }) => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        Cookies.set("token", data.token);
-        // TODO Display notification logged in
-        dispatch(loginUser(user));
-      }
-    });
+      Cookies.set("token", data.token);
+      // TODO Display notification logged in
+      dispatch(loginUser(user));
+    })
+    .catch(error => console.log(error.response.data));
 };
 
 export const checkUser = user => dispatch => {
