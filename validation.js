@@ -22,7 +22,8 @@ const loginValidation = data => {
   const loginSchema = Joi.object({
     email: Joi.string()
       .min(6)
-      .required.email(),
+      .required()
+      .email(),
     password: Joi.string()
       .min(6)
       .pattern(/^[a-zA-Z0-9]{3,30}$/)
