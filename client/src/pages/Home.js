@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
 import {
+  Button,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
   Typography
 } from "@material-ui/core";
-
 import { getNowPlaying } from "../apiCalls";
 
 import "./Home.css";
@@ -22,7 +23,7 @@ class Home extends Component {
     const { nowPlaying } = this.props;
 
     return (
-      <div className="container">
+      <div>
         <div className="now-playing">
           {nowPlaying.map(movie => (
             <Link
@@ -52,6 +53,13 @@ class Home extends Component {
             </Link>
           ))}
         </div>
+        <Button
+          variant="contained"
+          color="primary"
+          // onClick={}
+        >
+          LOG OUT
+        </Button>
       </div>
     );
   }

@@ -38,22 +38,23 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   // Validation
   const { error } = loginValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send({ error: error.details[0].message });
 
   // Check if email exists
   const user = await User.findOne({ email: req.body.email });
   if (!user)
-    return res.status(400).send("No user has been registered with this email!");
+    return res
+      .status(400)
+      .send({ error: "No user has been registered with this email!" });
 
   // Check if password is correct
   const validPassword = await bcrypt.compare(req.body.password, user.password);
-  if (!validPassword) return res.status(400).send("Invalid password!");
+  if (!validPassword)
+    return res.status(400).send({ error: "Invalid password!" });
 
   // Create jwt token
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header("auth-token", token);
-
-  res.send("Logged in!");
+  res.header("auth-token", token).send({ token });
 });
 
 module.exports = router;

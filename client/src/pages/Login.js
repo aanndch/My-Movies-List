@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
-import axios from "axios";
+import { checkUser } from "../actions/userActions";
 
 import "./Register.css";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,15 +22,13 @@ export default class Login extends Component {
 
   login = () => {
     const { email, password } = this.state;
+    const { checkUser } = this.props;
     const user = {
       email,
       password
     };
 
-    axios
-      .post("http://localhost:5000/api/user/login", user)
-      // TODO Make notification of success
-      .then(({ data }) => console.log(data));
+    checkUser(user);
   };
 
   render() {
@@ -60,3 +59,12 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  checkUser: user => dispatch(checkUser(user))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);
