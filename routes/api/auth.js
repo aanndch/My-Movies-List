@@ -9,11 +9,12 @@ const { registerValidation, loginValidation } = require("../../validation");
 router.post("/register", async (req, res) => {
   // Validation
   const { error } = registerValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send({ error: error.details[0].message });
 
   // Check if email already exists
   const emailExists = await User.findOne({ email: req.body.email });
-  if (emailExists) return res.status(400).send("Email already exists!");
+  if (emailExists)
+    return res.status(400).send({ error: "Email already exists!" });
 
   // Hash password
   const salt = await bcrypt.genSalt(10);
@@ -28,9 +29,14 @@ router.post("/register", async (req, res) => {
 
   try {
     await user.save();
-    res.send({ user: user._id });
+
+    // Successful registration leads to direct login
+    // Create jwt token
+    const userInfo = await User.findOne({ email: user.email });
+    const token = jwt.sign({ _id: userInfo._id }, process.env.TOKEN_SECRET);
+    res.header("auth-token", token).send({ token });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ error });
   }
 });
 

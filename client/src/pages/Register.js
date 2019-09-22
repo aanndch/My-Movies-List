@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
-import axios from "axios";
+import { createUser } from "../actions/userActions";
 
 import "./Register.css";
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,16 +23,14 @@ export default class Register extends Component {
 
   register = () => {
     const { email, username, password } = this.state;
+    const { createUser } = this.props;
     const user = {
       email,
       username,
       password
     };
 
-    axios
-      .post("http://localhost:5000/api/user/register", user)
-      // TODO Make notification of success
-      .then(({ data }) => console.log(data));
+    createUser(user);
   };
 
   render() {
@@ -70,3 +69,12 @@ export default class Register extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  createUser: user => dispatch(createUser(user))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Register);
