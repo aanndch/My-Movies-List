@@ -8,9 +8,8 @@ export const checkUser = user => dispatch => {
     if (data.error) {
       console.log(data.error);
     } else {
-      Cookies.set("token", data);
+      Cookies.set("token", data.token);
       // TODO Display notification logged in
-      console.log(user);
       dispatch(loginUser(user));
     }
   });

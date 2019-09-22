@@ -29,8 +29,7 @@ const userSchema = new mongoose.Schema({
       title: String,
       poster: String
     }
-  ],
-  default: []
+  ]
 });
 
 module.exports = mongoose.model("user", userSchema);
