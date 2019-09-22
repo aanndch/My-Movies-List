@@ -1,0 +1,32 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #34495e;
+}
+
+.registration {
+  width: 30%;
+  display: flex;
+  flex-flow: column;
+}
+
+.registration input {
+  border: none;
+  border-bottom: 1px solid grey;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.registration input:first-child {
+  border-radius: 4px 4px 0px 0px;
+}
+
+#sign-up {
+  border-radius: 0 0 4px 4px;
+  background: #2980b9;
+  color: white;
+  padding: 1rem;
+  font-size: 1.5rem;
+}

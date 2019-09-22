@@ -37,7 +37,7 @@ class Home extends Component {
                     image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     title="Poster"
                   />
-                  <CardContent className="movie-card-bottom">
+                  {/* <CardContent className="movie-card-bottom">
                     <Typography
                       gutterBottom
                       variant="h5"
@@ -46,7 +46,7 @@ class Home extends Component {
                     >
                       {movie.title}
                     </Typography>
-                  </CardContent>
+                  </CardContent> */}
                 </CardActionArea>
               </Card>
             </Link>

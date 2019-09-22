@@ -2,8 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
 
-const profiles = require("./routes/api/profiles");
-
 const app = express();
 
 app.use(express.json());
@@ -20,7 +18,7 @@ mongoose
   .catch(error => console.log(error));
 
 // Routes
-app.use("/api/profiles", profiles);
+// app.use("/api/profiles", profiles);
 
 const PORT = process.env.PORT || 5000;
 
