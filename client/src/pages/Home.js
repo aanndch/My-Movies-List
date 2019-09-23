@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Cookie from "js-cookie";
 
-import { Button, Card } from "@material-ui/core";
 import { getNowPlaying } from "../apiCalls";
 import { toggleSelection } from "../userInteractions";
 import { logoutUser } from "../actions/registrationActions";
+import MovieCard from "../components/MovieCard";
 
 import "./Home.css";
 
@@ -49,14 +49,11 @@ class Home extends Component {
               to={`/movie/${movie.id}`}
               style={{ textDecoration: "none" }}
             >
-              <Card className="movie-card">
-                <img
-                  className="movie-image"
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.original_title}
-                />
-                <div className="movie-rating">{movie.vote_average}</div>
-              </Card>
+              <MovieCard
+                title={movie.original_title}
+                poster={movie.poster_path}
+                rating={movie.vote_average}
+              />
             </Link>
           ))}
         </div>

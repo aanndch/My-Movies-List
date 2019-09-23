@@ -12,8 +12,8 @@
 
 .movie-card {
   position: relative;
-  height: 370px;
-  width: 250px;
+  height: 310px;
+  width: 200px;
   margin: 1rem;
   background-color: transparent !important;
 }
@@ -24,8 +24,8 @@
 }
 
 .movie-image {
-  height: 370px;
-  width: 250px;
+  height: 310px;
+  width: 200px;
 }
 
 .movie-image:hover {
@@ -39,10 +39,10 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  background-color: #76cca8;
+  height: 3px;
+  width: 20px;
+  border-radius: 4px;
+  background-color: #31db91;
   color: black;
   top: 10px;
   right: 10px;
