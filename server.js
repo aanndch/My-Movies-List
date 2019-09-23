@@ -2,11 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const register = require("./routes/api/auth");
+const users = require("./routes/api/users");
+const lists = require("./routes/api/lists");
 
 dotenv.config();
-
-const register = require("./routes/api/auth");
-const lists = require("./routes/api/lists");
 
 const app = express();
 
@@ -24,7 +24,8 @@ mongoose
   .catch(error => console.log(error));
 
 // Routes
-app.use("/api/user", register);
+app.use("/api", register);
+app.use("/api/user", users);
 app.use("/api/user/lists", lists);
 
 const PORT = process.env.PORT || 5000;

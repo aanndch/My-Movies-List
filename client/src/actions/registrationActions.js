@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 export const createUser = user => dispatch => {
   axios
-    .post("http://localhost:5000/api/user/register", user)
+    .post("http://localhost:5000/api/register", user)
     .then(({ data }) => {
       Cookies.set("token", data.token);
       // TODO Display notification logged in
@@ -14,7 +14,7 @@ export const createUser = user => dispatch => {
 };
 
 export const checkUser = user => dispatch => {
-  axios.post("http://localhost:5000/api/user/login", user).then(({ data }) => {
+  axios.post("http://localhost:5000/api/login", user).then(({ data }) => {
     if (data.error) {
       console.log(data.error);
     } else {

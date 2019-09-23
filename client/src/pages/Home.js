@@ -3,18 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Cookie from "js-cookie";
 
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
-  Fab
-} from "@material-ui/core";
-import { Favorite, FavoriteBorder } from "@material-ui/icons";
+import { Button, Card } from "@material-ui/core";
 import { getNowPlaying } from "../apiCalls";
-import { toggleFavorite } from "../userInteractions";
+import { toggleSelection } from "../userInteractions";
 import { logoutUser } from "../actions/registrationActions";
 
 import "./Home.css";
@@ -43,7 +34,7 @@ class Home extends Component {
       list: "favorites"
     };
 
-    toggleFavorite(id, info);
+    toggleSelection(id, info);
   };
 
   render() {
@@ -54,40 +45,13 @@ class Home extends Component {
         <div className="now-playing">
           {nowPlaying.map(movie => (
             <Card key={movie.id} className="movie-card">
-              <CardActionArea className="movie-card-inner">
-                <Fab
-                  color="secondary"
-                  size="small"
-                  aria-label="favorite"
-                  className="favorite-button"
-                  onClick={() =>
-                    this.favorite(
-                      movie.id,
-                      movie.original_title,
-                      movie.poster_path
-                    )
-                  }
-                >
-                  <Favorite style={{ color: "#333" }} />
-                </Fab>
-                <Link to={`/movie/${movie.id}`}>
-                  <CardMedia
-                    className="movie-image"
-                    image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    title={movie.original_title}
-                  />
-                </Link>
-                {/* <CardContent className="movie-card-bottom">
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="h2"
-                      className="movie-link"
-                    >
-                      {movie.title}
-                    </Typography>
-                  </CardContent> */}
-              </CardActionArea>
+              <Link to={`/movie/${movie.id}`}>
+                <img
+                  className="movie-image"
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.original_title}
+                />
+              </Link>
             </Card>
           ))}
         </div>
