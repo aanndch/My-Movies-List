@@ -4,7 +4,7 @@ const initialState = {
   email: ""
 };
 
-const userReducer = (state = initialState, action) => {
+const registrationReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER: {
       return {
@@ -23,4 +23,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default registrationReducer;

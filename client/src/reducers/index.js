@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import apiReducers from "../reducers/apiReducers";
-import userReducers from "../reducers/userReducers";
+import registrationReducers from "./registrationReducers";
 
 const rootReducer = combineReducers({
-  user: userReducers,
+  user: registrationReducers,
   api: apiReducers
 });
 

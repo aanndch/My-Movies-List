@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
-import { checkUser } from "../actions/userActions";
+import { checkUser } from "../actions/registrationActions";
 
 import "./Register.css";
 

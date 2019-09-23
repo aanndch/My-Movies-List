@@ -14,10 +14,10 @@ import {
 } from "@material-ui/core";
 import { Favorite, FavoriteBorder } from "@material-ui/icons";
 import { getNowPlaying } from "../apiCalls";
-import { logoutUser } from "../actions/userActions";
+import { toggleFavorite } from "../userInteractions";
+import { logoutUser } from "../actions/registrationActions";
 
 import "./Home.css";
-import axios from "axios";
 
 class Home extends Component {
   componentDidMount = () => {
@@ -43,10 +43,7 @@ class Home extends Component {
       list: "favorites"
     };
 
-    axios
-      .post(`http://localhost:5000/api/user/lists/${id}`, info)
-      .then(() => console.log("Success!"))
-      .catch(error => console.log(error.response.data));
+    toggleFavorite(id, info);
   };
 
   render() {
