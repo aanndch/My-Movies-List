@@ -41,23 +41,21 @@ class Home extends Component {
     const { nowPlaying } = this.props;
 
     return (
-      <div>
+      <div className="home-container">
         <div className="now-playing">
           {nowPlaying.map(movie => (
-            <Card key={movie.id} className="movie-card">
-              <Link to={`/movie/${movie.id}`}>
+            <Link key={movie.id} to={`/movie/${movie.id}`}>
+              <Card className="movie-card">
                 <img
                   className="movie-image"
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt={movie.original_title}
                 />
-              </Link>
-            </Card>
+                <div className="movie-rating">{movie.vote_average}</div>
+              </Card>
+            </Link>
           ))}
         </div>
-        <Button variant="contained" color="primary" onClick={this.logout}>
-          LOG OUT
-        </Button>
       </div>
     );
   }

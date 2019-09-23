@@ -4,14 +4,18 @@ import { Provider } from "react-redux";
 
 import store from "./store";
 import Routes from "./routes";
-import Header from "./components/Header";
+import Search from "./components/Search";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
   return (
     <Provider store={store}>
-      <Header />
-      <Routes />
+      <Search />
+      <div style={{ display: "flex" }}>
+        <Navbar />
+        <Routes />
+      </div>
       <Footer />
     </Provider>
   );

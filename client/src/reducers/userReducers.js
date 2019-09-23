@@ -1,10 +1,10 @@
-import { LOGIN_USER, LOGOUT_USER } from "../actions/types";
+import { LOGIN_USER, LOGOUT_USER, STORE_USER_INFO } from "../actions/types";
 
 const initialState = {
   email: ""
 };
 
-const registrationReducer = (state = initialState, action) => {
+const userReducers = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER: {
       return {
@@ -18,9 +18,15 @@ const registrationReducer = (state = initialState, action) => {
         email: ""
       };
     }
+    case STORE_USER_INFO: {
+      return {
+        ...state,
+        ...action.user
+      };
+    }
     default:
       return state;
   }
 };
 
-export default registrationReducer;
+export default userReducers;
