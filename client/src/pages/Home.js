@@ -43,19 +43,22 @@ class Home extends Component {
     return (
       <div className="home-container">
         <div className="now-playing">
-          {nowPlaying.map(movie => (
-            <Link
-              key={movie.id}
-              to={`/movie/${movie.id}`}
-              style={{ textDecoration: "none" }}
-            >
-              <MovieCard
-                title={movie.original_title}
-                poster={movie.poster_path}
-                rating={movie.vote_average}
-              />
-            </Link>
-          ))}
+          <h1 className="home-heading">In Theaters</h1>
+          <div className="movie-cards">
+            {nowPlaying.map(movie => (
+              <Link
+                key={movie.id}
+                to={`/movie/${movie.id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <MovieCard
+                  title={movie.original_title}
+                  poster={movie.poster_path}
+                  rating={movie.vote_average}
+                />
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     );
