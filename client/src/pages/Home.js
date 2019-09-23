@@ -44,7 +44,11 @@ class Home extends Component {
       <div className="home-container">
         <div className="now-playing">
           {nowPlaying.map(movie => (
-            <Link key={movie.id} to={`/movie/${movie.id}`}>
+            <Link
+              key={movie.id}
+              to={`/movie/${movie.id}`}
+              style={{ textDecoration: "none" }}
+            >
               <Card className="movie-card">
                 <img
                   className="movie-image"
