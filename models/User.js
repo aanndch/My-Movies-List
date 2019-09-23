@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
   },
   favorites: [
     {
-      showId: {
+      movieId: {
         type: String,
         required: true
       },

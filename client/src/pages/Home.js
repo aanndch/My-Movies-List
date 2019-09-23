@@ -33,15 +33,18 @@ class Home extends Component {
 
   favorite = (id, title, poster) => {
     const token = Cookie.get("token");
-    const movie = {
-      showId: id,
+    const info = {
+      movie: {
+        movieId: id,
+        title,
+        poster
+      },
       token,
-      title,
-      poster
+      list: "favorites"
     };
 
     axios
-      .post(`http://localhost:5000/api/user/favorites/${id}`, movie)
+      .post(`http://localhost:5000/api/user/lists/${id}`, info)
       .then(() => console.log("Success!"))
       .catch(error => console.log(error.response.data));
   };

@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const register = require("./routes/api/auth");
-const favorites = require("./routes/api/favorites");
+const lists = require("./routes/api/lists");
 
 const app = express();
 
@@ -25,7 +25,7 @@ mongoose
 
 // Routes
 app.use("/api/user", register);
-app.use("/api/user/favorites", favorites);
+app.use("/api/user/lists", lists);
 
 const PORT = process.env.PORT || 5000;
 
