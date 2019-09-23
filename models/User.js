@@ -38,6 +38,38 @@ const userSchema = new mongoose.Schema({
         required: true
       }
     }
+  ],
+  watchlist: [
+    {
+      movieId: {
+        type: String,
+        required: true
+      },
+      title: {
+        type: String,
+        required: true
+      },
+      poster: {
+        type: String,
+        required: true
+      }
+    }
+  ],
+  watched: [
+    {
+      movieId: {
+        type: String,
+        required: true
+      },
+      title: {
+        type: String,
+        required: true
+      },
+      poster: {
+        type: String,
+        required: true
+      }
+    }
   ]
 });
 
