@@ -21,7 +21,8 @@ class Login extends Component {
     });
   };
 
-  login = () => {
+  login = e => {
+    e.preventDefault();
     const { email, password } = this.state;
     const { checkUser } = this.props;
     const user = {
@@ -45,25 +46,32 @@ class Login extends Component {
             className="movies-image"
           />
           <div className="registration">
-            <input
-              name="email"
-              type="email"
-              placeholder="Email"
-              onChange={this.handleChange}
-              min={6}
-              required
-            />
-            <input
-              name="password"
-              type="password"
-              placeholder="Password"
-              onChange={this.handleChange}
-              min={6}
-              required
-            />
-            <Button id="sign-up" variant="contained" onClick={this.login}>
-              SIGN IN
-            </Button>
+            <form type="POST">
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                onChange={this.handleChange}
+                min={6}
+                required
+              />
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                onChange={this.handleChange}
+                min={6}
+                required
+              />
+              <Button
+                id="sign-up"
+                variant="contained"
+                type="submit"
+                onClick={this.login}
+              >
+                SIGN IN
+              </Button>
+            </form>
           </div>
         </div>
       </div>

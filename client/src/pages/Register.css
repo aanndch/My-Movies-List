@@ -33,6 +33,7 @@
   border-bottom: 1px solid grey;
   padding: 1.3rem;
   font-size: 1.5rem;
+  width: 100%;
 }
 
 .registration input:first-child {
@@ -45,4 +46,5 @@
   color: white;
   padding: 1.3rem;
   font-size: 1.5rem;
+  width: 100%;
 }
