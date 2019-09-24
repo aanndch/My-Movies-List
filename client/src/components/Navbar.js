@@ -6,6 +6,12 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 export default class Navbar extends Component {
+  register = () => {
+    const path = window.location.pathname;
+    if (path === "/login" || path === "/register") return true;
+    return false;
+  };
+
   render() {
     return (
       <div className="navbar">
@@ -36,7 +42,11 @@ export default class Navbar extends Component {
             <FilterList />
           </IconButton>
         </NavLink>
-        <NavLink to="/login" style={{ color: "#616f7c" }}>
+        <NavLink
+          to="/login"
+          isActive={this.register}
+          style={{ color: "#616f7c" }}
+        >
           <IconButton
             className="nav-item"
             disableFocusRipple={true}
