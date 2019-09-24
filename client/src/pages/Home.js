@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Cookie from "js-cookie";
 
 import { getNowPlaying } from "../apiCalls";
 import { toggleSelection } from "../userInteractions";
-import { logoutUser } from "../actions/registrationActions";
 import MovieCard from "../components/MovieCard";
 
 import "./Home.css";
@@ -15,15 +13,8 @@ class Home extends Component {
     getNowPlaying();
   };
 
-  logout = () => {
-    const { logoutUser } = this.props;
-    Cookie.remove("token");
-    logoutUser();
-    window.location.reload(false);
-  };
-
   favorite = (id, title, poster) => {
-    const token = Cookie.get("token");
+    const { token } = this.props;
     const info = {
       movie: {
         movieId: id,
@@ -63,19 +54,11 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ api }) => {
+const mapStateToProps = ({ api, user }) => {
   return {
-    nowPlaying: api.nowPlaying
+    nowPlaying: api.nowPlaying,
+    token: user.token
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    logoutUser: () => dispatch(logoutUser())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default connect(mapStateToProps)(Home);

@@ -1,7 +1,10 @@
 import { LOGIN_USER, LOGOUT_USER, STORE_USER_INFO } from "../actions/types";
 
 const initialState = {
-  email: ""
+  _id: "",
+  username: "",
+  email: "",
+  token: ""
 };
 
 const userReducers = (state = initialState, action) => {
@@ -9,19 +12,24 @@ const userReducers = (state = initialState, action) => {
     case LOGIN_USER: {
       return {
         ...state,
-        email: action.email
-      };
-    }
-    case LOGOUT_USER: {
-      return {
-        ...state,
-        email: ""
+        _id: action._id,
+        username: action.username,
+        email: action.email,
+        token: action.token
       };
     }
     case STORE_USER_INFO: {
       return {
         ...state,
         ...action.user
+      };
+    }
+    case LOGOUT_USER: {
+      return {
+        _id: "",
+        username: "",
+        email: "",
+        token: ""
       };
     }
     default:

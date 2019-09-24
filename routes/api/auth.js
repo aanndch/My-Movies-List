@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
+const verify = require("../../verifyToken");
 const { registerValidation, loginValidation } = require("../../validation");
 
 // Register
@@ -33,7 +34,7 @@ router.post("/register", async (req, res) => {
     // Create jwt token
     const userInfo = await User.findOne({ email: user.email });
     const token = jwt.sign({ _id: userInfo._id }, process.env.TOKEN_SECRET);
-    res.header("auth-token", token).send({ token });
+    res.header("auth-token", token).send({ user: userInfo, token });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -56,7 +57,17 @@ router.post("/login", async (req, res) => {
 
   // Create jwt token
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header("auth-token", token).send({ token });
+  console.log(user);
+  res.header("auth-token", token).send({ user, token });
+});
+
+router.post("/token", verify, async (req, res) => {
+  console.log(req.body);
+  const userInfo = await User.findById(req.user._id, (err, doc) => {
+    if (err) return res.status(404).send("Wrong token!");
+    return doc;
+  });
+  res.send({ user: userInfo, token: req.body.token });
 });
 
 module.exports = router;

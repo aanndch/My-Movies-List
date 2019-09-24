@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
 import { checkUser } from "../actions/registrationActions";
 import { Redirect } from "react-router-dom";
-import Cookie from "js-cookie";
 
 import "./Register.css";
 
@@ -34,7 +33,7 @@ class Login extends Component {
   };
 
   render() {
-    const token = Cookie.get("token");
+    const { token } = this.props;
     if (token) return <Redirect to="/" />;
 
     return (
@@ -72,11 +71,15 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  token: user.token
+});
+
 const mapDispatchToProps = dispatch => ({
   checkUser: user => dispatch(checkUser(user))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Login);

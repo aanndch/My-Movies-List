@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
 import { createUser } from "../actions/registrationActions";
 import { Redirect } from "react-router-dom";
-import Cookie from "js-cookie";
 
 import "./Register.css";
 
@@ -36,7 +35,7 @@ class Register extends Component {
   };
 
   render() {
-    const token = Cookie.get("token");
+    const { token } = this.props;
     if (token) return <Redirect to="/" />;
 
     return (
@@ -82,11 +81,15 @@ class Register extends Component {
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  token: user.token
+});
+
 const mapDispatchToProps = dispatch => ({
   createUser: user => dispatch(createUser(user))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Register);

@@ -1,18 +1,26 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Button, Input } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
-import history from "../history";
+import { logoutUser, tokenLogIn } from "../actions/registrationActions";
 import Cookie from "js-cookie";
+import history from "../history";
+import Store from "../store";
 
 import "./Search.css";
 
-export default class SearchHeader extends Component {
+class SearchHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false
     };
   }
+
+  componentDidMount = () => {
+    const token = Cookie.get("token");
+    if (token) Store.dispatch(tokenLogIn({ token }));
+  };
 
   togglePopup = () => {
     this.setState(prevState => ({ open: !prevState.open }));
@@ -26,14 +34,15 @@ export default class SearchHeader extends Component {
     history.push("/login");
   };
 
-  signOut = () => {
+  logOut = () => {
+    const { logoutUser } = this.props;
     Cookie.remove("token");
+    logoutUser();
   };
 
   render() {
     const { open } = this.state;
-
-    const token = Cookie.get("token");
+    const { token } = this.props;
 
     return (
       <div className="search-container">
@@ -69,7 +78,7 @@ export default class SearchHeader extends Component {
                 <Button
                   variant="contained"
                   className="sign-out"
-                  onClick={this.signOut}
+                  onClick={this.logOut}
                 >
                   SIGN OUT
                 </Button>
@@ -90,3 +99,21 @@ export default class SearchHeader extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ api, user }) => {
+  return {
+    nowPlaying: api.nowPlaying,
+    token: user.token
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logoutUser: () => dispatch(logoutUser())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchHeader);
