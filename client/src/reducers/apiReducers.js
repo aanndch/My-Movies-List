@@ -1,16 +1,20 @@
-import { SET_NOW_PLAYING, SET_MOVIE_DETAILS } from "../actions/types";
+import { SET_MOVIES, SET_MOVIE_DETAILS } from "../actions/types";
 
 const initialState = {
-  nowPlaying: [],
+  movies: {
+    now_playing: [],
+    popular: [],
+    top_rated: []
+  },
   details: []
 };
 
 const apiReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_NOW_PLAYING: {
+    case SET_MOVIES: {
       return {
         ...state,
-        nowPlaying: action.nowPlaying
+        movies: { ...state.movies, ...action.movies }
       };
     }
     case SET_MOVIE_DETAILS: {

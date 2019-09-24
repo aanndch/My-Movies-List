@@ -1,9 +1,9 @@
-import { SET_NOW_PLAYING, SET_MOVIE_DETAILS } from "./types";
+import { SET_MOVIES, SET_MOVIE_DETAILS } from "./types";
 
-const setNowPlaying = results => {
+const setMovies = movies => {
   return {
-    type: SET_NOW_PLAYING,
-    nowPlaying: results
+    type: SET_MOVIES,
+    movies
   };
 };
 
@@ -14,4 +14,4 @@ const setMovieDetails = details => {
   };
 };
 
-export { setNowPlaying, setMovieDetails };
+export { setMovies, setMovieDetails };

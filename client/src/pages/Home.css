@@ -4,12 +4,41 @@
   margin-bottom: 2em;
 }
 
-.home-heading {
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 1em;
-  padding-bottom: 0.5em;
+  padding: 1em 2em;
+  border-bottom: 1px solid #394956;
+}
+
+.home-heading {
   color: #e4e6e8;
   font-weight: 300;
-  border-bottom: 1px solid #394956;
+}
+
+.MuiFormControl-root {
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.MuiInputBase-root {
+  border: none;
+  padding: 0 1em !important;
+  width: 170px;
+}
+
+.MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 2px solid #31db91 !important;
+}
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid #31db91 !important;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: #31db91 !important;
 }
 
 .movie-cards {

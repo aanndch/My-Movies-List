@@ -1,16 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { FormControl, Select, MenuItem } from "@material-ui/core";
 
-import { getNowPlaying } from "../apiCalls";
+import { getMovies, getMovieDetails } from "../apiCalls";
 import { toggleSelection } from "../userInteractions";
 import MovieCard from "../components/MovieCard";
 
 import "./Home.css";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: "now_playing"
+    };
+  }
+
   componentDidMount = () => {
-    getNowPlaying();
+    const { category } = this.state;
+    getMovies(category);
+  };
+
+  loadMovie = id => {
+    getMovieDetails(id);
   };
 
   favorite = (id, title, poster) => {
@@ -28,14 +41,63 @@ class Home extends Component {
     toggleSelection(id, info);
   };
 
+  handleChange = e => {
+    const { now_playing, popular, top_rated } = this.props;
+
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+
+    if (e.target.value === "now_playing" && now_playing.length !== 0) {
+      return;
+    }
+
+    if (e.target.value === "popular" && popular.length !== 0) {
+      return;
+    }
+
+    if (e.target.value === "top_rated" && top_rated.length !== 0) {
+      return;
+    }
+
+    getMovies(e.target.value);
+  };
+
   render() {
-    const { nowPlaying } = this.props;
+    const { category } = this.state;
+    const { now_playing, popular, top_rated } = this.props;
+
+    let movies = [];
+    let heading = "";
+    if (category === "now_playing") {
+      heading = "In Theaters";
+      movies = now_playing;
+    } else if (category === "popular") {
+      movies = popular;
+      heading = "Most Popular";
+    } else {
+      movies = top_rated;
+      heading = "Highest Rated";
+    }
 
     return (
       <div className="home-container">
-        <h1 className="home-heading">In Theaters</h1>
+        <div className="heading">
+          <h1 className="home-heading">{heading}</h1>
+          <FormControl>
+            <Select
+              value={category}
+              onChange={this.handleChange}
+              name="category"
+            >
+              <MenuItem value="now_playing">In theaters</MenuItem>
+              <MenuItem value="popular">Most Popular</MenuItem>
+              <MenuItem value="top_rated">Top Rated</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
         <div className="movie-cards">
-          {nowPlaying.map(movie => (
+          {movies.map(movie => (
             <Link
               key={movie.id}
               to={`/movie/${movie.id}`}
@@ -45,6 +107,7 @@ class Home extends Component {
                 title={movie.original_title}
                 poster={movie.poster_path}
                 rating={movie.vote_average}
+                onClick={() => this.loadMovie(movie.id)}
               />
             </Link>
           ))}
@@ -56,7 +119,9 @@ class Home extends Component {
 
 const mapStateToProps = ({ api, user }) => {
   return {
-    nowPlaying: api.nowPlaying,
+    now_playing: api.movies.now_playing,
+    popular: api.movies.popular,
+    top_rated: api.movies.top_rated,
     token: user.token
   };
 };
