@@ -1,12 +1,27 @@
 .container {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   height: calc(100vh - 175px);
 }
 
+.movies-image-part {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.movies-image {
+  opacity: 0.2;
+  height: 115vh;
+  width: 100%;
+}
+
 .registration {
-  margin-top: 15vh;
+  margin: auto;
+  position: absolute;
+  top: 130px;
   width: 400px;
   display: flex;
   flex-flow: column;

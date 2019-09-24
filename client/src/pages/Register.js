@@ -41,34 +41,41 @@ class Register extends Component {
 
     return (
       <div className="container">
-        <div className="registration">
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            onChange={this.handleChange}
-            min={6}
-            required
+        <div className="movies-image-part">
+          <img
+            src="https://babbletop.com/wp-content/uploads/2018/05/years-for-movies.jpg"
+            alt="movies-background"
+            className="movies-image"
           />
-          <input
-            name="username"
-            type="text"
-            placeholder="Username"
-            onChange={this.handleChange}
-            min={6}
-            required
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            onChange={this.handleChange}
-            min={6}
-            required
-          />
-          <Button id="sign-up" variant="contained" onClick={this.register}>
-            SIGN UP
-          </Button>
+          <div className="registration">
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              onChange={this.handleChange}
+              min={6}
+              required
+            />
+            <input
+              name="username"
+              type="text"
+              placeholder="Username"
+              onChange={this.handleChange}
+              min={6}
+              required
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              onChange={this.handleChange}
+              min={6}
+              required
+            />
+            <Button id="sign-up" variant="contained" onClick={this.register}>
+              SIGN UP
+            </Button>
+          </div>
         </div>
       </div>
     );
