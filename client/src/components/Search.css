@@ -2,11 +2,17 @@
   height: 125px;
   background-color: #132131;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.logo {
+.logo-part {
+  width: 10vw;
   margin: 1em;
+}
+
+.logo {
+  text-align: center;
   color: #e4e6e8;
 }
 
@@ -14,7 +20,6 @@
   display: flex;
   align-items: center;
   width: 60%;
-  margin: 10em;
 }
 
 .search-icon {
@@ -40,8 +45,8 @@
 }
 
 .picture-part {
-  height: 100%;
   width: 10%;
+  margin: 1em;
   display: flex;
   justify-content: center;
   align-items: center;

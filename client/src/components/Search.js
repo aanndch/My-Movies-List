@@ -8,7 +8,9 @@ export default class SearchHeader extends Component {
   render() {
     return (
       <div className="search-container">
-        <h1 className="logo">MML</h1>
+        <div className="logo-part">
+          <h1 className="logo">MML</h1>
+        </div>
         <div className="search-part">
           <Search className="search-icon" />
           <Input
