@@ -86,3 +86,9 @@
 .sign-out {
   background-color: #31db91 !important;
 }
+
+.log-in {
+  width: 120px;
+  margin-right: 4em !important;
+  background-color: #31db91 !important;
+}
