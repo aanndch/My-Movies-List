@@ -1,6 +1,7 @@
 .home-container {
   width: 1200px;
   margin: auto;
+  margin-bottom: 2em;
 }
 
 .home-heading {
@@ -21,7 +22,7 @@
   position: relative;
   height: 310px;
   width: 200px;
-  margin: 1rem;
+  margin: 0.8rem;
   background-color: transparent !important;
 }
 
