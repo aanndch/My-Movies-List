@@ -46,13 +46,43 @@
 }
 
 .picture-part {
+  position: relative;
   width: 10%;
+  height: 100%;
   margin: 1em;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .profile-pic {
   border-radius: 50%;
+}
+
+.profile-pic:hover {
+  cursor: pointer;
+}
+
+.popup {
+  justify-content: center;
+  align-items: center;
+  background-color: #e4e6e8;
+  position: absolute;
+  top: 50px;
+  border-radius: 4px;
+  margin-top: 50px;
+}
+
+.arrow {
+  position: absolute;
+  top: -3px;
+  transform: rotate(45deg);
+  height: 30px;
+  width: 30px;
+  background-color: #31db91;
+}
+
+.sign-out {
+  background-color: #31db91 !important;
 }
