@@ -1,22 +1,22 @@
 .container {
-  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: #34495e;
+  height: calc(100vh - 175px);
 }
 
 .registration {
-  width: 30%;
+  margin-top: 15vh;
+  width: 400px;
   display: flex;
   flex-flow: column;
 }
 
 .registration input {
+  background-color: #e4e6e8;
   border: none;
   border-bottom: 1px solid grey;
-  padding: 1rem;
+  padding: 1.3rem;
   font-size: 1.5rem;
 }
 
@@ -26,8 +26,8 @@
 
 #sign-up {
   border-radius: 0 0 4px 4px;
-  background: #2196f3;
+  background: #31db91;
   color: white;
-  padding: 1rem;
+  padding: 1.3rem;
   font-size: 1.5rem;
 }
