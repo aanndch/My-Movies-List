@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { IconButton } from "@material-ui/core";
 import { Person, Videocam, FilterList, Category } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 
 import "./Navbar.css";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   register = () => {
     const path = window.location.pathname;
     if (path === "/login" || path === "/register") return true;
@@ -13,6 +14,8 @@ export default class Navbar extends Component {
   };
 
   render() {
+    const { token } = this.props;
+
     return (
       <div className="navbar">
         <NavLink to="/" exact style={{ color: "#616f7c" }}>
@@ -42,20 +45,38 @@ export default class Navbar extends Component {
             <FilterList />
           </IconButton>
         </NavLink>
-        <NavLink
-          to="/login"
-          isActive={this.register}
-          style={{ color: "#616f7c" }}
-        >
-          <IconButton
-            className="nav-item"
-            disableFocusRipple={true}
-            disableRipple={true}
+        {token ? (
+          <NavLink to="/profile" style={{ color: "#616f7c" }}>
+            <IconButton
+              className="nav-item"
+              disableFocusRipple={true}
+              disableRipple={true}
+            >
+              <Person />
+            </IconButton>
+          </NavLink>
+        ) : (
+          <NavLink
+            to="/login"
+            isActive={this.register}
+            style={{ color: "#616f7c" }}
           >
-            <Person />
-          </IconButton>
-        </NavLink>
+            <IconButton
+              className="nav-item"
+              disableFocusRipple={true}
+              disableRipple={true}
+            >
+              <Person />
+            </IconButton>
+          </NavLink>
+        )}
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ user }) => ({
+  token: user.token
+});
+
+export default connect(mapStateToProps)(Navbar);
