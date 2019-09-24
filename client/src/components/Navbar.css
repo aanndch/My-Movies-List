@@ -1,9 +1,21 @@
 .navbar {
-  width: 100px;
+  width: 5vw;
   background-color: #394956;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.navbar button {
+  color: inherit;
+}
+
+.active {
+  color: #31db91 !important;
+}
+
+.MuiIconButton-root {
+  color: inherit;
 }
 
 .nav-item {

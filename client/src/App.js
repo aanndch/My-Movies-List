@@ -6,7 +6,6 @@ import "./App.css";
 import store from "./store";
 import Routes from "./routes";
 import Search from "./components/Search";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
     <Provider store={store}>
       <Search />
       <div style={{ display: "flex" }}>
-        <Navbar />
         <Routes />
       </div>
       <Footer />
