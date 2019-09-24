@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
 import { createUser } from "../actions/registrationActions";
+import { Redirect } from "react-router-dom";
+import Cookie from "js-cookie";
 
 import "./Register.css";
 
@@ -34,6 +36,9 @@ class Register extends Component {
   };
 
   render() {
+    const token = Cookie.get("token");
+    if (token) return <Redirect to="/" />;
+
     return (
       <div className="container">
         <div className="registration">
