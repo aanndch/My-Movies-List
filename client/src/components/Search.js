@@ -23,7 +23,7 @@ export default class SearchHeader extends Component {
           <img
             className="profile-pic"
             src="https://www.instituteofphotography.in/wp-content/uploads/2015/05/dummy-profile-pic.jpg"
-            alt="Picture"
+            alt="profile-pic"
             height={50}
             width={50}
           />
