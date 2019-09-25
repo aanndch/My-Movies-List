@@ -77,7 +77,7 @@ class Home extends Component {
       heading = "Most Popular";
     } else {
       movies = top_rated;
-      heading = "Highest Rated";
+      heading = "Top Rated";
     }
 
     return (

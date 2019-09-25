@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
 import { checkUser } from "../actions/registrationActions";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import "./Register.css";
 
@@ -72,6 +72,9 @@ class Login extends Component {
                 SIGN IN
               </Button>
             </form>
+            <Link to="/register" style={{ textDecoration: "none" }}>
+              <h3 className="register-button">Create Account</h3>
+            </Link>
           </div>
         </div>
       </div>

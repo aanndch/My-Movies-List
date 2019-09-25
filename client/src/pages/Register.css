@@ -48,3 +48,9 @@
   font-size: 1.5rem;
   width: 100%;
 }
+
+.register-button {
+  margin: 1rem 0.5rem;
+  color: #e4e6e8;
+  text-align: end;
+}
