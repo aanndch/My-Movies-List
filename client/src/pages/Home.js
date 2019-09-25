@@ -70,7 +70,16 @@ class Home extends Component {
 
   render() {
     const { category } = this.state;
-    const { now_playing, popular, top_rated, loading } = this.props;
+    const {
+      now_playing,
+      popular,
+      top_rated,
+      search,
+      loading,
+      loadSearch
+    } = this.props;
+
+    if (loading) return <CircularProgress className="loader" />;
 
     let movies = [];
     let heading = "";
@@ -78,30 +87,35 @@ class Home extends Component {
       heading = "In Theaters";
       movies = now_playing;
     } else if (category === "popular") {
-      movies = popular;
       heading = "Most Popular";
+      movies = popular;
     } else {
-      movies = top_rated;
       heading = "Top Rated";
+      movies = top_rated;
     }
 
-    if (loading) return <CircularProgress className="loader" />;
+    if (loadSearch) {
+      heading = "Search Results";
+      movies = search;
+    }
 
     return (
       <div className="home-container">
         <div className="heading">
           <h1 className="home-heading">{heading}</h1>
-          <FormControl>
-            <Select
-              value={category}
-              onChange={this.handleChange}
-              name="category"
-            >
-              <MenuItem value="now_playing">In theaters</MenuItem>
-              <MenuItem value="popular">Most Popular</MenuItem>
-              <MenuItem value="top_rated">Top Rated</MenuItem>
-            </Select>
-          </FormControl>
+          {!loadSearch && (
+            <FormControl>
+              <Select
+                value={category}
+                onChange={this.handleChange}
+                name="category"
+              >
+                <MenuItem value="now_playing">In theaters</MenuItem>
+                <MenuItem value="popular">Most Popular</MenuItem>
+                <MenuItem value="top_rated">Top Rated</MenuItem>
+              </Select>
+            </FormControl>
+          )}
         </div>
         <div className="movie-cards">
           {movies.map(movie => (
@@ -129,7 +143,9 @@ const mapStateToProps = ({ api, user }) => {
     now_playing: api.movies.now_playing,
     popular: api.movies.popular,
     top_rated: api.movies.top_rated,
+    search: api.movies.search,
     token: user.token,
+    loadSearch: api.loadSearch,
     loading: api.loading
   };
 };

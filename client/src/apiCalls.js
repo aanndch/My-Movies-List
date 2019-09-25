@@ -1,7 +1,11 @@
 import axios from "axios";
 
 import { API_KEY } from "./config/config";
-import { setMovies, setMovieDetails } from "./actions/apiActions";
+import {
+  setMovies,
+  setMovieDetails,
+  setMovieSearch
+} from "./actions/apiActions";
 import store from "./store";
 
 const URL = "https://api.themoviedb.org/3";
@@ -25,4 +29,15 @@ const getMovieDetails = id => {
     });
 };
 
-export { getMovies, getMovieDetails };
+const searchForMovie = query => {
+  axios
+    .get(
+      `${URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1`
+    )
+    .then(({ data: { results } }) => {
+      store.dispatch(setMovieSearch({ search: results }));
+    })
+    .catch(error => console.log(error.response.data));
+};
+
+export { getMovies, getMovieDetails, searchForMovie };

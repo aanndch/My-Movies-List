@@ -1,4 +1,9 @@
-import { SET_MOVIES, SET_MOVIE_DETAILS, SET_LOADING } from "./types";
+import {
+  SET_MOVIES,
+  SET_MOVIE_DETAILS,
+  SET_MOVIE_SEARCH,
+  SET_LOADING
+} from "./types";
 
 const setMovies = movies => dispatch => {
   dispatch({ type: SET_LOADING });
@@ -16,4 +21,12 @@ const setMovieDetails = details => dispatch => {
   });
 };
 
-export { setMovies, setMovieDetails };
+const setMovieSearch = movies => dispatch => {
+  dispatch({ type: SET_LOADING });
+  dispatch({
+    type: SET_MOVIE_SEARCH,
+    movies
+  });
+};
+
+export { setMovies, setMovieDetails, setMovieSearch };

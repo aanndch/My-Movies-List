@@ -28,7 +28,6 @@ export const checkUser = user => dispatch => {
 };
 
 export const tokenLogIn = token => dispatch => {
-  console.log("ACTION");
   axios
     .post("http://localhost:5000/api/token", token)
     .then(({ data }) => {

@@ -6,6 +6,7 @@ import { logoutUser, tokenLogIn } from "../actions/registrationActions";
 import Cookie from "js-cookie";
 import history from "../history";
 import Store from "../store";
+import { searchForMovie } from "../apiCalls";
 
 import "./Search.css";
 
@@ -13,7 +14,8 @@ class SearchHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      search: ""
     };
   }
 
@@ -40,8 +42,21 @@ class SearchHeader extends Component {
     logoutUser();
   };
 
+  handleSearchChange = e => {
+    this.setState({
+      search: e.target.value
+    });
+  };
+
+  searchMovie = e => {
+    e.preventDefault();
+    const { search } = this.state;
+
+    searchForMovie(search);
+  };
+
   render() {
-    const { open } = this.state;
+    const { open, search } = this.state;
     const { token } = this.props;
 
     return (
@@ -50,12 +65,26 @@ class SearchHeader extends Component {
           <h1 className="logo">MML</h1>
         </div>
         <div className="search-part">
-          <Search className="search-icon" />
-          <Input
-            className="search-input"
-            disableUnderline={true}
-            placeholder="Search for a movie"
-          />
+          <form type="GET" onSubmit={this.searchMovie}>
+            <Search className="search-icon" />
+            <Input
+              className="search-input"
+              disableUnderline={true}
+              placeholder="Search for a movie"
+              value={search}
+              onChange={this.handleSearchChange}
+            />
+            <input
+              type="submit"
+              style={{
+                position: "absolute",
+                left: "-9999px",
+                width: "1px",
+                height: "1px"
+              }}
+              tabIndex="-1"
+            />
+          </form>
         </div>
         <div className="picture-part" onMouseLeave={this.closePopup}>
           {token ? (
