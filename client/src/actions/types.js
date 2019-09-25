@@ -5,3 +5,5 @@ export const STORE_USER_INFO = "GET_USER_INFO";
 
 export const SET_MOVIES = "SET_MOVIES";
 export const SET_MOVIE_DETAILS = "SET_MOVIE_DETAILS";
+
+export const SET_LOADING = "SET_LOADING";

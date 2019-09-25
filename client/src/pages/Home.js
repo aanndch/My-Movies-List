@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { FormControl, Select, MenuItem } from "@material-ui/core";
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  CircularProgress
+} from "@material-ui/core";
 
 import { getMovies, getMovieDetails } from "../apiCalls";
 import { toggleSelection } from "../userInteractions";
@@ -65,7 +70,7 @@ class Home extends Component {
 
   render() {
     const { category } = this.state;
-    const { now_playing, popular, top_rated } = this.props;
+    const { now_playing, popular, top_rated, loading } = this.props;
 
     let movies = [];
     let heading = "";
@@ -79,6 +84,8 @@ class Home extends Component {
       movies = top_rated;
       heading = "Top Rated";
     }
+
+    if (loading) return <CircularProgress className="loader" />;
 
     return (
       <div className="home-container">
@@ -122,7 +129,8 @@ const mapStateToProps = ({ api, user }) => {
     now_playing: api.movies.now_playing,
     popular: api.movies.popular,
     top_rated: api.movies.top_rated,
-    token: user.token
+    token: user.token,
+    loading: api.loading
   };
 };
 
