@@ -125,7 +125,7 @@ class Home extends Component {
               style={{ textDecoration: "none" }}
             >
               <MovieCard
-                title={movie.original_title}
+                title={movie.title}
                 poster={movie.poster_path}
                 rating={movie.vote_average}
                 onClick={() => this.loadMovie(movie.id)}

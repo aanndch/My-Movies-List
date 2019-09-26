@@ -1,0 +1,51 @@
+.movie-page-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.background-image {
+  z-index: -5;
+  opacity: 0.15;
+  position: absolute;
+  height: 115vh;
+  /* width: 100%; */
+  /* filter: blur(5px); */
+}
+
+.movie-info {
+  height: 100%;
+  width: 65%;
+  display: flex;
+  padding: 5em;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.extra {
+  display: flex;
+  align-items: center;
+}
+
+.movie-info h1 {
+  color: white;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.movie-poster {
+  height: 100%;
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-poster img {
+  height: 350px;
+  width: 230px;
+}
