@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { IconButton } from "@material-ui/core";
-import { Person, Videocam, FilterList, Category } from "@material-ui/icons";
+import {
+  Person,
+  Videocam,
+  FilterList,
+  Category,
+  Search
+} from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 import { tokenLogIn } from "../actions/registrationActions";
 import Store from "../store";
@@ -32,52 +38,20 @@ class Navbar extends Component {
 
     return (
       <div className="navbar">
-        <NavLink
-          to="/"
-          isActive={this.onMoviePage}
-          exact
-          style={{ color: "#616f7c" }}
-        >
+        <NavLink to="/search" exact style={{ color: "#616f7c" }}>
           <IconButton
             className="nav-item"
             disableFocusRipple={true}
             disableRipple={true}
           >
-            <Videocam />
+            <Search />
           </IconButton>
         </NavLink>
-        <NavLink to="/genres" style={{ color: "#616f7c" }}>
-          <IconButton
-            className="nav-item"
-            disableFocusRipple={true}
-            disableRipple={true}
-          >
-            <Category />
-          </IconButton>
-        </NavLink>
-        <NavLink to="/discover" style={{ color: "#616f7c" }}>
-          <IconButton
-            className="nav-item"
-            disableFocusRipple={true}
-            disableRipple={true}
-          >
-            <FilterList />
-          </IconButton>
-        </NavLink>
-        {token ? (
-          <NavLink to="/profile" style={{ color: "#616f7c" }}>
-            <IconButton
-              className="nav-item"
-              disableFocusRipple={true}
-              disableRipple={true}
-            >
-              <Person />
-            </IconButton>
-          </NavLink>
-        ) : (
+        <div className="middle-nav">
           <NavLink
-            to="/login"
-            isActive={this.register}
+            to="/"
+            isActive={this.onMoviePage}
+            exact
             style={{ color: "#616f7c" }}
           >
             <IconButton
@@ -85,10 +59,53 @@ class Navbar extends Component {
               disableFocusRipple={true}
               disableRipple={true}
             >
-              <Person />
+              <Videocam />
             </IconButton>
           </NavLink>
-        )}
+          <NavLink to="/genres" style={{ color: "#616f7c" }}>
+            <IconButton
+              className="nav-item"
+              disableFocusRipple={true}
+              disableRipple={true}
+            >
+              <Category />
+            </IconButton>
+          </NavLink>
+          <NavLink to="/discover" style={{ color: "#616f7c" }}>
+            <IconButton
+              className="nav-item"
+              disableFocusRipple={true}
+              disableRipple={true}
+            >
+              <FilterList />
+            </IconButton>
+          </NavLink>
+          {token ? (
+            <NavLink to="/profile" style={{ color: "#616f7c" }}>
+              <IconButton
+                className="nav-item"
+                disableFocusRipple={true}
+                disableRipple={true}
+              >
+                <Person />
+              </IconButton>
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/login"
+              isActive={this.register}
+              style={{ color: "#616f7c" }}
+            >
+              <IconButton
+                className="nav-item"
+                disableFocusRipple={true}
+                disableRipple={true}
+              >
+                <Person />
+              </IconButton>
+            </NavLink>
+          )}
+        </div>
       </div>
     );
   }
