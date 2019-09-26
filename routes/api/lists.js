@@ -24,10 +24,9 @@ router.post("/:id", verify, async (req, res) => {
   User.findByIdAndUpdate(
     req.user._id,
     { [operator]: { [list]: movie } },
-    { new: true }
+    { new: true },
+    () => res.send({ _id: req.user._id, token: req.body.token })
   ).exec();
-
-  res.send({ _id: req.user._id, token: req.body.token });
 });
 
 module.exports = router;
