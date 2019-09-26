@@ -1,4 +1,6 @@
 .navbar {
+  position: fixed;
+  height: 100%;
   background-color: #394956;
   padding: 0.5em;
   display: flex;
