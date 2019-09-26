@@ -8,8 +8,7 @@ import store from "./store";
 import history from "./history";
 import Routes from "./routes";
 import Navbar from "./components/Navbar";
-import Search from "./components/Search";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
 function App() {
   return (

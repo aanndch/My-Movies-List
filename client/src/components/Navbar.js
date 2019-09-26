@@ -21,12 +21,23 @@ class Navbar extends Component {
     return false;
   };
 
+  onMoviePage = () => {
+    const path = window.location.pathname;
+    if (path === "/" || path.slice(0, 6) === "/movie") return true;
+    return false;
+  };
+
   render() {
     const { token } = this.props;
 
     return (
       <div className="navbar">
-        <NavLink to="/" exact style={{ color: "#616f7c" }}>
+        <NavLink
+          to="/"
+          isActive={this.onMoviePage}
+          exact
+          style={{ color: "#616f7c" }}
+        >
           <IconButton
             className="nav-item"
             disableFocusRipple={true}

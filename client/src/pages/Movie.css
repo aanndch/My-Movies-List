@@ -13,7 +13,7 @@
   opacity: 0.35;
   position: absolute;
   height: 115%;
-  /* filter: blur(5px); */
+  filter: blur(3px);
 }
 
 .movie-info {
@@ -31,6 +31,10 @@
   align-items: center;
 }
 
+.extra p {
+  margin: 0 0.5rem;
+}
+
 .tmdb-logo {
   background-color: #394956;
   height: 1rem;
@@ -42,7 +46,6 @@
   font-size: 2.9rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin: 1rem 2rem 1.5rem 0;
 }
 
 .movie-info p {
@@ -52,19 +55,30 @@
 
 .title-buttons {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.release-date {
+  margin: 0.3rem 0 1.5rem 0;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
   align-items: center;
 }
 
 .action-button {
   background-color: #394956 !important;
-  color: #616f7c !important;
+  /* color: #616f7c !important; */
   font-size: 23px !important;
   margin-left: 2rem !important;
 }
 
 .action-button:hover,
-.action-button:active,
-.action-button:focus {
+.action-button:active {
   color: #31db91 !important;
 }
 
