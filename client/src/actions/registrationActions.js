@@ -2,6 +2,7 @@ import { LOGIN_USER, LOGOUT_USER } from "./types";
 import axios from "axios";
 import Cookies from "js-cookie";
 import history from "../history";
+import { getUserInfo } from "../userInteractions";
 
 export const createUser = user => dispatch => {
   axios
@@ -27,11 +28,11 @@ export const checkUser = user => dispatch => {
     .catch(error => console.log(error.response.data));
 };
 
-export const tokenLogIn = token => dispatch => {
+export const tokenLogIn = tokenObj => dispatch => {
   axios
-    .post("http://localhost:5000/api/token", token)
+    .post("http://localhost:5000/api/token", tokenObj)
     .then(({ data }) => {
-      dispatch(loginUser(data.user, data.token));
+      getUserInfo(data.user._id, tokenObj.token);
     })
     .catch(error => console.log(error.response.data));
 };

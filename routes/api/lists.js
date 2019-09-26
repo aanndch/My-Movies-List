@@ -27,7 +27,7 @@ router.post("/:id", verify, async (req, res) => {
     { new: true }
   ).exec();
 
-  res.send("Done");
+  res.send({ _id: req.user._id, token: req.body.token });
 });
 
 module.exports = router;

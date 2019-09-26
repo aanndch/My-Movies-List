@@ -1,9 +1,10 @@
 import { STORE_USER_INFO } from "./types";
 
-const storeUserInfo = user => {
+const storeUserInfo = (user, token) => {
   return {
     type: STORE_USER_INFO,
-    user
+    user,
+    token
   };
 };
 

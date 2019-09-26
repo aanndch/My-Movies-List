@@ -62,7 +62,6 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/token", verify, async (req, res) => {
-  console.log(req.body);
   const userInfo = await User.findById(req.user._id, (err, doc) => {
     if (err) return res.status(404).send("Wrong token!");
     return doc;

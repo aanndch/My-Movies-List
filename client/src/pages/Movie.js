@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getMovieDetails } from "../apiCalls";
 import { CircularProgress, Fab } from "@material-ui/core";
 import { Add, Favorite, Check } from "@material-ui/icons";
+
+import { toggleSelection } from "../userInteractions";
+import { getMovieDetails } from "../apiCalls";
 
 import "./Movie.css";
 
@@ -12,8 +14,23 @@ class Movie extends Component {
     getMovieDetails(id);
   };
 
+  addToList = (id, title, poster, list) => {
+    const { token } = this.props;
+    const info = {
+      movie: {
+        movieId: id,
+        title,
+        poster
+      },
+      token,
+      list
+    };
+
+    toggleSelection(id, info);
+  };
+
   render() {
-    const { details, loading } = this.props;
+    const { details, loading, favorites, watched, watchlist } = this.props;
 
     if (loading && !details) return <CircularProgress className="loader" />;
 
@@ -38,13 +55,48 @@ class Movie extends Component {
           </div>
           <div className="title-buttons">
             <h1>{details.title}</h1>
-            <Fab color="primary" className="action-button">
+            <Fab
+              className="action-button"
+              // style={{
+              //   color: watchlist.forEach(movie => movie.showId === details.id)
+              //     ? "#31db91"
+              //     : "616f7c"
+              // }}
+              onClick={() =>
+                this.addToList(
+                  details.id,
+                  details.title,
+                  details.poster_path,
+                  "watchlist"
+                )
+              }
+            >
               <Add />
             </Fab>
-            <Fab color="primary" className="action-button">
+            <Fab
+              className="action-button"
+              onClick={() =>
+                this.addToList(
+                  details.id,
+                  details.title,
+                  details.poster_path,
+                  "favorites"
+                )
+              }
+            >
               <Favorite />
             </Fab>
-            <Fab color="primary" className="action-button">
+            <Fab
+              className="action-button"
+              onClick={() =>
+                this.addToList(
+                  details.id,
+                  details.title,
+                  details.poster_path,
+                  "watched"
+                )
+              }
+            >
               <Check />
             </Fab>
           </div>
@@ -61,10 +113,14 @@ class Movie extends Component {
   }
 }
 
-const mapStateToProps = ({ api }) => {
+const mapStateToProps = ({ user, api }) => {
   return {
     details: api.details,
-    loading: api.loading
+    loading: api.loading,
+    favorites: user.favorites,
+    watchlist: user.watchlist,
+    watched: user.watched,
+    token: user.token
   };
 };
 

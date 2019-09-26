@@ -3,10 +3,18 @@ import { connect } from "react-redux";
 import { IconButton } from "@material-ui/core";
 import { Person, Videocam, FilterList, Category } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
+import { tokenLogIn } from "../actions/registrationActions";
+import Store from "../store";
+import Cookie from "js-cookie";
 
 import "./Navbar.css";
 
 class Navbar extends Component {
+  componentDidMount = () => {
+    const token = Cookie.get("token");
+    if (token) Store.dispatch(tokenLogIn({ token }));
+  };
+
   register = () => {
     const path = window.location.pathname;
     if (path === "/login" || path === "/register") return true;

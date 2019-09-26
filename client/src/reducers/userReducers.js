@@ -21,7 +21,8 @@ const userReducers = (state = initialState, action) => {
     case STORE_USER_INFO: {
       return {
         ...state,
-        ...action.user
+        ...action.user,
+        token: action.token
       };
     }
     case LOGOUT_USER: {
