@@ -12,7 +12,7 @@ function App() {
   return (
     <Provider store={store}>
       <Search />
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", minHeight: "calc(100vh - 175px)" }}>
         <Routes />
       </div>
       <Footer />
