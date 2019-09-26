@@ -1,3 +1,7 @@
+p {
+  font-size: 1.1rem;
+}
+
 .movie-page-container {
   position: relative;
   min-height: 100vh;
@@ -43,7 +47,7 @@
 }
 
 .movie-info h1 {
-  font-size: 2.9rem;
+  font-size: 3.5rem;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
