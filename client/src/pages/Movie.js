@@ -41,6 +41,8 @@ class Movie extends Component {
     } = this.props;
 
     const date = moment(details.release_date).format("Do MMM Y");
+    const hours = Math.floor(details.runtime / 60);
+    const min = details.runtime - hours * 60;
 
     if (loading && !details) return <CircularProgress className="loader" />;
 
@@ -62,6 +64,8 @@ class Movie extends Component {
             <p>|</p>
             {details.genres &&
               details.genres.map(genre => <p key={genre.id}>{genre.name} </p>)}
+            <p>|</p>
+            <p>{`${hours}h ${min}min`}</p>
           </div>
           <div className="title-buttons">
             <h1>{details.title}</h1>
