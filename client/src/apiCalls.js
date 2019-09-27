@@ -19,7 +19,8 @@ const getMovies = category => {
         [category]: results
       };
       store.dispatch(setMovies(movies));
-    });
+    })
+    .catch(error => console.log(error.response.data));
 };
 
 const getMovieDetails = id => {
@@ -27,7 +28,8 @@ const getMovieDetails = id => {
     .get(`${URL}/movie/${id}?api_key=${API_KEY}&language=en-US`)
     .then(({ data }) => {
       store.dispatch(setMovieDetails(data));
-    });
+    })
+    .catch(error => console.log(error.response.data));
 };
 
 const searchForMovie = query => {
