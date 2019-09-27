@@ -31,7 +31,14 @@ class Movie extends Component {
   };
 
   render() {
-    const { details, loading, favorites, watched, watchlist } = this.props;
+    const {
+      details,
+      loading,
+      favorites,
+      watched,
+      watchlist,
+      token
+    } = this.props;
 
     const date = moment(details.release_date).format("Do MMM Y");
 
@@ -58,74 +65,76 @@ class Movie extends Component {
           </div>
           <div className="title-buttons">
             <h1>{details.title}</h1>
-            <div className="action-buttons">
-              <Fab
-                className="action-button"
-                style={{
-                  color:
-                    watchlist &&
-                    watchlist
-                      .map(movie => parseInt(movie.movieId))
-                      .includes(details.id)
-                      ? "#31db91"
-                      : "#616f7c"
-                }}
-                onClick={() =>
-                  this.addToList(
-                    details.id,
-                    details.title,
-                    details.poster_path,
-                    "watchlist"
-                  )
-                }
-              >
-                <Add />
-              </Fab>
-              <Fab
-                className="action-button"
-                onClick={() =>
-                  this.addToList(
-                    details.id,
-                    details.title,
-                    details.poster_path,
-                    "favorites"
-                  )
-                }
-                style={{
-                  color:
-                    favorites &&
-                    favorites
-                      .map(movie => parseInt(movie.movieId))
-                      .includes(details.id)
-                      ? "#31db91"
-                      : "#616f7c"
-                }}
-              >
-                <Favorite />
-              </Fab>
-              <Fab
-                className="action-button"
-                onClick={() =>
-                  this.addToList(
-                    details.id,
-                    details.title,
-                    details.poster_path,
-                    "watched"
-                  )
-                }
-                style={{
-                  color:
-                    watched &&
-                    watched
-                      .map(movie => parseInt(movie.movieId))
-                      .includes(details.id)
-                      ? "#31db91"
-                      : "#616f7c"
-                }}
-              >
-                <Check />
-              </Fab>
-            </div>
+            {token && (
+              <div className="action-buttons">
+                <Fab
+                  className="action-button"
+                  style={{
+                    color:
+                      watchlist &&
+                      watchlist
+                        .map(movie => parseInt(movie.movieId))
+                        .includes(details.id)
+                        ? "#31db91"
+                        : "#616f7c"
+                  }}
+                  onClick={() =>
+                    this.addToList(
+                      details.id,
+                      details.title,
+                      details.poster_path,
+                      "watchlist"
+                    )
+                  }
+                >
+                  <Add />
+                </Fab>
+                <Fab
+                  className="action-button"
+                  onClick={() =>
+                    this.addToList(
+                      details.id,
+                      details.title,
+                      details.poster_path,
+                      "favorites"
+                    )
+                  }
+                  style={{
+                    color:
+                      favorites &&
+                      favorites
+                        .map(movie => parseInt(movie.movieId))
+                        .includes(details.id)
+                        ? "#31db91"
+                        : "#616f7c"
+                  }}
+                >
+                  <Favorite />
+                </Fab>
+                <Fab
+                  className="action-button"
+                  onClick={() =>
+                    this.addToList(
+                      details.id,
+                      details.title,
+                      details.poster_path,
+                      "watched"
+                    )
+                  }
+                  style={{
+                    color:
+                      watched &&
+                      watched
+                        .map(movie => parseInt(movie.movieId))
+                        .includes(details.id)
+                        ? "#31db91"
+                        : "#616f7c"
+                  }}
+                >
+                  <Check />
+                </Fab>
+              </div>
+            )}
           </div>
           <p className="release-date">{date}</p>
           <p>{details.overview}</p>

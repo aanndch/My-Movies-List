@@ -53,57 +53,55 @@ class Discover extends Component {
 
     return (
       <div className="discover-container">
-        <div className="discover-body">
-          <div className="discover-movies">
-            <h1>Discover</h1>
-            <div className="filtered-movies">
-              {filteredMovies &&
-                filteredMovies.map(movie => (
-                  <Link
+        <div className="discover-movies">
+          <h1>Discover</h1>
+          <div className="filtered-movies">
+            {filteredMovies &&
+              filteredMovies.map(movie => (
+                <Link
+                  key={movie.id}
+                  to={`/movie/${movie.id}`}
+                  style={{ textDecoration: "none", margin: "0.8rem" }}
+                >
+                  <MovieCard
                     key={movie.id}
-                    to={`/movie/${movie.id}`}
-                    style={{ textDecoration: "none", margin: "0.8rem" }}
-                  >
-                    <MovieCard
-                      key={movie.id}
-                      title={movie.title}
-                      poster={movie.poster_path}
-                      rating={movie.vote_average}
-                    />
-                  </Link>
-                ))}
-            </div>
-          </div>
-          <div className="select-genres">
-            <h1>Filter :</h1>
-            <div className="genre-checkboxes">
-              {genresDB.map(genre => (
-                <FormControlLabel
-                  key={genre.id}
-                  control={
-                    <Checkbox
-                      color="primary"
-                      checked={genres.includes(genre.id)}
-                      onChange={this.handleGenreSelect}
-                      value={genre.id}
-                      className="genre-checkbox"
-                    />
-                  }
-                  label={genre.name}
-                  className="checkbox-label"
-                />
+                    title={movie.title}
+                    poster={movie.poster_path}
+                    rating={movie.vote_average}
+                  />
+                </Link>
               ))}
-            </div>
-            <Button
-              className="filter-button"
-              color="primary"
-              size="large"
-              variant="contained"
-              onClick={this.getMovies}
-            >
-              FILTER
-            </Button>
           </div>
+        </div>
+        <div className="select-genres">
+          <h1>Filter :</h1>
+          <div className="genre-checkboxes">
+            {genresDB.map(genre => (
+              <FormControlLabel
+                key={genre.id}
+                control={
+                  <Checkbox
+                    color="primary"
+                    checked={genres.includes(genre.id)}
+                    onChange={this.handleGenreSelect}
+                    value={genre.id}
+                    className="genre-checkbox"
+                  />
+                }
+                label={genre.name}
+                className="checkbox-label"
+              />
+            ))}
+          </div>
+          <Button
+            className="filter-button"
+            color="primary"
+            size="large"
+            variant="contained"
+            onClick={this.getMovies}
+          >
+            FILTER
+          </Button>
         </div>
       </div>
     );
