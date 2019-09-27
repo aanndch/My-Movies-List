@@ -13,6 +13,12 @@
   color: inherit;
 }
 
+.middle-nav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+}
+
 .active {
   color: #31db91 !important;
 }

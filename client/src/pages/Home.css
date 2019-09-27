@@ -4,47 +4,13 @@
   margin: auto;
 }
 
-.search-form {
-  width: 60%;
-  margin: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.search-form .search-icon {
-  margin-right: 2rem;
-  color: #31db91;
-  font-size: 3rem !important;
-}
-
-.search-input {
-  color: #e4e6e8 !important;
-  height: 50px;
-  width: 100% !important;
-  font-size: 1.5em !important;
-  border-bottom: 1px solid #384755;
-}
-
-.search-input .MuiInputBase-input {
-  color: #e4e6e8 !important;
-}
-
 .heading {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin: 1em;
   padding: 1em 2em;
   border-bottom: 1px solid #394956;
-}
-
-.movie-cards-heading {
-  /* margin-top: 1rem; */
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .home-heading {
@@ -66,10 +32,6 @@
 
 .MuiInput-underline:hover:not(.Mui-disabled):before {
   border-bottom: 2px solid #31db91 !important;
-}
-
-.MuiInput-underline:before {
-  border-bottom: rgb(97, 111, 124) !important;
 }
 
 .MuiInput-underline:after {
