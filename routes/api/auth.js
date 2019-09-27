@@ -32,7 +32,7 @@ router.post("/register", async (req, res) => {
 
     // Successful registration leads to direct login
     // Create jwt token
-    const userInfo = await User.findOne({ email: user.email });
+    const userInfo = await User.findOne({ email: user.email }, "-password");
     const token = jwt.sign({ _id: userInfo._id }, process.env.TOKEN_SECRET);
     res.header("auth-token", token).send({ user: userInfo, token });
   } catch (error) {
@@ -42,6 +42,7 @@ router.post("/register", async (req, res) => {
 
 // Login
 router.post("/login", async (req, res) => {
+  console.log(req.body);
   // Validation
   const { error } = loginValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -57,15 +58,19 @@ router.post("/login", async (req, res) => {
 
   // Create jwt token
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  console.log(user);
+  // TODO dont send password to client side
   res.header("auth-token", token).send({ user, token });
 });
 
 router.post("/token", verify, async (req, res) => {
-  const userInfo = await User.findById(req.user._id, (err, doc) => {
-    if (err) return res.status(404).send("Wrong token!");
-    return doc;
-  });
+  const userInfo = await User.findById(
+    req.user._id,
+    "-password",
+    (err, doc) => {
+      if (err) return res.status(404).send("Wrong token!");
+      return doc;
+    }
+  );
   res.send({ user: userInfo, token: req.body.token });
 });
 

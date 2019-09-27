@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import history from "../history";
 import { getUserInfo } from "../userInteractions";
+import { storeUserInfo } from "./userActions";
 
 export const createUser = user => dispatch => {
   axios
@@ -10,7 +11,7 @@ export const createUser = user => dispatch => {
     .then(({ data }) => {
       Cookies.set("token", data.token);
       // TODO Display notification logged in
-      dispatch(loginUser(data.user, data.token));
+      dispatch(storeUserInfo(data.user, data.token));
     })
     .then(() => history.push("/"))
     .catch(error => console.log(error.response.data));
@@ -22,7 +23,7 @@ export const checkUser = user => dispatch => {
     .then(({ data }) => {
       Cookies.set("token", data.token);
       // TODO Display notification logged in
-      dispatch(loginUser(data.user, data.token));
+      dispatch(storeUserInfo(data.user, data.token));
     })
     .then(() => history.push("/"))
     .catch(error => console.log(error.response.data));
@@ -32,7 +33,7 @@ export const tokenLogIn = tokenObj => dispatch => {
   axios
     .post("http://localhost:5000/api/token", tokenObj)
     .then(({ data }) => {
-      getUserInfo(data.user._id, tokenObj.token);
+      dispatch(storeUserInfo(data.user, data.token));
     })
     .catch(error => console.log(error.response.data));
 };
