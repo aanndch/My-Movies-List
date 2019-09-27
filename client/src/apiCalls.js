@@ -4,7 +4,8 @@ import { API_KEY } from "./config/config";
 import {
   setMovies,
   setMovieDetails,
-  setMovieSearch
+  setMovieSearch,
+  setFilteredMovies
 } from "./actions/apiActions";
 import store from "./store";
 
@@ -40,4 +41,15 @@ const searchForMovie = query => {
     .catch(error => console.log(error.response.data));
 };
 
-export { getMovies, getMovieDetails, searchForMovie };
+const getMoviesByGenres = genres => {
+  axios
+    .get(
+      `${URL}/discover/movie?api_key=${API_KEY}&with_genres=${genres}&sort_by=vote_average.desc&vote_count.gte=1000`
+    )
+    .then(({ data: { results } }) => {
+      store.dispatch(setFilteredMovies(results));
+    })
+    .catch(error => console.log(error.response.data));
+};
+
+export { getMovies, getMovieDetails, searchForMovie, getMoviesByGenres };
