@@ -54,7 +54,7 @@ class Movie extends Component {
             <p>{details.vote_average}/10</p>
             <p>|</p>
             {details.genres &&
-              details.genres.map(genre => <p>{genre.name} </p>)}
+              details.genres.map(genre => <p key={genre.id}>{genre.name} </p>)}
           </div>
           <div className="title-buttons">
             <h1>{details.title}</h1>
