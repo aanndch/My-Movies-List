@@ -122,7 +122,7 @@ class Home extends Component {
             <Link
               key={movie.id}
               to={`/movie/${movie.id}`}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", margin: "0.8rem" }}
             >
               <MovieCard
                 title={movie.title}
