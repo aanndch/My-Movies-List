@@ -15,7 +15,7 @@ function App() {
     <Provider store={store}>
       {/* <Search /> */}
       <Router history={history}>
-        <div style={{ display: "flex", height: "100%" }}>
+        <div style={{ display: "flex", minheight: "100vh" }}>
           <Navbar />
           <div className="main">
             <Routes />
