@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FormControlLabel, Checkbox, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
+import { setFilters } from "../actions/userActions";
 import { getMoviesByGenres } from "../apiCalls";
 import { genresDB } from "../data/movieGenres";
 
@@ -11,20 +12,13 @@ import MovieCard from "../components/MovieCard";
 import "./Discover.css";
 
 class Discover extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      genres: []
-    };
-  }
-
   componentDidMount() {
-    const { genres } = this.state;
+    const { genres } = this.props;
     getMoviesByGenres(genres.join(","));
   }
 
   handleGenreSelect = e => {
-    let { genres } = this.state;
+    let { genres, dispatch } = this.props;
 
     const selectedGenre = parseInt(e.target.value);
 
@@ -34,21 +28,24 @@ class Discover extends Component {
       genres = [...genres, parseInt(selectedGenre)];
     }
 
-    this.setState({
-      genres
-    });
+    dispatch(setFilters(genres));
+
+    // this.setState({
+    //   genres
+    // });
+
     // this.setState(prevState => ({
     //   genres: [...prevState.genres, parseInt(e.target.value)]
     // }));
   };
 
   getMovies = () => {
-    let { genres } = this.state;
+    let { genres } = this.props;
     getMoviesByGenres(genres.join(","));
   };
 
   render() {
-    const { genres } = this.state;
+    const { genres } = this.props;
     const { filteredMovies } = this.props;
 
     return (
@@ -108,8 +105,16 @@ class Discover extends Component {
   }
 }
 
-const mapStatetoProps = ({ api }) => ({
-  filteredMovies: api.filteredMovies
+// const mapDispatchToProps = dispatch => ({
+//   setFilters: filters => dispatch(setFilters(filters))
+// });
+
+const mapStatetoProps = ({ api, user }) => ({
+  filteredMovies: api.filteredMovies,
+  genres: user.filters
 });
 
-export default connect(mapStatetoProps)(Discover);
+export default connect(
+  mapStatetoProps
+  // mapDispatchToProps
+)(Discover);

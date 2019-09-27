@@ -1,10 +1,16 @@
-import { LOGIN_USER, LOGOUT_USER, STORE_USER_INFO } from "../actions/types";
+import {
+  LOGIN_USER,
+  LOGOUT_USER,
+  STORE_USER_INFO,
+  SET_FILTERS
+} from "../actions/types";
 
 const initialState = {
   _id: "",
   username: "",
   email: "",
-  token: ""
+  token: "",
+  filters: []
 };
 
 const userReducers = (state = initialState, action) => {
@@ -23,6 +29,12 @@ const userReducers = (state = initialState, action) => {
         ...state,
         ...action.user,
         token: action.token
+      };
+    }
+    case SET_FILTERS: {
+      return {
+        ...state,
+        filters: action.filters
       };
     }
     case LOGOUT_USER: {
