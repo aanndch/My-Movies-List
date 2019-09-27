@@ -5,12 +5,15 @@ import {
   FormControl,
   Select,
   MenuItem,
-  CircularProgress
+  CircularProgress,
+  Input
 } from "@material-ui/core";
+import { Search } from "@material-ui/icons";
 
 import { getMovies, getMovieDetails } from "../apiCalls";
 import { toggleSelection } from "../userInteractions";
 import MovieCard from "../components/MovieCard";
+import { searchForMovie } from "../apiCalls";
 
 import "./Home.css";
 
@@ -18,6 +21,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: "",
       category: "now_playing"
     };
   }
@@ -46,6 +50,19 @@ class Home extends Component {
     toggleSelection(id, info);
   };
 
+  handleSearchChange = e => {
+    this.setState({
+      value: e.target.value
+    });
+  };
+
+  searchMovie = e => {
+    e.preventDefault();
+    const { value } = this.state;
+
+    searchForMovie(value);
+  };
+
   handleChange = e => {
     const { now_playing, popular, top_rated } = this.props;
 
@@ -69,7 +86,7 @@ class Home extends Component {
   };
 
   render() {
-    const { category } = this.state;
+    const { category, value } = this.state;
     const {
       now_playing,
       popular,
@@ -102,20 +119,42 @@ class Home extends Component {
     return (
       <div className="home-container">
         <div className="heading">
-          <h1 className="home-heading">{heading}</h1>
-          {!loadSearch && (
-            <FormControl>
-              <Select
-                value={category}
-                onChange={this.handleChange}
-                name="category"
-              >
-                <MenuItem value="now_playing">In theaters</MenuItem>
-                <MenuItem value="popular">Most Popular</MenuItem>
-                <MenuItem value="top_rated">Top Rated</MenuItem>
-              </Select>
-            </FormControl>
-          )}
+          <form className="search-form" type="GET" onSubmit={this.searchMovie}>
+            <Search className="search-icon" />
+            <Input
+              className="search-input"
+              // disableUnderline={true}
+              placeholder="Search for a movie"
+              value={value}
+              onChange={this.handleSearchChange}
+            />
+            <input
+              type="submit"
+              style={{
+                position: "absolute",
+                left: "-9999px",
+                width: "1px",
+                height: "1px"
+              }}
+              tabIndex="-1"
+            />
+          </form>
+          <div className="movie-cards-heading">
+            <h1 className="home-heading">{heading}</h1>
+            {!loadSearch && (
+              <FormControl>
+                <Select
+                  value={category}
+                  onChange={this.handleChange}
+                  name="category"
+                >
+                  <MenuItem value="now_playing">In theaters</MenuItem>
+                  <MenuItem value="popular">Most Popular</MenuItem>
+                  <MenuItem value="top_rated">Top Rated</MenuItem>
+                </Select>
+              </FormControl>
+            )}
+          </div>
         </div>
         <div className="movie-cards">
           {movies.map(movie => (
