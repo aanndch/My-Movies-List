@@ -5,7 +5,6 @@ import { Search } from "@material-ui/icons";
 import { logoutUser, tokenLogIn } from "../actions/registrationActions";
 import Cookie from "js-cookie";
 import history from "../history";
-import Store from "../store";
 import { searchForMovie } from "../apiCalls";
 
 import "./Search.css";
@@ -20,8 +19,9 @@ class SearchHeader extends Component {
   }
 
   componentDidMount = () => {
+    const { dispatch } = this.props;
     const token = Cookie.get("token");
-    if (token) Store.dispatch(tokenLogIn({ token }));
+    if (token) dispatch(tokenLogIn({ token }));
   };
 
   togglePopup = () => {

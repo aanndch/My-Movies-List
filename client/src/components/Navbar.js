@@ -10,15 +10,15 @@ import {
 } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 import { tokenLogIn } from "../actions/registrationActions";
-import Store from "../store";
 import Cookie from "js-cookie";
 
 import "./Navbar.css";
 
 class Navbar extends Component {
   componentDidMount = () => {
+    const { dispatch } = this.props;
     const token = Cookie.get("token");
-    if (token) Store.dispatch(tokenLogIn({ token }));
+    if (token) dispatch(tokenLogIn({ token }));
   };
 
   register = () => {
