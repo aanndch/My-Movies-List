@@ -2,7 +2,6 @@ import { LOGIN_USER, LOGOUT_USER } from "./types";
 import axios from "axios";
 import Cookies from "js-cookie";
 import history from "../history";
-import { getUserInfo } from "../userInteractions";
 import { storeUserInfo } from "./userActions";
 
 export const createUser = user => dispatch => {
