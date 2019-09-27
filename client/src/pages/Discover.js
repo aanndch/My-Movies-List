@@ -1,101 +1,117 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { FormControlLabel, Checkbox, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
+import { getMoviesByGenres } from "../apiCalls";
+import { genresDB } from "../data/movieGenres";
+
+import MovieCard from "../components/MovieCard";
 
 import "./Discover.css";
 
-const genres = [
-  {
-    id: 28,
-    name: "Action"
-  },
-  {
-    id: 12,
-    name: "Adventure"
-  },
-  {
-    id: 16,
-    name: "Animation"
-  },
-  {
-    id: 35,
-    name: "Comedy"
-  },
-  {
-    id: 80,
-    name: "Crime"
-  },
-  {
-    id: 99,
-    name: "Documentary"
-  },
-  {
-    id: 18,
-    name: "Drama"
-  },
-  {
-    id: 10751,
-    name: "Family"
-  },
-  {
-    id: 14,
-    name: "Fantasy"
-  },
-  {
-    id: 36,
-    name: "History"
-  },
-  {
-    id: 27,
-    name: "Horror"
-  },
-  {
-    id: 10402,
-    name: "Music"
-  },
-  {
-    id: 9648,
-    name: "Mystery"
-  },
-  {
-    id: 10749,
-    name: "Romance"
-  },
-  {
-    id: 878,
-    name: "Science Fiction"
-  },
-  {
-    id: 10770,
-    name: "TV Movie"
-  },
-  {
-    id: 53,
-    name: "Thriller"
-  },
-  {
-    id: 10752,
-    name: "War"
-  },
-  {
-    id: 37,
-    name: "Western"
-  }
-];
-
 class Discover extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      genres: []
+    };
+  }
+
+  componentDidMount() {
+    const { genres } = this.state;
+    getMoviesByGenres(genres.join(","));
+  }
+
+  handleGenreSelect = e => {
+    let { genres } = this.state;
+
+    const selectedGenre = parseInt(e.target.value);
+
+    if (genres.includes(selectedGenre)) {
+      genres = genres.filter(genre => genre !== selectedGenre);
+    } else {
+      genres = [...genres, parseInt(selectedGenre)];
+    }
+
+    this.setState({
+      genres
+    });
+    // this.setState(prevState => ({
+    //   genres: [...prevState.genres, parseInt(e.target.value)]
+    // }));
+  };
+
+  getMovies = () => {
+    let { genres } = this.state;
+    getMoviesByGenres(genres.join(","));
+  };
+
   render() {
+    const { genres } = this.state;
+    const { filteredMovies } = this.props;
+
     return (
       <div className="discover-container">
-        {genres.map(genre => (
-          <h1 key={genre.id}>{genre.name}</h1>
-        ))}
+        <div className="discover-body">
+          <div className="discover-movies">
+            <h1>Discover</h1>
+            <div className="filtered-movies">
+              {filteredMovies &&
+                filteredMovies.map(movie => (
+                  <Link
+                    key={movie.id}
+                    to={`/movie/${movie.id}`}
+                    style={{ textDecoration: "none", margin: "0.8rem" }}
+                  >
+                    <MovieCard
+                      key={movie.id}
+                      title={movie.title}
+                      poster={movie.poster_path}
+                      rating={movie.vote_average}
+                    />
+                  </Link>
+                ))}
+            </div>
+          </div>
+          <div className="select-genres">
+            <h1>Filter :</h1>
+            <div className="genre-checkboxes">
+              {genresDB.map(genre => (
+                <FormControlLabel
+                  key={genre.id}
+                  control={
+                    <Checkbox
+                      color="primary"
+                      checked={genres.includes(genre.id)}
+                      onChange={this.handleGenreSelect}
+                      value={genre.id}
+                      className="genre-checkbox"
+                    />
+                  }
+                  label={genre.name}
+                  className="checkbox-label"
+                />
+              ))}
+            </div>
+            <Button
+              className="filter-button"
+              color="primary"
+              size="large"
+              variant="contained"
+              onClick={this.getMovies}
+            >
+              FILTER
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-const mapStatetoProps = ({ api, user }) => ({
-  //
+const mapStatetoProps = ({ api }) => ({
+  filteredMovies: api.filteredMovies
 });
 
 export default connect(mapStatetoProps)(Discover);

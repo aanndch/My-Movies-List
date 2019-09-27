@@ -1,0 +1,66 @@
+.discover-container {
+  height: 100%;
+  width: 100%;
+}
+
+.discover-body {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.discover-movies {
+  height: 100%;
+  width: 68.5%;
+}
+
+.discover-movies > h1 {
+  color: #e4e6e8;
+  text-align: center;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.select-genres {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: #e4e6e8;
+  background-color: #394956;
+  width: 30%;
+  height: 100vh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.select-genres h1 {
+  margin-bottom: 0.5rem;
+}
+
+.genre-checkboxes {
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.genre-checkbox {
+  color: #31db91 !important;
+}
+
+.checkbox-label {
+  color: #e4e6e8 !important;
+}
+
+.filter-button {
+  background-color: #31db91 !important;
+  color: #394956 !important;
+}
+
+.filtered-movies {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
