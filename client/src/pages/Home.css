@@ -97,12 +97,9 @@
   align-items: center;
 }
 
-.search-icon {
+.search-part .search-icon {
   color: #31db91;
-}
-
-.search-part .MuiSvgIcon-root {
-  font-size: 2.5em !important;
+  font-size: 2.5rem !important;
 }
 
 .search-part .search-input {
