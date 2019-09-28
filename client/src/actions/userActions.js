@@ -15,9 +15,10 @@ const setFilters = filters => {
   };
 };
 
-const setOpenSearch = () => {
+const setOpenSearch = open => {
   return {
-    type: SET_OPEN_SEARCH
+    type: SET_OPEN_SEARCH,
+    open
   };
 };
 

@@ -42,7 +42,7 @@ const userReducers = (state = initialState, action) => {
     case SET_OPEN_SEARCH: {
       return {
         ...state,
-        openSearch: !state.openSearch
+        openSearch: action.open
       };
     }
     case LOGOUT_USER: {

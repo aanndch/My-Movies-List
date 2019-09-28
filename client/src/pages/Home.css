@@ -10,13 +10,13 @@
   align-items: center;
   margin: 2em;
   padding: 0 2em;
+  height: 50px;
   /* border-bottom: 1px solid #394956; */
 }
 
 .home-heading {
   color: #e4e6e8;
   font-weight: 300;
-  height: 50px;
 }
 
 .MuiFormControl-root {
@@ -99,7 +99,6 @@
 
 .search-icon {
   color: #31db91;
-  margin-right: 1em;
 }
 
 .search-part .MuiSvgIcon-root {
@@ -111,10 +110,21 @@
   height: 50px;
   width: 100%;
   padding: 0.5em;
+  margin: 0 2rem;
   font-size: 1.5em !important;
   border-bottom: 1px solid #384755;
 }
 
 .search-part .search-input .MuiInputBase-input {
   color: #e4e6e8 !important;
+}
+
+.search-part p {
+  font-size: 3rem;
+  color: #31db91;
+  transform: rotate(45deg);
+}
+
+.search-part p:hover {
+  cursor: pointer;
 }

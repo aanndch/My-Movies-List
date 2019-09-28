@@ -15,6 +15,7 @@ import { toggleSelection } from "../userInteractions";
 import MovieCard from "../components/MovieCard";
 
 import "./Home.css";
+import { setOpenSearch } from "../actions/userActions";
 
 class Home extends Component {
   constructor(props) {
@@ -84,6 +85,12 @@ class Home extends Component {
     searchForMovie(value);
   };
 
+  closeSearch = () => {
+    const { dispatch } = this.props;
+
+    dispatch(setOpenSearch(false));
+  };
+
   render() {
     const { category, value } = this.state;
     const {
@@ -139,6 +146,7 @@ class Home extends Component {
                 }}
                 tabIndex="-1"
               />
+              <p onClick={this.closeSearch}>+</p>
             </form>
           ) : (
             <>

@@ -34,10 +34,10 @@ class Navbar extends Component {
     return false;
   };
 
-  openSearchBar = () => {
+  toggleSearchBar = open => {
     const { dispatch } = this.props;
 
-    dispatch(setOpenSearch());
+    dispatch(setOpenSearch(open));
   };
 
   render() {
@@ -48,7 +48,7 @@ class Navbar extends Component {
         <NavLink
           to="/"
           style={{ color: "#616f7c" }}
-          onClick={this.openSearchBar}
+          onClick={() => this.toggleSearchBar(true)}
         >
           <Tooltip TransitionComponent={Zoom} title="Search" placement="right">
             <IconButton
@@ -66,6 +66,7 @@ class Navbar extends Component {
             isActive={this.onMoviePage}
             exact
             style={{ color: "#616f7c" }}
+            onClick={() => this.toggleSearchBar(false)}
           >
             <Tooltip
               TransitionComponent={Zoom}
@@ -81,7 +82,11 @@ class Navbar extends Component {
               </IconButton>
             </Tooltip>
           </NavLink>
-          <NavLink to="/genres" style={{ color: "#616f7c" }}>
+          <NavLink
+            to="/genres"
+            style={{ color: "#616f7c" }}
+            onClick={() => this.toggleSearchBar(false)}
+          >
             <Tooltip
               TransitionComponent={Zoom}
               title="Something"
@@ -96,7 +101,11 @@ class Navbar extends Component {
               </IconButton>
             </Tooltip>
           </NavLink>
-          <NavLink to="/discover" style={{ color: "#616f7c" }}>
+          <NavLink
+            to="/discover"
+            style={{ color: "#616f7c" }}
+            onClick={() => this.toggleSearchBar(false)}
+          >
             <Tooltip
               TransitionComponent={Zoom}
               title="Discover"
@@ -112,7 +121,11 @@ class Navbar extends Component {
             </Tooltip>
           </NavLink>
           {token ? (
-            <NavLink to="/profile" style={{ color: "#616f7c" }}>
+            <NavLink
+              to="/profile"
+              style={{ color: "#616f7c" }}
+              onClick={() => this.toggleSearchBar(false)}
+            >
               <Tooltip
                 TransitionComponent={Zoom}
                 title="Profile"
@@ -132,6 +145,7 @@ class Navbar extends Component {
               to="/login"
               isActive={this.register}
               style={{ color: "#616f7c" }}
+              onClick={() => this.toggleSearchBar(false)}
             >
               <Tooltip
                 TransitionComponent={Zoom}
