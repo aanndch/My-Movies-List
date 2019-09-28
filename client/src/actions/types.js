@@ -9,4 +9,6 @@ export const SET_MOVIE_SEARCH = "SET_MOVIE_SEARCH";
 export const SET_FILTERS = "SET_FILTERS";
 export const SET_FILTERED_MOVIES = "SET_FILTERED_MOVIES";
 
+export const SET_OPEN_SEARCH = "SET_OPEN_SEARCH";
+
 export const SET_LOADING = "SET_LOADING";

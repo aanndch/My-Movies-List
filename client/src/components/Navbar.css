@@ -44,3 +44,9 @@
 .MuiSvgIcon-root {
   font-size: 1.5em !important;
 }
+
+.MuiTooltip-tooltip {
+  background: #394956 !important;
+  color: #31db91 !important;
+  font-size: 0.8rem !important;
+}

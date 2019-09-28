@@ -8,14 +8,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1em;
-  padding: 1em 2em;
-  border-bottom: 1px solid #394956;
+  margin: 2em;
+  padding: 0 2em;
+  /* border-bottom: 1px solid #394956; */
 }
 
 .home-heading {
   color: #e4e6e8;
   font-weight: 300;
+  height: 50px;
 }
 
 .MuiFormControl-root {
@@ -88,4 +89,32 @@
 .loader {
   color: #31db91 !important;
   margin: auto;
+}
+
+.search-part form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  color: #31db91;
+  margin-right: 1em;
+}
+
+.search-part .MuiSvgIcon-root {
+  font-size: 2.5em !important;
+}
+
+.search-part .search-input {
+  color: #e4e6e8 !important;
+  height: 50px;
+  width: 100%;
+  padding: 0.5em;
+  font-size: 1.5em !important;
+  border-bottom: 1px solid #384755;
+}
+
+.search-part .search-input .MuiInputBase-input {
+  color: #e4e6e8 !important;
 }

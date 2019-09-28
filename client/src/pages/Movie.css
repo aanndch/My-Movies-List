@@ -98,3 +98,9 @@ p {
   height: 350px;
   width: 230px;
 }
+
+.MuiTooltip-tooltip {
+  background: #394956 !important;
+  color: #31db91 !important;
+  font-size: 0.8rem !important;
+}

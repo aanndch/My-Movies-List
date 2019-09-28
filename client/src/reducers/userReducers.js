@@ -2,7 +2,8 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   STORE_USER_INFO,
-  SET_FILTERS
+  SET_FILTERS,
+  SET_OPEN_SEARCH
 } from "../actions/types";
 
 const initialState = {
@@ -10,7 +11,8 @@ const initialState = {
   username: "",
   email: "",
   token: "",
-  filters: []
+  filters: [],
+  openSearch: false
 };
 
 const userReducers = (state = initialState, action) => {
@@ -35,6 +37,12 @@ const userReducers = (state = initialState, action) => {
       return {
         ...state,
         filters: action.filters
+      };
+    }
+    case SET_OPEN_SEARCH: {
+      return {
+        ...state,
+        openSearch: !state.openSearch
       };
     }
     case LOGOUT_USER: {

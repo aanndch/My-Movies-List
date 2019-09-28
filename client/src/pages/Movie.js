@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CircularProgress, Fab } from "@material-ui/core";
+import { CircularProgress, Fab, Tooltip, Zoom } from "@material-ui/core";
 import { Add, Favorite, Check } from "@material-ui/icons";
 import moment from "moment";
 
@@ -71,72 +71,78 @@ class Movie extends Component {
             <h1>{details.title}</h1>
             {token && (
               <div className="action-buttons">
-                <Fab
-                  className="action-button"
-                  style={{
-                    color:
-                      watchlist &&
-                      watchlist
-                        .map(movie => parseInt(movie.movieId))
-                        .includes(details.id)
-                        ? "#31db91"
-                        : "#616f7c"
-                  }}
-                  onClick={() =>
-                    this.addToList(
-                      details.id,
-                      details.title,
-                      details.poster_path,
-                      "watchlist"
-                    )
-                  }
-                >
-                  <Add />
-                </Fab>
-                <Fab
-                  className="action-button"
-                  onClick={() =>
-                    this.addToList(
-                      details.id,
-                      details.title,
-                      details.poster_path,
-                      "favorites"
-                    )
-                  }
-                  style={{
-                    color:
-                      favorites &&
-                      favorites
-                        .map(movie => parseInt(movie.movieId))
-                        .includes(details.id)
-                        ? "#31db91"
-                        : "#616f7c"
-                  }}
-                >
-                  <Favorite />
-                </Fab>
-                <Fab
-                  className="action-button"
-                  onClick={() =>
-                    this.addToList(
-                      details.id,
-                      details.title,
-                      details.poster_path,
-                      "watched"
-                    )
-                  }
-                  style={{
-                    color:
-                      watched &&
-                      watched
-                        .map(movie => parseInt(movie.movieId))
-                        .includes(details.id)
-                        ? "#31db91"
-                        : "#616f7c"
-                  }}
-                >
-                  <Check />
-                </Fab>
+                <Tooltip TransitionComponent={Zoom} title="Watchlist">
+                  <Fab
+                    className="action-button"
+                    style={{
+                      color:
+                        watchlist &&
+                        watchlist
+                          .map(movie => parseInt(movie.movieId))
+                          .includes(details.id)
+                          ? "#31db91"
+                          : "#616f7c"
+                    }}
+                    onClick={() =>
+                      this.addToList(
+                        details.id,
+                        details.title,
+                        details.poster_path,
+                        "watchlist"
+                      )
+                    }
+                  >
+                    <Add />
+                  </Fab>
+                </Tooltip>
+                <Tooltip TransitionComponent={Zoom} title="Favorite">
+                  <Fab
+                    className="action-button"
+                    onClick={() =>
+                      this.addToList(
+                        details.id,
+                        details.title,
+                        details.poster_path,
+                        "favorites"
+                      )
+                    }
+                    style={{
+                      color:
+                        favorites &&
+                        favorites
+                          .map(movie => parseInt(movie.movieId))
+                          .includes(details.id)
+                          ? "#31db91"
+                          : "#616f7c"
+                    }}
+                  >
+                    <Favorite />
+                  </Fab>
+                </Tooltip>
+                <Tooltip TransitionComponent={Zoom} title="Watched">
+                  <Fab
+                    className="action-button"
+                    onClick={() =>
+                      this.addToList(
+                        details.id,
+                        details.title,
+                        details.poster_path,
+                        "watched"
+                      )
+                    }
+                    style={{
+                      color:
+                        watched &&
+                        watched
+                          .map(movie => parseInt(movie.movieId))
+                          .includes(details.id)
+                          ? "#31db91"
+                          : "#616f7c"
+                    }}
+                  >
+                    <Check />
+                  </Fab>
+                </Tooltip>
               </div>
             )}
           </div>
