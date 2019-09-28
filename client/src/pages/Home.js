@@ -6,7 +6,8 @@ import {
   Select,
   MenuItem,
   CircularProgress,
-  Input
+  Input,
+  Fade
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 
@@ -127,31 +128,32 @@ class Home extends Component {
       <div className="home-container">
         <div className="heading search-part">
           {openSearch ? (
-            <form type="GET" onSubmit={this.searchMovie}>
-              <Search className="search-icon" />
-              <Input
-                className="search-input"
-                disableUnderline={true}
-                placeholder="Search for a movie"
-                value={value}
-                onChange={this.handleSearchChange}
-              />
-              <input
-                type="submit"
-                style={{
-                  position: "absolute",
-                  left: "-9999px",
-                  width: "1px",
-                  height: "1px"
-                }}
-                tabIndex="-1"
-              />
-              <p onClick={this.closeSearch}>+</p>
-            </form>
+            <Fade in={openSearch}>
+              <form type="GET" onSubmit={this.searchMovie}>
+                <Search className="search-icon" />
+                <Input
+                  className="search-input"
+                  disableUnderline={true}
+                  placeholder="Search for a movie"
+                  value={value}
+                  onChange={this.handleSearchChange}
+                />
+                <input
+                  type="submit"
+                  style={{
+                    position: "absolute",
+                    left: "-9999px",
+                    width: "1px",
+                    height: "1px"
+                  }}
+                  tabIndex="-1"
+                />
+                <p onClick={this.closeSearch}>+</p>
+              </form>
+            </Fade>
           ) : (
             <>
               <h1 className="home-heading">{heading}</h1>
-              {/* {!loadSearch && ( */}
               <FormControl>
                 <Select
                   value={category}
@@ -163,7 +165,6 @@ class Home extends Component {
                   <MenuItem value="top_rated">Top Rated</MenuItem>
                 </Select>
               </FormControl>
-              {/* )} */}
             </>
           )}
         </div>
