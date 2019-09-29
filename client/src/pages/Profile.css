@@ -1,1 +1,47 @@
-zz
+.profile-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #e4e6e8;
+  padding: 2rem;
+}
+
+.top-part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  margin-right: 2rem;
+}
+
+.profile-inputs {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-input {
+  margin: 3rem !important;
+  background: #394956;
+}
+
+.MuiFormLabel-root {
+  color: #e4e6e8 !important;
+}
+
+.MuiFilledInput-input {
+  color: #e4e6e8 !important;
+}
+
+.MuiFilledInput-underline:after {
+  border-bottom: 2px solid #31db91 !important;
+}
