@@ -1,4 +1,9 @@
-import { STORE_USER_INFO, SET_FILTERS, SET_OPEN_SEARCH } from "./types";
+import {
+  STORE_USER_INFO,
+  SET_FILTERS,
+  SET_OPEN_SEARCH,
+  STORE_SEARCHED_USER_INFO
+} from "./types";
 
 const storeUserInfo = (user, token) => {
   return {
@@ -7,6 +12,11 @@ const storeUserInfo = (user, token) => {
     token
   };
 };
+
+const storeSearchedUserInfo = user => ({
+  type: STORE_SEARCHED_USER_INFO,
+  user
+});
 
 const setFilters = filters => {
   return {
@@ -22,4 +32,4 @@ const setOpenSearch = open => {
   };
 };
 
-export { storeUserInfo, setFilters, setOpenSearch };
+export { storeUserInfo, setFilters, setOpenSearch, storeSearchedUserInfo };

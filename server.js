@@ -4,6 +4,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const register = require("./routes/api/auth");
 const users = require("./routes/api/users");
+const searchUser = require("./routes/api/searchUser");
 const lists = require("./routes/api/lists");
 
 dotenv.config();
@@ -25,8 +26,9 @@ mongoose
 
 // Routes
 app.use("/api", register);
-app.use("/api/user", users);
-app.use("/api/user/lists", lists);
+app.use("/api/users", users);
+app.use("/api/users/search", searchUser);
+app.use("/api/users/lists", lists);
 
 const PORT = process.env.PORT || 5000;
 

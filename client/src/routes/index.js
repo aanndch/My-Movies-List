@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Movie from "../pages/Movie";
 import Discover from "../pages/Discover";
+import Profile from "../pages/Profile";
 
 export default () => (
   <>
@@ -14,5 +15,6 @@ export default () => (
     <Route path="/login" exact component={Login} />
     <Route path="/movie/:id" exact component={Movie} />
     <Route path="/discover" exact component={Discover} />
+    <Route path="/profile/:username" exact component={Profile} />
   </>
 );

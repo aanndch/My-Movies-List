@@ -13,7 +13,6 @@ import Navbar from "./components/Navbar";
 function App() {
   return (
     <Provider store={store}>
-      {/* <Search /> */}
       <Router history={history}>
         <div style={{ display: "flex", minheight: "100vh" }}>
           <Navbar />

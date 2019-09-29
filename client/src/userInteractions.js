@@ -1,10 +1,10 @@
 import axios from "axios";
-import { storeUserInfo } from "./actions/userActions";
+import { storeUserInfo, storeSearchedUserInfo } from "./actions/userActions";
 import Store from "./store";
 
 const toggleSelection = (id, info) => {
   axios
-    .post(`http://localhost:5000/api/user/lists/${id}`, info)
+    .post(`http://localhost:5000/api/users/lists/${id}`, info)
     .then(({ data }) => {
       console.log("Success!");
       getUserInfo(data._id, data.token);
@@ -14,11 +14,20 @@ const toggleSelection = (id, info) => {
 
 const getUserInfo = (id, token) => {
   axios
-    .get(`http://localhost:5000/api/user/${id}`)
+    .get(`http://localhost:5000/api/users/${id}`)
     .then(({ data }) => {
       Store.dispatch(storeUserInfo(data, token));
     })
     .catch(error => console.log(error.response.data));
 };
 
-export { toggleSelection, getUserInfo };
+const getSearchedUserInfo = username => {
+  axios
+    .get(`http://localhost:5000/api/users/search/${username}`)
+    .then(({ data }) => {
+      Store.dispatch(storeSearchedUserInfo(data[0]));
+    })
+    .catch(error => console.log(error.response.data));
+};
+
+export { toggleSelection, getUserInfo, getSearchedUserInfo };

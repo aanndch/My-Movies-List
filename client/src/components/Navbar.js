@@ -41,7 +41,7 @@ class Navbar extends Component {
   };
 
   render() {
-    const { token, openSearch } = this.props;
+    const { token, openSearch, username } = this.props;
 
     return (
       <div className="navbar">
@@ -122,7 +122,7 @@ class Navbar extends Component {
           </NavLink>
           {token ? (
             <NavLink
-              to="/profile"
+              to={`/profile/${username}`}
               style={{ color: "#616f7c" }}
               onClick={() => this.toggleSearchBar(false)}
             >
@@ -170,6 +170,7 @@ class Navbar extends Component {
 
 const mapStateToProps = ({ user }) => ({
   token: user.token,
+  username: user.username,
   openSearch: user.openSearch
 });
 
