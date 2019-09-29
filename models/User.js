@@ -19,6 +19,28 @@ const userSchema = new mongoose.Schema({
     min: 6,
     max: 1024
   },
+  firstName: {
+    type: String,
+    min: 6,
+    max: 1024
+  },
+  lastName: {
+    type: String,
+    min: 6,
+    max: 1024
+  },
+  country: {
+    type: String,
+    min: 6,
+    max: 1024
+  },
+  Gender: {
+    type: String
+  },
+  image: {
+    type: String,
+    default: `https://api.adorable.io/avatars/${Math.floor(Math.random * 5000)}`
+  },
   date: {
     type: Date,
     default: Date.now
