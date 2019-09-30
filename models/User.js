@@ -29,17 +29,19 @@ const userSchema = new mongoose.Schema({
     min: 6,
     max: 1024
   },
-  country: {
+  location: {
     type: String,
     min: 6,
     max: 1024
   },
-  Gender: {
+  gender: {
     type: String
   },
   image: {
     type: String,
-    default: `https://api.adorable.io/avatars/${Math.floor(Math.random * 5000)}`
+    default: `https://api.adorable.io/avatars/${Math.floor(
+      Math.random() * 5000
+    )}`
   },
   date: {
     type: Date,

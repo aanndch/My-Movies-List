@@ -15,7 +15,7 @@
 }
 
 .profile-pic {
-  border-radius: 50%;
+  border-radius: 4px;
   height: 100px;
   width: 100px;
   margin-right: 2rem;

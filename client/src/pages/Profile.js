@@ -13,23 +13,26 @@ class Profile extends Component {
   };
 
   render() {
-    const { details } = this.props;
+    const {
+      username,
+      firstName,
+      lastName,
+      location,
+      gender,
+      image
+    } = this.props;
 
     return (
       <div className="profile-container">
         <div className="top-part">
-          <img
-            src={details.image}
-            alt={`${details.username}'s pic`}
-            className="profile-pic"
-          />
-          <h1>{details.username}</h1>
+          <img src={image} alt={`${username}'s pic`} className="profile-pic" />
+          <h1>{username}</h1>
         </div>
         <div className="profile-inputs">
           <TextField
             label="First Name"
             className="profile-input"
-            // value={values.name}
+            value={firstName}
             // onChange={handleChange('name')}
             margin="normal"
             variant="filled"
@@ -37,15 +40,15 @@ class Profile extends Component {
           <TextField
             label="Last Name"
             className="profile-input"
-            // value={values.name}
+            value={lastName}
             // onChange={handleChange('name')}
             margin="normal"
             variant="filled"
           />
           <TextField
-            label="Country"
+            label="Location"
             className="profile-input"
-            // value={values.name}
+            value={location}
             // onChange={handleChange('name')}
             margin="normal"
             variant="filled"
@@ -53,7 +56,7 @@ class Profile extends Component {
           <TextField
             label="Gender"
             className="profile-input"
-            // value={values.name}
+            value={gender}
             // onChange={handleChange('name')}
             margin="normal"
             variant="filled"
@@ -65,7 +68,16 @@ class Profile extends Component {
 }
 
 const mapStateToProps = ({ searchedUser }) => ({
-  details: searchedUser
+  email: searchedUser.email,
+  username: searchedUser.username,
+  firstName: searchedUser.firstName,
+  lastName: searchedUser.lastName,
+  location: searchedUser.location,
+  gender: searchedUser.gender,
+  favorites: searchedUser.favorites,
+  watchlist: searchedUser.watchlist,
+  watched: searchedUser.watched,
+  image: searchedUser.image
 });
 
 export default connect(mapStateToProps)(Profile);
