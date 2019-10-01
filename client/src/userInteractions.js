@@ -34,6 +34,7 @@ const updateProfile = details => {
   axios
     .post(`http://localhost:5000/api/users/update/${details.id}`, details)
     .then(({ data }) => {
+      console.log(data);
       Store.dispatch(storeSearchedUserInfo(data));
     })
     .catch(error => console.log(error.response.data));
