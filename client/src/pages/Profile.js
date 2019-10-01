@@ -30,7 +30,7 @@ class Profile extends Component {
   };
 
   handleClick = () => {
-    const { dispatch, id, token } = this.props;
+    const { id, token } = this.props;
     const { firstName, lastName, location, gender } = this.state;
     const details = {
       firstName,
@@ -40,7 +40,7 @@ class Profile extends Component {
       token,
       id
     };
-    dispatch(updateProfile(details));
+    updateProfile(details);
   };
 
   render() {
@@ -54,7 +54,7 @@ class Profile extends Component {
       // editProfile
     } = this.props;
 
-    const editProfile = true;
+    const editProfile = false;
 
     return (
       <div className="profile-container">
