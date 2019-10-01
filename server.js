@@ -6,6 +6,7 @@ const register = require("./routes/api/auth");
 const users = require("./routes/api/users");
 const searchUser = require("./routes/api/searchUser");
 const lists = require("./routes/api/lists");
+const updateUser = require("./routes/api/updateUser");
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ mongoose
 app.use("/api", register);
 app.use("/api/users", users);
 app.use("/api/users/search", searchUser);
+app.use("/api/users/update", updateUser);
 app.use("/api/users/lists", lists);
 
 const PORT = process.env.PORT || 5000;

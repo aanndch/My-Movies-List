@@ -30,4 +30,13 @@ const getSearchedUserInfo = username => {
     .catch(error => console.log(error.response.data));
 };
 
-export { toggleSelection, getUserInfo, getSearchedUserInfo };
+const updateProfile = details => {
+  axios
+    .post(`http://localhost:5000/api/users/update/${details.id}`, details)
+    .then(({ data }) => {
+      Store.dispatch(storeSearchedUserInfo(data));
+    })
+    .catch(error => console.log(error.response.data));
+};
+
+export { toggleSelection, getUserInfo, getSearchedUserInfo, updateProfile };

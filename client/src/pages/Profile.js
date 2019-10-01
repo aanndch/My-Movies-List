@@ -1,15 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 
-import { getSearchedUserInfo } from "../userInteractions";
+import { updateProfile, getSearchedUserInfo } from "../userInteractions";
 
 import "./Profile.css";
 
 class Profile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      firstName: "",
+      lastName: "",
+      location: "",
+      gender: ""
+    };
+  }
+
   componentDidMount = () => {
     const { username } = this.props.match.params;
     getSearchedUserInfo(username);
+  };
+
+  handleChange = (e, value) => {
+    this.setState({
+      [value]: e.target.value
+    });
+  };
+
+  handleClick = () => {
+    const { dispatch, id, token } = this.props;
+    const { firstName, lastName, location, gender } = this.state;
+    const details = {
+      firstName,
+      lastName,
+      location,
+      gender,
+      token,
+      id
+    };
+    dispatch(updateProfile(details));
   };
 
   render() {
@@ -20,7 +51,10 @@ class Profile extends Component {
       location,
       gender,
       image
+      // editProfile
     } = this.props;
+
+    const editProfile = true;
 
     return (
       <div className="profile-container">
@@ -32,42 +66,54 @@ class Profile extends Component {
           <TextField
             label="First Name"
             className="profile-input"
-            value={firstName}
-            // onChange={handleChange('name')}
+            value={editProfile ? this.state.firstName : firstName}
+            onChange={e => this.handleChange(e, "firstName")}
             margin="normal"
             variant="filled"
+            disabled={!editProfile}
           />
           <TextField
             label="Last Name"
             className="profile-input"
-            value={lastName}
-            // onChange={handleChange('name')}
+            value={editProfile ? this.state.lastName : lastName}
+            onChange={e => this.handleChange(e, "lastName")}
             margin="normal"
             variant="filled"
+            disabled={!editProfile}
           />
           <TextField
             label="Location"
             className="profile-input"
-            value={location}
-            // onChange={handleChange('name')}
+            value={editProfile ? this.state.location : location}
+            onChange={e => this.handleChange(e, "location")}
             margin="normal"
             variant="filled"
+            disabled={!editProfile}
           />
           <TextField
             label="Gender"
             className="profile-input"
-            value={gender}
-            // onChange={handleChange('name')}
+            value={editProfile ? this.state.gender : gender}
+            onChange={e => this.handleChange(e, "gender")}
             margin="normal"
             variant="filled"
+            disabled={!editProfile}
           />
         </div>
+        <Button
+          color="primary"
+          variant="contained"
+          className="edit-button"
+          onClick={this.handleClick}
+        >
+          {editProfile ? "SAVE CHANGES" : "EDIT PROFILE"}
+        </Button>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ searchedUser }) => ({
+const mapStateToProps = ({ searchedUser, user }) => ({
   email: searchedUser.email,
   username: searchedUser.username,
   firstName: searchedUser.firstName,
@@ -77,7 +123,9 @@ const mapStateToProps = ({ searchedUser }) => ({
   favorites: searchedUser.favorites,
   watchlist: searchedUser.watchlist,
   watched: searchedUser.watched,
-  image: searchedUser.image
+  image: searchedUser.image,
+  id: searchedUser._id,
+  token: user.token
 });
 
 export default connect(mapStateToProps)(Profile);
