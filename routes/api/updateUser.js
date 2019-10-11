@@ -4,13 +4,18 @@ const User = require("../../models/User");
 const verify = require("../../verifyToken");
 
 router.post("/:id", verify, async (req, res) => {
-  const user = await User.findByIdAndUpdate(req.user._id, {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    location: req.body.location,
-    gender: req.body.gender
-  }).exec();
-  res.send(user);
+  await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      location: req.body.location,
+      gender: req.body.gender
+    },
+    (err, docs) => {
+      res.send(docs);
+    }
+  ).exec();
 });
 
 module.exports = router;

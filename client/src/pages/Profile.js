@@ -11,10 +11,10 @@ class Profile extends Component {
     super(props);
 
     this.state = {
-      firstName: "",
-      lastName: "",
-      location: "",
-      gender: ""
+      firstName: props.firstName,
+      lastName: props.lastName,
+      location: props.location,
+      gender: props.gender
     };
   }
 
@@ -50,11 +50,11 @@ class Profile extends Component {
       lastName,
       location,
       gender,
-      image
-      // editProfile
+      image,
+      editProfile
     } = this.props;
 
-    const editProfile = false;
+    // const editProfile = false;
 
     return (
       <div className="profile-container">
@@ -125,7 +125,8 @@ const mapStateToProps = ({ searchedUser, user }) => ({
   watched: searchedUser.watched,
   image: searchedUser.image,
   id: searchedUser._id,
-  token: user.token
+  token: user.token,
+  editProfile: searchedUser.editProfile
 });
 
 export default connect(mapStateToProps)(Profile);

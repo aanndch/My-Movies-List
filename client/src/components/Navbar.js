@@ -19,6 +19,7 @@ class Navbar extends Component {
   componentDidMount = () => {
     const { dispatch } = this.props;
     const token = Cookie.get("token");
+    console.log(token);
     if (token) dispatch(tokenLogIn({ token }));
   };
 
