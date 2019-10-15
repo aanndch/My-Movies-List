@@ -51,10 +51,11 @@ class Profile extends Component {
       location,
       gender,
       image,
-      editProfile
+      editProfile,
+      isLoading
     } = this.props;
 
-    // const editProfile = false;
+    if (isLoading) return <h1>LOADING!</h1>;
 
     return (
       <div className="profile-container">
@@ -113,7 +114,7 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = ({ searchedUser, user }) => ({
+const mapStateToProps = ({ searchedUser, user, loading }) => ({
   email: searchedUser.email,
   username: searchedUser.username,
   firstName: searchedUser.firstName,
@@ -126,7 +127,8 @@ const mapStateToProps = ({ searchedUser, user }) => ({
   image: searchedUser.image,
   id: searchedUser._id,
   token: user.token,
-  editProfile: searchedUser.editProfile
+  editProfile: searchedUser.editProfile,
+  isLoading: loading.isLoading
 });
 
 export default connect(mapStateToProps)(Profile);

@@ -2,12 +2,10 @@ import {
   SET_MOVIES,
   SET_MOVIE_DETAILS,
   SET_MOVIE_SEARCH,
-  SET_LOADING,
   SET_FILTERED_MOVIES
 } from "./types";
 
 const setMovies = movies => dispatch => {
-  dispatch({ type: SET_LOADING });
   dispatch({
     type: SET_MOVIES,
     movies
@@ -15,7 +13,6 @@ const setMovies = movies => dispatch => {
 };
 
 const setMovieDetails = details => dispatch => {
-  dispatch({ type: SET_LOADING });
   dispatch({
     type: SET_MOVIE_DETAILS,
     details
@@ -23,7 +20,6 @@ const setMovieDetails = details => dispatch => {
 };
 
 const setMovieSearch = movies => dispatch => {
-  dispatch({ type: SET_LOADING });
   dispatch({
     type: SET_MOVIE_SEARCH,
     movies
@@ -31,7 +27,6 @@ const setMovieSearch = movies => dispatch => {
 };
 
 const setFilteredMovies = movies => dispatch => {
-  dispatch({ type: SET_LOADING });
   dispatch({
     type: SET_FILTERED_MOVIES,
     movies

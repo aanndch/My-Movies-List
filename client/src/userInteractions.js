@@ -1,6 +1,7 @@
 import axios from "axios";
 import { storeUserInfo, storeSearchedUserInfo } from "./actions/userActions";
 import Store from "./store";
+import { SET_LOADING } from "./actions/types";
 
 const toggleSelection = (id, info) => {
   axios
@@ -22,10 +23,12 @@ const getUserInfo = (id, token) => {
 };
 
 const getSearchedUserInfo = username => {
+  Store.dispatch({ type: SET_LOADING });
   axios
     .get(`http://localhost:5000/api/users/search/${username}`)
     .then(({ data }) => {
       Store.dispatch(storeSearchedUserInfo(data[0]));
+      Store.dispatch({ type: SET_LOADING });
     })
     .catch(error => console.log(error.response.data));
 };

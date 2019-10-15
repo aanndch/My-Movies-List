@@ -2,7 +2,6 @@ import {
   SET_MOVIES,
   SET_MOVIE_DETAILS,
   SET_MOVIE_SEARCH,
-  SET_LOADING,
   SET_FILTERED_MOVIES
 } from "../actions/types";
 
@@ -20,12 +19,6 @@ const initialState = {
 
 const apiReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_LOADING: {
-      return {
-        ...state,
-        loading: true
-      };
-    }
     case SET_MOVIES: {
       return {
         ...state,
