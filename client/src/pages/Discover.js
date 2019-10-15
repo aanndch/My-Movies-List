@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormControlLabel, Checkbox, Button } from "@material-ui/core";
+import {
+  CircularProgress,
+  FormControlLabel,
+  Checkbox,
+  Button
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import { setFilters } from "../actions/userActions";
@@ -45,30 +50,34 @@ class Discover extends Component {
   };
 
   render() {
-    const { genres } = this.props;
+    const { genres, isLoading } = this.props;
     const { filteredMovies } = this.props;
 
     return (
       <div className="discover-container">
         <div className="discover-movies">
           <h1>Discover</h1>
-          <div className="filtered-movies">
-            {filteredMovies &&
-              filteredMovies.map(movie => (
-                <Link
-                  key={movie.id}
-                  to={`/movie/${movie.id}`}
-                  style={{ textDecoration: "none", margin: "0.8rem" }}
-                >
-                  <MovieCard
+          {isLoading ? (
+            <CircularProgress className="loader" />
+          ) : (
+            <div className="filtered-movies">
+              {filteredMovies &&
+                filteredMovies.map(movie => (
+                  <Link
                     key={movie.id}
-                    title={movie.title}
-                    poster={movie.poster_path}
-                    rating={movie.vote_average}
-                  />
-                </Link>
-              ))}
-          </div>
+                    to={`/movie/${movie.id}`}
+                    style={{ textDecoration: "none", margin: "0.8rem" }}
+                  >
+                    <MovieCard
+                      key={movie.id}
+                      title={movie.title}
+                      poster={movie.poster_path}
+                      rating={movie.vote_average}
+                    />
+                  </Link>
+                ))}
+            </div>
+          )}
         </div>
         <div className="select-genres">
           <h1>Filter :</h1>
@@ -109,9 +118,10 @@ class Discover extends Component {
 //   setFilters: filters => dispatch(setFilters(filters))
 // });
 
-const mapStatetoProps = ({ api, user }) => ({
+const mapStatetoProps = ({ api, user, loading }) => ({
   filteredMovies: api.filteredMovies,
-  genres: user.filters
+  genres: user.filters,
+  isLoading: loading.isLoading
 });
 
 export default connect(

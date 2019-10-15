@@ -99,12 +99,12 @@ class Home extends Component {
       popular,
       top_rated,
       search,
-      loading,
       loadSearch,
-      openSearch
+      openSearch,
+      isLoading
     } = this.props;
 
-    if (loading) return <CircularProgress className="loader" />;
+    if (isLoading) return <CircularProgress className="loader" />;
 
     let movies = [];
     let heading = "";
@@ -189,7 +189,7 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ api, user }) => {
+const mapStateToProps = ({ api, user, loading }) => {
   return {
     now_playing: api.movies.now_playing,
     popular: api.movies.popular,
@@ -197,8 +197,8 @@ const mapStateToProps = ({ api, user }) => {
     search: api.movies.search,
     token: user.token,
     loadSearch: api.loadSearch,
-    loading: api.loading,
-    openSearch: user.openSearch
+    openSearch: user.openSearch,
+    isLoading: loading.isLoading
   };
 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, TextField } from "@material-ui/core";
+import { CircularProgress, Button, TextField } from "@material-ui/core";
 
 import { updateProfile, getSearchedUserInfo } from "../userInteractions";
 
@@ -55,7 +55,7 @@ class Profile extends Component {
       isLoading
     } = this.props;
 
-    if (isLoading) return <h1>LOADING!</h1>;
+    if (isLoading) return <CircularProgress className="loader" />;
 
     return (
       <div className="profile-container">

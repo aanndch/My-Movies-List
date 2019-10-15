@@ -7,6 +7,8 @@
 }
 
 .discover-movies {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 68.5%;
 }
@@ -60,4 +62,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.loader {
+  margin: 15em 30em !important;
 }

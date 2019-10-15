@@ -33,7 +33,7 @@ class Movie extends Component {
   render() {
     const {
       details,
-      loading,
+      isLoading,
       favorites,
       watched,
       watchlist,
@@ -44,7 +44,7 @@ class Movie extends Component {
     const hours = Math.floor(details.runtime / 60);
     const min = details.runtime - hours * 60;
 
-    if (loading && !details) return <CircularProgress className="loader" />;
+    if (isLoading) return <CircularProgress className="loader" />;
 
     return (
       <div className="movie-page-container">
@@ -160,14 +160,15 @@ class Movie extends Component {
   }
 }
 
-const mapStateToProps = ({ user, api }) => {
+const mapStateToProps = ({ user, api, loading }) => {
   return {
     details: api.details,
     loading: api.loading,
     favorites: user.favorites,
     watchlist: user.watchlist,
     watched: user.watched,
-    token: user.token
+    token: user.token,
+    isLoading: loading.isLoading
   };
 };
 
