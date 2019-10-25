@@ -59,6 +59,7 @@ class Profile extends Component {
       token,
       id
     };
+
     updateProfile(details);
   };
 

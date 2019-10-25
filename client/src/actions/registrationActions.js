@@ -3,17 +3,18 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import history from "../history";
 import { storeUserInfo } from "./userActions";
+import { Success, Error } from "../components/Notification";
 
 export const createUser = user => dispatch => {
   axios
     .post("http://localhost:5000/api/register", user)
     .then(({ data }) => {
       Cookies.set("token", data.token);
-      // TODO Display notification logged in
       dispatch(storeUserInfo(data.user, data.token));
+      Success("Registered!");
     })
     .then(() => history.push("/"))
-    .catch(error => console.log(error.response.data));
+    .catch(error => Error(error.response.data));
 };
 
 export const checkUser = user => dispatch => {
@@ -21,8 +22,8 @@ export const checkUser = user => dispatch => {
     .post("http://localhost:5000/api/login", user)
     .then(({ data }) => {
       Cookies.set("token", data.token);
-      // TODO Display notification logged in
       dispatch(storeUserInfo(data.user, data.token));
+      Success("Logged In!");
     })
     .then(() => history.push("/"))
     .catch(error => console.log(error.response.data));

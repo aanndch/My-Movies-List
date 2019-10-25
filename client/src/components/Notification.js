@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
 
-toast.configure();
+toast.configure({
+  autoClose: 2000
+});
 
 const Success = message => {
   toast.success(message);

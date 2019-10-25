@@ -39,6 +39,7 @@ const updateProfile = details => {
     .post(`http://localhost:5000/api/users/update/${details.id}`, details)
     .then(({ data }) => {
       Store.dispatch(storeSearchedUserInfo(data));
+      Success("Updated!");
     })
     .catch(error => Error(error.response.data));
 };
