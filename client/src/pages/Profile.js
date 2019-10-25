@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CircularProgress, Button, TextField } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import {
+  CircularProgress,
+  Button,
+  TextField,
+  Tabs,
+  Tab,
+  Paper,
+  Typography,
+  Box
+} from "@material-ui/core";
 
 import { updateProfile, getSearchedUserInfo } from "../userInteractions";
+import TabPanel from "../components/TabPanel";
+import MovieCard from "../components/MovieCard";
 
 import "./Profile.css";
 
@@ -14,7 +26,8 @@ class Profile extends Component {
       firstName: props.firstName,
       lastName: props.lastName,
       location: props.location,
-      gender: props.gender
+      gender: props.gender,
+      tab: 1
     };
   }
 
@@ -26,6 +39,12 @@ class Profile extends Component {
   handleChange = (e, value) => {
     this.setState({
       [value]: e.target.value
+    });
+  };
+
+  handleTabChange = (e, value) => {
+    this.setState({
+      tab: value
     });
   };
 
@@ -43,6 +62,23 @@ class Profile extends Component {
     updateProfile(details);
   };
 
+  TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+      <Typography
+        component="div"
+        role="tabpanel"
+        hidden={value !== index}
+        id={`wrapped-tabpanel-${index}`}
+        aria-labelledby={`wrapped-tab-${index}`}
+        {...other}
+      >
+        <Box p={3}>{children}</Box>
+      </Typography>
+    );
+  }
+
   render() {
     const {
       username,
@@ -52,8 +88,13 @@ class Profile extends Component {
       gender,
       image,
       editProfile,
-      isLoading
+      isLoading,
+      watched,
+      watchlist,
+      favorites
     } = this.props;
+
+    const { tab } = this.state;
 
     if (isLoading) return <CircularProgress className="loader" />;
 
@@ -100,15 +141,76 @@ class Profile extends Component {
             variant="filled"
             disabled={!editProfile}
           />
+          <Button
+            color="primary"
+            variant="contained"
+            className="edit-button"
+            onClick={this.handleClick}
+          >
+            {editProfile ? "SAVE CHANGES" : "EDIT PROFILE"}
+          </Button>
         </div>
-        <Button
-          color="primary"
-          variant="contained"
-          className="edit-button"
-          onClick={this.handleClick}
-        >
-          {editProfile ? "SAVE CHANGES" : "EDIT PROFILE"}
-        </Button>
+        <Paper className="tabs-paper" style={{ backgroundColor: "#394956" }}>
+          <Tabs
+            value={tab}
+            onChange={this.handleTabChange}
+            indicatorColor="primary"
+            textColor="primary"
+            centered
+          >
+            <Tab label="Watchlist" />
+            <Tab label="Watched" />
+            <Tab label="Favorites" />
+          </Tabs>
+          <TabPanel value={tab} index={0} className="movies-tab">
+            {watchlist &&
+              watchlist.map(movie => (
+                <Link
+                  key={movie.movieId}
+                  to={`/movie/${movie.movieId}`}
+                  style={{ textDecoration: "none", margin: "0.8rem" }}
+                >
+                  <MovieCard
+                    key={movie.movieId}
+                    title={movie.title}
+                    poster={movie.poster}
+                  />
+                </Link>
+              ))}
+          </TabPanel>
+          <TabPanel value={tab} index={1} className="movies-tab">
+            {watched &&
+              watched.map(movie => (
+                <Link
+                  key={movie.movieId}
+                  to={`/movie/${movie.movieId}`}
+                  style={{ textDecoration: "none", margin: "0.8rem" }}
+                >
+                  <MovieCard
+                    key={movie.movieId}
+                    title={movie.title}
+                    poster={movie.poster}
+                  />
+                </Link>
+              ))}
+          </TabPanel>
+          <TabPanel value={tab} index={2} className="movies-tab">
+            {favorites &&
+              favorites.map(movie => (
+                <Link
+                  key={movie.movieId}
+                  to={`/movie/${movie.movieId}`}
+                  style={{ textDecoration: "none", margin: "0.8rem" }}
+                >
+                  <MovieCard
+                    key={movie.movieId}
+                    title={movie.title}
+                    poster={movie.poster}
+                  />
+                </Link>
+              ))}
+          </TabPanel>
+        </Paper>
       </div>
     );
   }

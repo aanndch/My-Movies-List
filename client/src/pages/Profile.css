@@ -22,7 +22,7 @@
 }
 
 .profile-inputs {
-  width: 50%;
+  /* width: 50%; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -35,6 +35,29 @@
 }
 
 .edit-button {
+  width: 170px;
+  height: 56px;
+  margin: 3em !important;
+  background-color: #31db91 !important;
+}
+
+.tabs-paper {
+  width: 100%;
+}
+
+.MuiBox-root {
+  display: flex;
+}
+
+.MuiTab-root {
+  color: #e4e6e8 !important;
+}
+
+.MuiTab-textColorPrimary.Mui-selected {
+  color: #31db91 !important;
+}
+
+.MuiTabs-indicator {
   background-color: #31db91 !important;
 }
 
