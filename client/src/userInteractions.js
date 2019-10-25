@@ -1,16 +1,17 @@
 import axios from "axios";
 import { storeUserInfo, storeSearchedUserInfo } from "./actions/userActions";
-import Store from "./store";
 import { SET_LOADING } from "./actions/types";
+import Store from "./store";
+import { Success, Error } from "./components/Notification";
 
 const toggleSelection = (id, info) => {
   axios
     .post(`http://localhost:5000/api/users/lists/${id}`, info)
     .then(({ data }) => {
-      console.log("Success!");
       getUserInfo(data._id, data.token);
+      Success(data.operation);
     })
-    .catch(error => console.log(error.response.data));
+    .catch(error => Error(error.response.data));
 };
 
 const getUserInfo = (id, token) => {
@@ -19,7 +20,7 @@ const getUserInfo = (id, token) => {
     .then(({ data }) => {
       Store.dispatch(storeUserInfo(data, token));
     })
-    .catch(error => console.log(error.response.data));
+    .catch(error => Error(error.response.data));
 };
 
 const getSearchedUserInfo = username => {
@@ -30,17 +31,16 @@ const getSearchedUserInfo = username => {
       Store.dispatch(storeSearchedUserInfo(data[0]));
       Store.dispatch({ type: SET_LOADING });
     })
-    .catch(error => console.log(error.response.data));
+    .catch(error => Error(error.response.data));
 };
 
 const updateProfile = details => {
   axios
     .post(`http://localhost:5000/api/users/update/${details.id}`, details)
     .then(({ data }) => {
-      console.log(data);
       Store.dispatch(storeSearchedUserInfo(data));
     })
-    .catch(error => console.log(error.response.data));
+    .catch(error => Error(error.response.data));
 };
 
 export { toggleSelection, getUserInfo, getSearchedUserInfo, updateProfile };

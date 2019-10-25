@@ -10,6 +10,8 @@ import Routes from "./routes";
 import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
     <Provider store={store}>
