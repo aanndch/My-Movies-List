@@ -72,13 +72,18 @@ p {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 1.5em;
 }
 
 .action-button {
   background-color: #394956 !important;
   /* color: #616f7c !important; */
   font-size: 23px !important;
-  margin-left: 2rem !important;
+  margin-right: 2rem !important;
+}
+
+.action-button:last-child {
+  margin: 0 !important;
 }
 
 .action-button:hover,
@@ -90,6 +95,7 @@ p {
   height: 100%;
   width: 35%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
