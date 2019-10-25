@@ -62,8 +62,8 @@
 }
 
 .movie-image {
-  height: 310px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
 }
 
 .movie-image:hover {
