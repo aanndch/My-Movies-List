@@ -27,7 +27,7 @@ class Profile extends Component {
       lastName: props.lastName,
       location: props.location,
       gender: props.gender,
-      tab: 1
+      tab: 0
     };
   }
 

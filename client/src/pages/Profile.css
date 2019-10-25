@@ -42,11 +42,12 @@
 }
 
 .tabs-paper {
-  width: 100%;
+  width: 85%;
 }
 
 .MuiBox-root {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .MuiTab-root {
