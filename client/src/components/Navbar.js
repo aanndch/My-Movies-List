@@ -83,25 +83,6 @@ class Navbar extends Component {
             </Tooltip>
           </NavLink>
           <NavLink
-            to="/genres"
-            style={{ color: "#616f7c" }}
-            onClick={() => this.toggleSearchBar(false)}
-          >
-            <Tooltip
-              TransitionComponent={Zoom}
-              title="Something"
-              placement="right"
-            >
-              <IconButton
-                className="nav-item"
-                disableFocusRipple={true}
-                disableRipple={true}
-              >
-                <Category />
-              </IconButton>
-            </Tooltip>
-          </NavLink>
-          <NavLink
             to="/discover"
             style={{ color: "#616f7c" }}
             onClick={() => this.toggleSearchBar(false)}
