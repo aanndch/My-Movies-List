@@ -21,11 +21,14 @@ router.post("/:id", verify, async (req, res) => {
     ? "$pull"
     : "$addToSet";
 
+  const operation =
+    operator === "$pull" ? `Removed from ${list}!` : `Added to ${list}!`;
+
   User.findByIdAndUpdate(
     req.user._id,
     { [operator]: { [list]: movie } },
     { new: true },
-    () => res.send({ _id: req.user._id, token: req.body.token })
+    () => res.send({ _id: req.user._id, token: req.body.token, operation })
   ).exec();
 });
 
