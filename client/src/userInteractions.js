@@ -1,6 +1,6 @@
 import axios from "axios";
 import { storeUserInfo, storeSearchedUserInfo } from "./actions/userActions";
-import { SET_LOADING } from "./actions/types";
+import { SET_LOADING, SET_DONE } from "./actions/types";
 import Store from "./store";
 import { Success, Error } from "./components/Notification";
 
@@ -29,7 +29,7 @@ const getSearchedUserInfo = username => {
     .get(`http://localhost:5000/api/users/search/${username}`)
     .then(({ data }) => {
       Store.dispatch(storeSearchedUserInfo(data[0]));
-      Store.dispatch({ type: SET_LOADING });
+      Store.dispatch({ type: SET_DONE });
     })
     .catch(error => Error(error.response.data));
 };

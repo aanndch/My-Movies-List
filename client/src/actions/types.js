@@ -13,3 +13,6 @@ export const SET_FILTERED_MOVIES = "SET_FILTERED_MOVIES";
 export const SET_OPEN_SEARCH = "SET_OPEN_SEARCH";
 
 export const SET_LOADING = "SET_LOADING";
+export const SET_DONE = "SET_DONE";
+export const EDIT_PROFILE = "EDIT_PROFILE";
+export const SAVE_PROFILE = "SAVE_PROFILE";

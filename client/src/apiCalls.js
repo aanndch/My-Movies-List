@@ -8,7 +8,7 @@ import {
   setFilteredMovies
 } from "./actions/apiActions";
 import Store from "./store";
-import { SET_LOADING } from "./actions/types";
+import { SET_LOADING, SET_DONE } from "./actions/types";
 
 const URL = "https://api.themoviedb.org/3";
 
@@ -21,7 +21,7 @@ const getMovies = category => {
         [category]: results
       };
       Store.dispatch(setMovies(movies));
-      Store.dispatch({ type: SET_LOADING });
+      Store.dispatch({ type: SET_DONE });
     })
     .catch(error => console.log(error.response.data));
 };
@@ -32,7 +32,7 @@ const getMovieDetails = id => {
     .get(`${URL}/movie/${id}?api_key=${API_KEY}&language=en-US`)
     .then(({ data }) => {
       Store.dispatch(setMovieDetails(data));
-      Store.dispatch({ type: SET_LOADING });
+      Store.dispatch({ type: SET_DONE });
     })
     .catch(error => console.log(error.response.data));
 };
@@ -45,7 +45,7 @@ const searchForMovie = query => {
     )
     .then(({ data: { results } }) => {
       Store.dispatch(setMovieSearch({ search: results }));
-      Store.dispatch({ type: SET_LOADING });
+      Store.dispatch({ type: SET_DONE });
     })
     .catch(error => console.log(error.response.data));
 };
@@ -58,7 +58,7 @@ const getMoviesByGenres = genres => {
     )
     .then(({ data: { results } }) => {
       Store.dispatch(setFilteredMovies(results));
-      Store.dispatch({ type: SET_LOADING });
+      Store.dispatch({ type: SET_DONE });
     })
     .catch(error => console.log(error.response.data));
 };

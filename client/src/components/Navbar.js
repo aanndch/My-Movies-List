@@ -5,7 +5,6 @@ import {
   Person,
   Videocam,
   FilterList,
-  Category,
   Search
 } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
