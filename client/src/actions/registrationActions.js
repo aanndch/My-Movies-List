@@ -26,7 +26,7 @@ export const checkUser = user => dispatch => {
       Success("Logged In!");
     })
     .then(() => history.push("/"))
-    .catch(error => console.log(error.response.data));
+    .catch(error => Error(error.response.data));
 };
 
 export const tokenLogIn = tokenObj => dispatch => {
@@ -35,7 +35,7 @@ export const tokenLogIn = tokenObj => dispatch => {
     .then(({ data }) => {
       dispatch(storeUserInfo(data.user, data.token));
     })
-    .catch(error => console.log(error.response.data));
+    .catch(error => Error(error.response.data));
 };
 
 export const loginUser = (user, token) => {
