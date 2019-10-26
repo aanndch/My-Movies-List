@@ -15,18 +15,15 @@ import {
 import { updateProfile, getSearchedUserInfo } from "../userInteractions";
 import TabPanel from "../components/TabPanel";
 import MovieCard from "../components/MovieCard";
+import Store from "../store";
 
 import "./Profile.css";
+import { EDIT_PROFILE, SAVE_PROFILE } from "../actions/types";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      firstName: props.firstName,
-      lastName: props.lastName,
-      location: props.location,
-      gender: props.gender,
       tab: 0
     };
   }
@@ -34,6 +31,18 @@ class Profile extends Component {
   componentDidMount = () => {
     const { username } = this.props.match.params;
     getSearchedUserInfo(username);
+  };
+
+  componentDidUpdate = (prevProps) => {
+    const newProps = this.props;
+    if (prevProps.firstName !== newProps.firstName) {
+      this.setState({
+        firstName: newProps.firstName,
+        lastName: newProps.lastName,
+        location: newProps.location,
+        gender: newProps.gender
+      });
+    }
   };
 
   handleChange = (e, value) => {
@@ -48,7 +57,9 @@ class Profile extends Component {
     });
   };
 
-  handleClick = () => {
+  makeChanges = () => Store.dispatch({ type: EDIT_PROFILE });
+
+  submitChanges = () => {
     const { id, token } = this.props;
     const { firstName, lastName, location, gender } = this.state;
     const details = {
@@ -59,7 +70,7 @@ class Profile extends Component {
       token,
       id
     };
-
+    Store.dispatch({ type: SAVE_PROFILE });
     updateProfile(details);
   };
 
@@ -146,7 +157,7 @@ class Profile extends Component {
             color="primary"
             variant="contained"
             className="edit-button"
-            onClick={this.handleClick}
+            onClick={editProfile ? this.submitChanges : this.makeChanges}
           >
             {editProfile ? "SAVE CHANGES" : "EDIT PROFILE"}
           </Button>
@@ -230,7 +241,7 @@ const mapStateToProps = ({ searchedUser, user, loading }) => ({
   image: searchedUser.image,
   id: searchedUser._id,
   token: user.token,
-  editProfile: searchedUser.editProfile,
+  editProfile: loading.editProfile,
   isLoading: loading.isLoading
 });
 
