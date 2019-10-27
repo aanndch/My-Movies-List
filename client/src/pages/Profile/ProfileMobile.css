@@ -1,3 +1,26 @@
+.mobile-profile .top-part {
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.mobile-profile .profile-pic {
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+.mobile-profile .profile-input {
+  margin: 0 0.7em 0.7em 0 !important;
+  width: 150px;
+}
+
+.mobile-profile .MuiFilledInput-root {
+  width: 150px;
+}
+
+.mobile-profile .edit-button {
+  margin: 1em 0 3em 0 !important;
+}
+
 .mobile-profile .MuiBox-root {
   justify-content: space-between;
 }
