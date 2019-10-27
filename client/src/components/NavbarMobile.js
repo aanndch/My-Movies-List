@@ -4,7 +4,7 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Drawer,
+  SwipeableDrawer,
   List,
   ListItem,
   ListItemIcon,
@@ -76,7 +76,11 @@ class NavbarMobile extends Component {
             <AccountCircle />
           </Toolbar>
         </AppBar>
-        <Drawer open={open} onClose={this.toggleDrawer}>
+        <SwipeableDrawer
+          open={open}
+          onOpen={this.toggleDrawer}
+          onClose={this.toggleDrawer}
+        >
           <div className="navbar-container" role="presentation">
             <List component="nav">
               <NavLink
@@ -148,7 +152,7 @@ class NavbarMobile extends Component {
               )}
             </List>
           </div>
-        </Drawer>
+        </SwipeableDrawer>
       </div>
     );
   }
