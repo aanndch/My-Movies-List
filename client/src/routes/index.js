@@ -3,8 +3,8 @@ import { Route } from "react-router-dom";
 
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import Home from "../pages/Home";
-import Movie from "../pages/Movie";
+import Home from "../pages/Home/Home";
+import Movie from "../pages/Movie/Movie";
 import Discover from "../pages/Discover";
 import Profile from "../pages/Profile";
 
