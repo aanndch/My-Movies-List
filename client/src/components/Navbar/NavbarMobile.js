@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
+  Button,
   AppBar,
   Toolbar,
   IconButton,
@@ -19,11 +20,12 @@ import {
   Search
 } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
-import { tokenLogIn } from "../actions/registrationActions";
+import { tokenLogIn } from "../../actions/registrationActions";
 import Cookie from "js-cookie";
+import history from "../../history";
 
 import "./NavbarMobile.css";
-import { setOpenSearch } from "../actions/userActions";
+import { setOpenSearch } from "../../actions/userActions";
 
 class NavbarMobile extends Component {
   constructor(props) {
@@ -55,6 +57,11 @@ class NavbarMobile extends Component {
     const { dispatch } = this.props;
     dispatch(setOpenSearch(open));
     this.toggleDrawer();
+  };
+
+  signOut = () => {
+    Cookie.remove("token");
+    window.location.href = "/";
   };
 
   render() {
@@ -151,6 +158,19 @@ class NavbarMobile extends Component {
                 </NavLink>
               )}
             </List>
+            {token && (
+              <Button
+                type="primary"
+                variant="contained"
+                onClick={this.signOut}
+                style={{
+                  backgroundColor: "#31db91",
+                  width: "100%"
+                }}
+              >
+                SIGN OUT
+              </Button>
+            )}
           </div>
         </SwipeableDrawer>
       </div>

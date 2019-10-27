@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { IconButton, Tooltip, Zoom } from "@material-ui/core";
 import { Person, Videocam, FilterList, Search } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
-import { setOpenSearch } from "../actions/userActions";
-import { tokenLogIn } from "../actions/registrationActions";
+import { setOpenSearch } from "../../actions/userActions";
+import { tokenLogIn } from "../../actions/registrationActions";
 import Cookie from "js-cookie";
 
 import "./Navbar.css";
