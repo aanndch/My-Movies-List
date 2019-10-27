@@ -18,6 +18,8 @@ import {
   Person
 } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
+import { tokenLogIn } from "../actions/registrationActions";
+import Cookie from "js-cookie";
 
 import "./NavbarMobile.css";
 
@@ -28,6 +30,12 @@ class NavbarMobile extends Component {
       open: false
     };
   }
+
+  componentDidMount = () => {
+    const { dispatch } = this.props;
+    const token = Cookie.get("token");
+    if (token) dispatch(tokenLogIn({ token }));
+  };
 
   toggleDrawer = () => {
     this.setState(prevState => ({
