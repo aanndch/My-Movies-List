@@ -1,0 +1,46 @@
+.navbar-mobile {
+  width: 100vw;
+}
+
+.navbar-container {
+  height: 100vh;
+  width: 270px;
+}
+
+.navbar-icon {
+  height: 1.5em !important;
+  width: 1.5em !important;
+  color: #31db91;
+}
+
+.navbar-text span {
+  font-size: 1.2em;
+  color: white;
+  font-weight: bold;
+}
+
+.active {
+  background-color: aliceblue;
+  color: #394956;
+}
+
+.active .MuiListItem-button {
+  background-color: inherit;
+}
+
+.active .MuiTypography-body1 {
+  color: #394956;
+}
+
+.MuiAppBar-colorPrimary {
+  background-color: #394956 !important;
+}
+
+.MuiDrawer-paper {
+  background-color: #394956 !important;
+}
+
+.MuiToolbar-root {
+  width: 100vw;
+  justify-content: space-between;
+}
