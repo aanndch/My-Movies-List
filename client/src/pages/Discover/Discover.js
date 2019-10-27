@@ -8,11 +8,11 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-import { setFilters } from "../actions/userActions";
-import { getMoviesByGenres } from "../apiCalls";
-import { genresDB } from "../data/movieGenres";
+import { setFilters } from "../../actions/userActions";
+import { getMoviesByGenres } from "../../apiCalls";
+import { genresDB } from "../../data/movieGenres";
 
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../../components/MovieCard";
 
 import "./Discover.css";
 

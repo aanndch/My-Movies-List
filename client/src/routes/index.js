@@ -5,8 +5,8 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Home from "../pages/Home/Home";
 import Movie from "../pages/Movie/Movie";
-import Discover from "../pages/Discover";
-import Profile from "../pages/Profile";
+import Discover from "../pages/Discover/Discover";
+import Profile from "../pages/Profile/Profile";
 
 export default () => (
   <>
