@@ -33,9 +33,14 @@ class Profile extends Component {
     getSearchedUserInfo(username);
   };
 
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = prevProps => {
     const newProps = this.props;
-    if (prevProps.firstName !== newProps.firstName) {
+    if (
+      prevProps.firstName !== newProps.firstName ||
+      prevProps.lastName !== newProps.lastName ||
+      prevProps.location !== newProps.location ||
+      prevProps.gender !== newProps.gender
+    ) {
       this.setState({
         firstName: newProps.firstName,
         lastName: newProps.lastName,
