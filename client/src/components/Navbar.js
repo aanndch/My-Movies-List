@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { IconButton, Tooltip, Zoom } from "@material-ui/core";
-import {
-  Person,
-  Videocam,
-  FilterList,
-  Search
-} from "@material-ui/icons";
+import { Person, Videocam, FilterList, Search } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 import { setOpenSearch } from "../actions/userActions";
 import { tokenLogIn } from "../actions/registrationActions";
@@ -43,33 +38,16 @@ class Navbar extends Component {
     const { token, openSearch, username } = this.props;
 
     return (
-      <div className="navbar">
-        <NavLink
-          to="/"
-          style={{ color: "#616f7c" }}
-          onClick={() => this.toggleSearchBar(true)}
-        >
-          <Tooltip TransitionComponent={Zoom} title="Search" placement="right">
-            <IconButton
-              className="nav-item"
-              disableFocusRipple={true}
-              disableRipple={true}
-            >
-              <Search style={{ color: openSearch ? "#31db91" : "#616f7c" }} />
-            </IconButton>
-          </Tooltip>
-        </NavLink>
-        <div className="middle-nav">
+      <nav>
+        <div className="navbar">
           <NavLink
             to="/"
-            isActive={this.onMoviePage}
-            exact
             style={{ color: "#616f7c" }}
-            onClick={() => this.toggleSearchBar(false)}
+            onClick={() => this.toggleSearchBar(true)}
           >
             <Tooltip
               TransitionComponent={Zoom}
-              title="Movies"
+              title="Search"
               placement="right"
             >
               <IconButton
@@ -77,38 +55,21 @@ class Navbar extends Component {
                 disableFocusRipple={true}
                 disableRipple={true}
               >
-                <Videocam />
+                <Search style={{ color: openSearch ? "#31db91" : "#616f7c" }} />
               </IconButton>
             </Tooltip>
           </NavLink>
-          <NavLink
-            to="/discover"
-            style={{ color: "#616f7c" }}
-            onClick={() => this.toggleSearchBar(false)}
-          >
-            <Tooltip
-              TransitionComponent={Zoom}
-              title="Discover"
-              placement="right"
-            >
-              <IconButton
-                className="nav-item"
-                disableFocusRipple={true}
-                disableRipple={true}
-              >
-                <FilterList />
-              </IconButton>
-            </Tooltip>
-          </NavLink>
-          {token ? (
+          <div className="middle-nav">
             <NavLink
-              to={`/profile/${username}`}
+              to="/"
+              isActive={this.onMoviePage}
+              exact
               style={{ color: "#616f7c" }}
               onClick={() => this.toggleSearchBar(false)}
             >
               <Tooltip
                 TransitionComponent={Zoom}
-                title="Profile"
+                title="Movies"
                 placement="right"
               >
                 <IconButton
@@ -116,20 +77,18 @@ class Navbar extends Component {
                   disableFocusRipple={true}
                   disableRipple={true}
                 >
-                  <Person />
+                  <Videocam />
                 </IconButton>
               </Tooltip>
             </NavLink>
-          ) : (
             <NavLink
-              to="/login"
-              isActive={this.register}
+              to="/discover"
               style={{ color: "#616f7c" }}
               onClick={() => this.toggleSearchBar(false)}
             >
               <Tooltip
                 TransitionComponent={Zoom}
-                title="Login"
+                title="Discover"
                 placement="right"
               >
                 <IconButton
@@ -137,13 +96,55 @@ class Navbar extends Component {
                   disableFocusRipple={true}
                   disableRipple={true}
                 >
-                  <Person />
+                  <FilterList />
                 </IconButton>
               </Tooltip>
             </NavLink>
-          )}
+            {token ? (
+              <NavLink
+                to={`/profile/${username}`}
+                style={{ color: "#616f7c" }}
+                onClick={() => this.toggleSearchBar(false)}
+              >
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title="Profile"
+                  placement="right"
+                >
+                  <IconButton
+                    className="nav-item"
+                    disableFocusRipple={true}
+                    disableRipple={true}
+                  >
+                    <Person />
+                  </IconButton>
+                </Tooltip>
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/login"
+                isActive={this.register}
+                style={{ color: "#616f7c" }}
+                onClick={() => this.toggleSearchBar(false)}
+              >
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title="Login"
+                  placement="right"
+                >
+                  <IconButton
+                    className="nav-item"
+                    disableFocusRipple={true}
+                    disableRipple={true}
+                  >
+                    <Person />
+                  </IconButton>
+                </Tooltip>
+              </NavLink>
+            )}
+          </div>
         </div>
-      </div>
+      </nav>
     );
   }
 }
