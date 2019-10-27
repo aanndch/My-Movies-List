@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "@material-ui/core";
 
 const MovieCard = ({ title, poster, rating }) => (
-  <Card className="movie-card profile-movie">
+  <Card className="movie-card mobile-movie-card">
     <img
       className="movie-image"
       src={`https://image.tmdb.org/t/p/w500${poster}`}

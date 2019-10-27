@@ -1,13 +1,18 @@
 .mobile-heading {
   display: flex;
   flex-direction: column;
-  padding: 3em;
+  padding: 2em 3em;
   color: #e4e6e8;
   align-items: center;
 }
 
 .mobile-home-heading {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
+}
+
+.home-mobile-container .mobile-movie-card {
+  height: 435px;
+  width: 280px;
 }
 
 .home-mobile-container .MuiFormControl-root {
