@@ -15,13 +15,15 @@ import {
   AccountCircle,
   FilterList,
   Videocam,
-  Person
+  Person,
+  Search
 } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 import { tokenLogIn } from "../actions/registrationActions";
 import Cookie from "js-cookie";
 
 import "./NavbarMobile.css";
+import { setOpenSearch } from "../actions/userActions";
 
 class NavbarMobile extends Component {
   constructor(props) {
@@ -49,6 +51,12 @@ class NavbarMobile extends Component {
     return false;
   };
 
+  toggleSearchBar = open => {
+    const { dispatch } = this.props;
+    dispatch(setOpenSearch(open));
+    this.toggleDrawer();
+  };
+
   render() {
     const { open } = this.state;
     const { token, username } = this.props;
@@ -70,7 +78,20 @@ class NavbarMobile extends Component {
         </AppBar>
         <Drawer open={open} onClose={this.toggleDrawer}>
           <div className="navbar-container" role="presentation">
-            <List component="nav" aria-label="main mailbox folders">
+            <List component="nav">
+              <NavLink
+                to="/"
+                exact
+                onClick={() => this.toggleSearchBar(true)}
+                style={{ textDecoration: "none" }}
+              >
+                <ListItem button>
+                  <ListItemIcon>
+                    <Search className="navbar-icon" />
+                  </ListItemIcon>
+                  <ListItemText primary="Movies" className="navbar-text" />
+                </ListItem>
+              </NavLink>
               <NavLink
                 to="/"
                 exact
