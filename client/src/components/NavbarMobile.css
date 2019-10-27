@@ -19,7 +19,7 @@
   font-weight: bold;
 }
 
-.active {
+.navbar-container .active {
   background-color: aliceblue;
   color: #394956;
 }
