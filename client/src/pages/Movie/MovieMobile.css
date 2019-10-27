@@ -1,0 +1,46 @@
+.mobile-movie-page-container {
+  width: 100vw;
+}
+
+.mobile-movie-page-container .movie-info {
+  padding: 3em;
+  width: 100%;
+}
+
+.mobile-movie-page-container .movie-poster {
+  width: 100%;
+}
+
+.mobile-movie-page-container .title h1 {
+  font-size: 2.5em;
+}
+
+.mobile-movie-page-container .title h1,
+.mobile-movie-page-container .release-date {
+  text-align: center;
+}
+
+.mobile-movie-page-container .action-buttons {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+.mobile-movie-page-container .extra {
+  margin-top: 1em;
+}
+
+.extra > * {
+  margin-bottom: 0.5em !important;
+}
+
+.mobile-movie-rating {
+  display: flex;
+}
+
+.movie-genres {
+  display: flex;
+}
+
+.mobile-movie-page-container .extra {
+  flex-direction: column;
+}

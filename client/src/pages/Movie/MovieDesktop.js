@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { CircularProgress, Fab, Tooltip, Zoom } from "@material-ui/core";
 import { Add, Favorite, Check } from "@material-ui/icons";
 import moment from "moment";
