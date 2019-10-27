@@ -41,7 +41,7 @@ const ProfileMobile = props => {
   if (isLoading) return <CircularProgress className="loader" />;
 
   return (
-    <div className="profile-container">
+    <div className="profile-container mobile-profile">
       <div className="top-part">
         <img src={image} alt={`${username}'s pic`} className="profile-pic" />
         <h1>{username}</h1>
@@ -92,7 +92,10 @@ const ProfileMobile = props => {
           {editProfile ? "SAVE CHANGES" : "EDIT PROFILE"}
         </Button>
       </div>
-      <Paper className="tabs-paper" style={{ backgroundColor: "#394956" }}>
+      <Paper
+        className="tabs-paper"
+        style={{ backgroundColor: "#394956", width: "100%" }}
+      >
         <Tabs
           value={tab}
           onChange={handleTabChange}

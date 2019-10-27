@@ -1,0 +1,8 @@
+.mobile-profile .MuiBox-root {
+  justify-content: space-between;
+}
+
+.mobile-profile .movie-card {
+  height: 185px;
+  width: 120px;
+}
