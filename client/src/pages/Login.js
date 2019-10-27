@@ -37,16 +37,27 @@ class Login extends Component {
     const { token } = this.props;
     if (token) return <Redirect to="/" />;
 
+    const inputStyle =
+      window.innerWidth < 500
+        ? {
+            width: "80%",
+            padding: "1rem"
+          }
+        : {
+            width: "100%"
+          };
+
     return (
       <div className="container">
         <div className="registration">
-          <form type="POST">
+          <form type="POST" className="resgitration-form">
             <input
               name="email"
               type="email"
               placeholder="Email"
               onChange={this.handleChange}
               min={6}
+              style={inputStyle}
               required
             />
             <input
@@ -55,18 +66,23 @@ class Login extends Component {
               placeholder="Password"
               onChange={this.handleChange}
               min={6}
+              style={inputStyle}
               required
             />
             <Button
               id="sign-up"
               variant="contained"
               type="submit"
+              style={inputStyle}
               onClick={this.login}
             >
               SIGN IN
             </Button>
           </form>
-          <Link to="/register" style={{ textDecoration: "none" }}>
+          <Link
+            to="/register"
+            style={{ textDecoration: "none", width: "80%", margin: "0 auto" }}
+          >
             <h3 className="register-button">Create Account</h3>
           </Link>
         </div>

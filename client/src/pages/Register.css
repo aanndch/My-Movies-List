@@ -2,16 +2,19 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  height: 100vh;
 }
 
 .registration {
-  margin: auto;
-  /* position: absolute; */
-  /* top: 130px; */
+  margin: 150px auto;
   width: 400px;
   display: flex;
   flex-flow: column;
+}
+
+.registration form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .registration input {
@@ -20,7 +23,6 @@
   border-bottom: 1px solid grey;
   padding: 1.3rem;
   font-size: 1.5rem;
-  width: 100%;
 }
 
 .registration input:first-child {
@@ -33,7 +35,7 @@
   color: white;
   padding: 1.3rem;
   font-size: 1.5rem;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .register-button {

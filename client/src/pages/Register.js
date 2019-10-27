@@ -39,6 +39,16 @@ class Register extends Component {
     const { token } = this.props;
     if (token) return <Redirect to="/" />;
 
+    const inputStyle =
+      window.innerWidth < 500
+        ? {
+            width: "80%",
+            padding: "1rem"
+          }
+        : {
+            width: "100%"
+          };
+
     return (
       <div className="container">
         <div className="registration">
@@ -49,6 +59,7 @@ class Register extends Component {
               placeholder="Email"
               onChange={this.handleChange}
               min={6}
+              style={inputStyle}
               required
             />
             <input
@@ -57,6 +68,7 @@ class Register extends Component {
               placeholder="Username"
               onChange={this.handleChange}
               min={6}
+              style={inputStyle}
               required
             />
             <input
@@ -65,18 +77,23 @@ class Register extends Component {
               placeholder="Password"
               onChange={this.handleChange}
               min={6}
+              style={inputStyle}
               required
             />
             <Button
               id="sign-up"
               variant="contained"
               type="submit"
+              style={inputStyle}
               onClick={this.register}
             >
               SIGN UP
             </Button>
           </form>
-          <Link to="/login" style={{ textDecoration: "none" }}>
+          <Link
+            to="/login"
+            style={{ textDecoration: "none", width: "80%", margin: "0 auto" }}
+          >
             <h3 className="register-button">Already have an account</h3>
           </Link>
         </div>
