@@ -4,8 +4,8 @@ import { CircularProgress, Fab, Tooltip, Zoom } from "@material-ui/core";
 import { Add, Favorite, Check } from "@material-ui/icons";
 import moment from "moment";
 
-import { toggleSelection } from "../userInteractions";
-import { getMovieDetails } from "../apiCalls";
+import { toggleSelection } from "../../userInteractions";
+import { getMovieDetails } from "../../apiCalls";
 
 import "./Movie.css";
 
