@@ -7,6 +7,7 @@ import {
   Drawer
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroller";
 
 import { genresDB } from "../../data/movieGenres";
 
@@ -22,7 +23,9 @@ const DiscoverMobile = props => {
     handleGenreSelect,
     getMovies,
     open,
-    toggleDrawer
+    toggleDrawer,
+    getMore,
+    hasMore
   } = props;
 
   return (
@@ -43,24 +46,31 @@ const DiscoverMobile = props => {
           <CircularProgress className="loader" />
         ) : (
           <div className="filtered-movies">
-            {filteredMovies && filteredMovies.length > 0 ? (
-              filteredMovies.map(movie => (
-                <Link
-                  key={movie.id}
-                  to={`/movie/${movie.id}`}
-                  style={{ textDecoration: "none", margin: "0.8rem" }}
-                >
-                  <MovieCard
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={getMore}
+              hasMore={hasMore}
+              loader={<h4>Loading...</h4>}
+            >
+              {filteredMovies && filteredMovies.length > 0 ? (
+                filteredMovies.map(movie => (
+                  <Link
                     key={movie.id}
-                    title={movie.title}
-                    poster={movie.poster_path}
-                    rating={movie.vote_average}
-                  />
-                </Link>
-              ))
-            ) : (
-              <h1>NO RESULTS</h1>
-            )}
+                    to={`/movie/${movie.id}`}
+                    style={{ textDecoration: "none", margin: "0.8rem" }}
+                  >
+                    <MovieCard
+                      key={movie.id}
+                      title={movie.title}
+                      poster={movie.poster_path}
+                      rating={movie.vote_average}
+                    />
+                  </Link>
+                ))
+              ) : (
+                <h1>NO RESULTS</h1>
+              )}
+            </InfiniteScroll>
           </div>
         )}
       </div>

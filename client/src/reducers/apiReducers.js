@@ -2,7 +2,8 @@ import {
   SET_MOVIES,
   SET_MOVIE_DETAILS,
   SET_MOVIE_SEARCH,
-  SET_FILTERED_MOVIES
+  SET_FILTERED_MOVIES,
+  ADD_FILTERED_MOVIES
 } from "../actions/types";
 
 const initialState = {
@@ -14,7 +15,9 @@ const initialState = {
   },
   loadSearch: false,
   details: [],
-  loading: false
+  loading: false,
+  filteredMovies: [],
+  hasMore: true
 };
 
 const apiReducer = (state = initialState, action) => {
@@ -47,6 +50,15 @@ const apiReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredMovies: action.movies,
+        hasMore: true,
+        loading: false
+      };
+    }
+    case ADD_FILTERED_MOVIES: {
+      return {
+        ...state,
+        filteredMovies: [...state.filteredMovies, ...action.movies],
+        hasMore: action.hasMore,
         loading: false
       };
     }

@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { setFilters } from "../../actions/userActions";
-import { getMoviesByGenres } from "../../apiCalls";
+import { getMoviesByGenres, getMoreMovies } from "../../apiCalls";
 
 import DiscoverMobile from "./DiscoverMobile";
 import DiscoverDesktop from "./DiscoverDesktop";
+
+let page = 1;
 
 class Discover extends Component {
   constructor(props) {
@@ -55,9 +57,16 @@ class Discover extends Component {
     getMoviesByGenres(genres.join(","));
   };
 
+  getMore = () => {
+    let { genres } = this.props;
+    page = page + 1;
+
+    getMoreMovies(genres.join(","), page);
+  };
+
   render() {
     const { open } = this.state;
-    const { genres, isLoading, filteredMovies } = this.props;
+    const { genres, isLoading, filteredMovies, hasMore } = this.props;
 
     if (window.innerWidth < 500) {
       return (
@@ -69,6 +78,8 @@ class Discover extends Component {
           getMovies={this.getMovies}
           open={open}
           toggleDrawer={this.toggleDrawer}
+          getMore={this.getMore}
+          hasMore={hasMore}
         />
       );
     } else {
@@ -79,6 +90,8 @@ class Discover extends Component {
           filteredMovies={filteredMovies}
           handleGenreSelect={this.handleGenreSelect}
           getMovies={this.getMovies}
+          getMore={this.getMore}
+          hasMore={hasMore}
         />
       );
     }
@@ -88,7 +101,8 @@ class Discover extends Component {
 const mapStatetoProps = ({ api, user, loading }) => ({
   filteredMovies: api.filteredMovies,
   genres: user.filters,
-  isLoading: loading.isLoading
+  isLoading: loading.isLoading,
+  hasMore: api.hasMore
 });
 
 export default connect(mapStatetoProps)(Discover);

@@ -6,6 +6,7 @@ import {
   Button
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroller";
 
 import { genresDB } from "../../data/movieGenres";
 
@@ -19,7 +20,9 @@ const DiscoverDesktop = props => {
     isLoading,
     filteredMovies,
     handleGenreSelect,
-    getMovies
+    getMovies,
+    getMore,
+    hasMore
   } = props;
 
   return (
@@ -29,7 +32,13 @@ const DiscoverDesktop = props => {
         {isLoading ? (
           <CircularProgress className="loader" />
         ) : (
-          <div className="filtered-movies">
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={getMore}
+            hasMore={hasMore}
+            loader={<h4>Loading...</h4>}
+            className="filtered-movies"
+          >
             {filteredMovies && filteredMovies.length > 0 ? (
               filteredMovies.map(movie => (
                 <Link
@@ -48,7 +57,7 @@ const DiscoverDesktop = props => {
             ) : (
               <h1>NO RESULTS!</h1>
             )}
-          </div>
+          </InfiniteScroll>
         )}
       </div>
       <div className="select-genres">

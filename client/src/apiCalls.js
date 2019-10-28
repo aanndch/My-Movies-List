@@ -5,7 +5,8 @@ import {
   setMovies,
   setMovieDetails,
   setMovieSearch,
-  setFilteredMovies
+  setFilteredMovies,
+  addFilteredMovies
 } from "./actions/apiActions";
 import Store from "./store";
 import { SET_LOADING, SET_DONE } from "./actions/types";
@@ -63,4 +64,23 @@ const getMoviesByGenres = genres => {
     .catch(error => console.log(error.response.data));
 };
 
-export { getMovies, getMovieDetails, searchForMovie, getMoviesByGenres };
+const getMoreMovies = (genres, page) => {
+  axios
+    .get(
+      `${URL}/discover/movie?api_key=${API_KEY}&with_genres=${genres}&sort_by=vote_average.desc&vote_count.gte=1000&page=${page}`
+    )
+    .then(({ data: { results } }) => {
+      let hasMore = true;
+      if (results.length < 1) hasMore = false;
+      Store.dispatch(addFilteredMovies(results, hasMore));
+    })
+    .catch(error => console.log(error.response.data));
+};
+
+export {
+  getMovies,
+  getMovieDetails,
+  searchForMovie,
+  getMoviesByGenres,
+  getMoreMovies
+};
