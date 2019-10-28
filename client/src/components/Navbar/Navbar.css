@@ -16,7 +16,7 @@
 .middle-nav {
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
+  margin-top: 7rem;
 }
 
 .active {
@@ -39,6 +39,10 @@
 .nav-item:active {
   cursor: pointer;
   color: #31db91 !important;
+}
+
+.sign-out-part {
+  margin-top: 13em;
 }
 
 .MuiSvgIcon-root {

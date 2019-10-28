@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { IconButton, Tooltip, Zoom } from "@material-ui/core";
-import { Person, Videocam, FilterList, Search } from "@material-ui/icons";
+import {
+  Person,
+  Videocam,
+  FilterList,
+  Search,
+  ExitToAppRounded
+} from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 import { setOpenSearch } from "../../actions/userActions";
 import { tokenLogIn } from "../../actions/registrationActions";
@@ -32,6 +38,11 @@ class Navbar extends Component {
     const { dispatch } = this.props;
 
     dispatch(setOpenSearch(open));
+  };
+
+  logOut = () => {
+    Cookie.remove("token");
+    window.location.href = "/";
   };
 
   render() {
@@ -144,6 +155,25 @@ class Navbar extends Component {
               </NavLink>
             )}
           </div>
+          {token && (
+            <div className="sign-out-part">
+              <Tooltip
+                TransitionComponent={Zoom}
+                title="Log Out"
+                placement="right"
+              >
+                <IconButton
+                  className="nav-item"
+                  disableFocusRipple={true}
+                  disableRipple={true}
+                  onClick={() => this.logOut()}
+                  style={{ color: "rgb(97, 111, 124)" }}
+                >
+                  <ExitToAppRounded />
+                </IconButton>
+              </Tooltip>
+            </div>
+          )}
         </div>
       </nav>
     );
