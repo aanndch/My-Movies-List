@@ -18,3 +18,8 @@
 .home-mobile-container .MuiFormControl-root {
   width: 170px;
 }
+
+.home-mobile-container .movie-card {
+  height: 380px;
+  width: 250px;
+}
