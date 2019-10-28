@@ -165,7 +165,8 @@ class NavbarMobile extends Component {
                 onClick={this.signOut}
                 style={{
                   backgroundColor: "#31db91",
-                  width: "100%"
+                  width: "100%",
+                  height: "50px"
                 }}
               >
                 SIGN OUT
