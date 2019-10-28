@@ -127,10 +127,10 @@ const MovieMobile = props => {
             />
             <p>{details.vote_average}/10</p>
           </div>
-          <p className="movie-genres">
+          <div className="movie-genres">
             {details.genres &&
               details.genres.map(genre => <p key={genre.id}>{genre.name} </p>)}
-          </p>
+          </div>
           <p>{`${hours}h ${min}min`}</p>
         </div>
         <Divider />
