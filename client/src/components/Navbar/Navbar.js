@@ -42,6 +42,7 @@ class Navbar extends Component {
         <div className="navbar">
           <NavLink
             to="/"
+            exact
             style={{ color: "#616f7c" }}
             onClick={() => this.toggleSearchBar(true)}
           >

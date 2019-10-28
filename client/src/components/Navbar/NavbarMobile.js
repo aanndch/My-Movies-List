@@ -53,6 +53,12 @@ class NavbarMobile extends Component {
     return false;
   };
 
+  onMoviePage = () => {
+    const path = window.location.pathname;
+    if (path === "/" || path.slice(0, 6) === "/movie") return true;
+    return false;
+  };
+
   toggleSearchBar = open => {
     const { dispatch } = this.props;
     dispatch(setOpenSearch(open));
@@ -66,7 +72,7 @@ class NavbarMobile extends Component {
 
   render() {
     const { open } = this.state;
-    const { token, username } = this.props;
+    const { token, username, openSearch } = this.props;
 
     return (
       <div className="navbar-mobile">
@@ -94,20 +100,24 @@ class NavbarMobile extends Component {
                 to="/"
                 exact
                 onClick={() => this.toggleSearchBar(true)}
-                style={{ textDecoration: "none" }}
+                style={{
+                  textDecoration: "none"
+                }}
               >
                 <ListItem button>
                   <ListItemIcon>
                     <Search className="navbar-icon" />
                   </ListItemIcon>
-                  <ListItemText primary="Movies" className="navbar-text" />
+                  <ListItemText primary="Search" className="navbar-text" />
                 </ListItem>
               </NavLink>
               <NavLink
                 to="/"
                 exact
+                isActive={this.onMoviePage}
                 onClick={this.toggleDrawer}
                 style={{ textDecoration: "none" }}
+                onClick={() => this.toggleSearchBar(false)}
               >
                 <ListItem button>
                   <ListItemIcon>
@@ -166,7 +176,8 @@ class NavbarMobile extends Component {
                 style={{
                   backgroundColor: "#31db91",
                   width: "100%",
-                  height: "50px"
+                  height: "50px",
+                  fontWeight: "bold"
                 }}
               >
                 SIGN OUT
