@@ -93,7 +93,7 @@ class Home extends Component {
       isLoading
     } = this.props;
 
-    if (window.innerWidth < 500) {
+    if (window.innerWidth < 769) {
       return (
         <HomeMobile
           category={category}

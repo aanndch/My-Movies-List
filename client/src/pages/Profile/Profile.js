@@ -104,7 +104,7 @@ class Profile extends Component {
 
     if (isLoading) return <CircularProgress className="loader" />;
 
-    if (window.innerWidth < 500) {
+    if (window.innerWidth < 769) {
       return (
         <ProfileMobile
           username={username}

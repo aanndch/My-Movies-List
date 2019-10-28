@@ -14,7 +14,7 @@ import NavbarMobile from "./components/Navbar/NavbarMobile";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  if (window.innerWidth < 500) {
+  if (window.innerWidth < 769) {
     return (
       <Provider store={store}>
         <Router history={history}>

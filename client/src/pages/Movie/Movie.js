@@ -38,7 +38,7 @@ class Movie extends Component {
       token
     } = this.props;
 
-    if (window.innerWidth < 500) {
+    if (window.innerWidth < 769) {
       return (
         <MovieMobile
           details={details}

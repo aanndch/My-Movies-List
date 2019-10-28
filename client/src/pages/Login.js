@@ -38,7 +38,7 @@ class Login extends Component {
     if (token) return <Redirect to="/" />;
 
     const inputStyle =
-      window.innerWidth < 500
+      window.innerWidth < 769
         ? {
             width: "80%",
             padding: "1rem"

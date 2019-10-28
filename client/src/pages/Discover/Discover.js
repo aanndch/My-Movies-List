@@ -68,7 +68,7 @@ class Discover extends Component {
     const { open } = this.state;
     const { genres, isLoading, filteredMovies, hasMore } = this.props;
 
-    if (window.innerWidth < 500) {
+    if (window.innerWidth < 769) {
       return (
         <DiscoverMobile
           genres={genres}
