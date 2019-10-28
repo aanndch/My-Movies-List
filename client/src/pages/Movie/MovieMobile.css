@@ -25,12 +25,16 @@
   margin-bottom: 0;
 }
 
-.mobile-movie-page-container .extra {
+/* .mobile-movie-page-container .extra {
   margin-top: 1em;
-}
+} */
 
 .extra > * {
   margin-bottom: 0.5em !important;
+}
+
+.mobile-movie-page-container .extra > p:last-child {
+  margin: 0 !important;
 }
 
 .mobile-movie-rating {
@@ -39,8 +43,15 @@
 
 .movie-genres {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .mobile-movie-page-container .extra {
   flex-direction: column;
+}
+
+.mobile-movie-page-container .MuiDivider-root {
+  margin: 1.5em 0;
+  background: rgb(49, 219, 145);
 }

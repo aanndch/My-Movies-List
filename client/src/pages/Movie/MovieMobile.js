@@ -1,5 +1,5 @@
 import React from "react";
-import { CircularProgress, Fab } from "@material-ui/core";
+import { CircularProgress, Fab, Divider } from "@material-ui/core";
 import { Add, Favorite, Check } from "@material-ui/icons";
 import moment from "moment";
 
@@ -111,6 +111,7 @@ const MovieMobile = props => {
             </div>
           )}
         </div>
+        <Divider />
         <div className="extra">
           <div className="mobile-movie-rating">
             <img
@@ -126,6 +127,7 @@ const MovieMobile = props => {
           </p>
           <p>{`${hours}h ${min}min`}</p>
         </div>
+        <Divider />
         <p>{details.overview}</p>
       </div>
     </div>
