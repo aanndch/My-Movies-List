@@ -14,7 +14,13 @@ import MovieCard from "../../components/MovieCard";
 import "./DiscoverDesktop.css";
 
 const DiscoverDesktop = props => {
-  const { genres, isLoading, filteredMovies, handleGenreSelect, getMovies } = props;
+  const {
+    genres,
+    isLoading,
+    filteredMovies,
+    handleGenreSelect,
+    getMovies
+  } = props;
 
   return (
     <div className="discover-container">
@@ -24,7 +30,7 @@ const DiscoverDesktop = props => {
           <CircularProgress className="loader" />
         ) : (
           <div className="filtered-movies">
-            {filteredMovies &&
+            {filteredMovies && filteredMovies.length > 0 ? (
               filteredMovies.map(movie => (
                 <Link
                   key={movie.id}
@@ -38,7 +44,10 @@ const DiscoverDesktop = props => {
                     rating={movie.vote_average}
                   />
                 </Link>
-              ))}
+              ))
+            ) : (
+              <h1>NO RESULTS!</h1>
+            )}
           </div>
         )}
       </div>

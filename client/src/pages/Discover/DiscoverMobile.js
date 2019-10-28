@@ -31,7 +31,7 @@ const DiscoverMobile = props => {
         <div className="discover-movies-heading">
           <h1>Discover</h1>
           <Button
-            type="primary"
+            color="primary"
             variant="contained"
             onClick={toggleDrawer}
             style={{ backgroundColor: "#31db91", width: "125px" }}
@@ -43,7 +43,7 @@ const DiscoverMobile = props => {
           <CircularProgress className="loader" />
         ) : (
           <div className="filtered-movies">
-            {filteredMovies &&
+            {filteredMovies && filteredMovies.length > 0 ? (
               filteredMovies.map(movie => (
                 <Link
                   key={movie.id}
@@ -57,7 +57,10 @@ const DiscoverMobile = props => {
                     rating={movie.vote_average}
                   />
                 </Link>
-              ))}
+              ))
+            ) : (
+              <h1>NO RESULTS</h1>
+            )}
           </div>
         )}
       </div>
