@@ -6,8 +6,11 @@ import {
   TextField,
   Tabs,
   Tab,
-  Paper
+  Paper,
+  Input
 } from "@material-ui/core";
+
+import { Search } from "@material-ui/icons";
 
 import TabPanel from "../../components/TabPanel";
 import MovieCard from "../../components/MovieCard";
@@ -35,7 +38,11 @@ const ProfileMobile = props => {
     handleChange,
     handleTabChange,
     submitChanges,
-    makeChanges
+    makeChanges,
+    searchUser,
+    handleInputChange,
+    user,
+    currentUser
   } = props;
 
   if (isLoading) {
@@ -48,6 +55,26 @@ const ProfileMobile = props => {
 
   return (
     <div className="profile-container mobile-profile">
+      <form type="GET" onSubmit={searchUser} className="user-search">
+        <Search className="search-icon" />
+        <Input
+          className="search-input"
+          disableUnderline={true}
+          placeholder="Search for a user"
+          value={user}
+          onChange={handleInputChange}
+        />
+        <input
+          type="submit"
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            width: "1px",
+            height: "1px"
+          }}
+          tabIndex="-1"
+        />
+      </form>
       <div className="top-part">
         <img src={image} alt={`${username}'s pic`} className="profile-pic" />
         <h1>{username}</h1>
@@ -89,14 +116,16 @@ const ProfileMobile = props => {
           variant="filled"
           disabled={!editProfile}
         />
-        <Button
-          color="primary"
-          variant="contained"
-          className="edit-button"
-          onClick={editProfile ? submitChanges : makeChanges}
-        >
-          {editProfile ? "SAVE CHANGES" : "EDIT PROFILE"}
-        </Button>
+        {currentUser === username && (
+          <Button
+            color="primary"
+            variant="contained"
+            className="edit-button"
+            onClick={editProfile ? submitChanges : makeChanges}
+          >
+            {editProfile ? "SAVE CHANGES" : "EDIT PROFILE"}
+          </Button>
+        )}
       </div>
       <Paper
         className="tabs-paper"

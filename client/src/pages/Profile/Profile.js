@@ -13,7 +13,8 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: 0
+      tab: 0,
+      user: ""
     };
   }
 
@@ -37,6 +38,21 @@ class Profile extends Component {
         gender: newProps.gender
       });
     }
+  };
+
+  handleInputChange = e => {
+    this.setState({
+      user: e.target.value
+    });
+  };
+
+  searchUser = e => {
+    e.preventDefault();
+    const { history } = this.props;
+    const { user } = this.state;
+
+    history.push(`/profile/${user}`);
+    getSearchedUserInfo(user);
   };
 
   handleChange = (e, value) => {
@@ -97,10 +113,11 @@ class Profile extends Component {
       isLoading,
       watched,
       watchlist,
-      favorites
+      favorites,
+      currentUser
     } = this.props;
 
-    const { tab } = this.state;
+    const { tab, user } = this.state;
 
     if (isLoading) return <CircularProgress className="loader" />;
 
@@ -127,6 +144,10 @@ class Profile extends Component {
           handleTabChange={this.handleTabChange}
           submitChanges={this.submitChanges}
           makeChanges={this.makeChanges}
+          searchUser={this.searchUser}
+          handleInputChange={this.handleInputChange}
+          user={user}
+          currentUser={currentUser}
         />
       );
     } else {
@@ -152,6 +173,10 @@ class Profile extends Component {
           handleTabChange={this.handleTabChange}
           submitChanges={this.submitChanges}
           makeChanges={this.makeChanges}
+          searchUser={this.searchUser}
+          handleInputChange={this.handleInputChange}
+          user={user}
+          currentUser={currentUser}
         />
       );
     }
@@ -172,7 +197,8 @@ const mapStateToProps = ({ searchedUser, user, loading }) => ({
   id: searchedUser._id,
   token: user.token,
   editProfile: loading.editProfile,
-  isLoading: loading.isLoading
+  isLoading: loading.isLoading,
+  currentUser: user.username
 });
 
 export default connect(mapStateToProps)(Profile);

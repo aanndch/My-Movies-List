@@ -31,7 +31,10 @@ const getSearchedUserInfo = username => {
       Store.dispatch(storeSearchedUserInfo(data[0]));
       Store.dispatch({ type: SET_DONE });
     })
-    .catch(error => Error(error.response.data));
+    .catch(error => {
+      Error(error.response.data);
+      Store.dispatch({ type: SET_DONE });
+    });
 };
 
 const updateProfile = details => {

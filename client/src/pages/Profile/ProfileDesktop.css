@@ -22,11 +22,11 @@
 }
 
 .profile-inputs {
-  /* width: 50%; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2em;
 }
 
 .profile-input {
@@ -43,6 +43,27 @@
 
 .tabs-paper {
   width: 85%;
+}
+
+.user-search {
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.user-search svg {
+  font-size: 30px !important;
+}
+
+.user-search > .MuiInputBase-root {
+  width: 50% !important;
+}
+
+.user-search input {
+  color: #e4e6e8;
+  border-bottom: 1px #31db91 solid;
 }
 
 .MuiBox-root {
