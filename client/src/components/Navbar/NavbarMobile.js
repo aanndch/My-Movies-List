@@ -170,7 +170,7 @@ class NavbarMobile extends Component {
             </List>
             {token && (
               <Button
-                type="primary"
+                color="primary"
                 variant="contained"
                 onClick={this.signOut}
                 style={{
