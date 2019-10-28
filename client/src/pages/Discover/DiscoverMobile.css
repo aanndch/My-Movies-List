@@ -1,0 +1,29 @@
+.discover-mobile .discover-movies {
+  width: 100vw;
+}
+
+.discover-movies-heading {
+  color: #e4e6e8;
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin: 2em auto;
+}
+
+.select-genres-mobile {
+  width: 100vw !important;
+  justify-content: space-between;
+}
+
+.select-genres-mobile .genre-checkboxes {
+  height: 85% !important;
+}
+
+.select-genres-mobile .filter-button {
+  margin-bottom: 3.5em;
+}
+
+.discover-mobile .movie-card {
+  height: 230px;
+  width: 150px;
+}

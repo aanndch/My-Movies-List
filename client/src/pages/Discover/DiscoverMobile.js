@@ -3,7 +3,8 @@ import {
   CircularProgress,
   FormControlLabel,
   Checkbox,
-  Button
+  Button,
+  Drawer
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -14,12 +15,30 @@ import MovieCard from "../../components/MovieCard";
 import "./DiscoverMobile.css";
 
 const DiscoverMobile = props => {
-  const { genres, isLoading, filteredMovies, handleGenreSelect, getMovies } = props;
+  const {
+    genres,
+    isLoading,
+    filteredMovies,
+    handleGenreSelect,
+    getMovies,
+    open,
+    toggleDrawer
+  } = props;
 
   return (
-    <div className="discover-container">
+    <div className="discover-container discover-mobile">
       <div className="discover-movies">
-        <h1>Discover</h1>
+        <div className="discover-movies-heading">
+          <h1>Discover</h1>
+          <Button
+            type="primary"
+            variant="contained"
+            onClick={toggleDrawer}
+            style={{ backgroundColor: "#31db91", width: "125px" }}
+          >
+            Filter
+          </Button>
+        </div>
         {isLoading ? (
           <CircularProgress className="loader" />
         ) : (
@@ -42,36 +61,37 @@ const DiscoverMobile = props => {
           </div>
         )}
       </div>
-      <div className="select-genres">
-        <h1>Filter :</h1>
-        <div className="genre-checkboxes">
-          {genresDB.map(genre => (
-            <FormControlLabel
-              key={genre.id}
-              control={
-                <Checkbox
-                  color="primary"
-                  checked={genres.includes(genre.id)}
-                  onChange={handleGenreSelect}
-                  value={genre.id}
-                  className="genre-checkbox"
-                />
-              }
-              label={genre.name}
-              className="checkbox-label"
-            />
-          ))}
+      <Drawer anchor="right" open={open}>
+        <div className="select-genres select-genres-mobile">
+          <div className="genre-checkboxes genre-checkboxes-mobile">
+            {genresDB.map(genre => (
+              <FormControlLabel
+                key={genre.id}
+                control={
+                  <Checkbox
+                    color="primary"
+                    checked={genres.includes(genre.id)}
+                    onChange={handleGenreSelect}
+                    value={genre.id}
+                    className="genre-checkbox"
+                  />
+                }
+                label={genre.name}
+                className="checkbox-label"
+              />
+            ))}
+          </div>
+          <Button
+            className="filter-button"
+            color="primary"
+            size="large"
+            variant="contained"
+            onClick={getMovies}
+          >
+            FILTER
+          </Button>
         </div>
-        <Button
-          className="filter-button"
-          color="primary"
-          size="large"
-          variant="contained"
-          onClick={getMovies}
-        >
-          FILTER
-        </Button>
-      </div>
+      </Drawer>
     </div>
   );
 };

@@ -8,6 +8,14 @@ import DiscoverMobile from "./DiscoverMobile";
 import DiscoverDesktop from "./DiscoverDesktop";
 
 class Discover extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: false
+    };
+  }
+
   componentDidMount() {
     const { genres } = this.props;
     getMoviesByGenres(genres.join(","));
@@ -35,14 +43,21 @@ class Discover extends Component {
     // }));
   };
 
+  toggleDrawer = () => {
+    this.setState(prevState => ({
+      open: !prevState.open
+    }));
+  };
+
   getMovies = () => {
     let { genres } = this.props;
+    this.toggleDrawer();
     getMoviesByGenres(genres.join(","));
   };
 
   render() {
-    const { genres, isLoading } = this.props;
-    const { filteredMovies } = this.props;
+    const { open } = this.state;
+    const { genres, isLoading, filteredMovies } = this.props;
 
     if (window.innerWidth < 500) {
       return (
@@ -52,6 +67,8 @@ class Discover extends Component {
           filteredMovies={filteredMovies}
           handleGenreSelect={this.handleGenreSelect}
           getMovies={this.getMovies}
+          open={open}
+          toggleDrawer={this.toggleDrawer}
         />
       );
     } else {
