@@ -55,3 +55,13 @@
   margin: 1.5em 0;
   background: #31db91;
 }
+
+.movie-loader {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.movie-loader .loader {
+  margin-top: 10em;
+}

@@ -24,3 +24,13 @@
   height: 380px;
   width: 250px;
 }
+
+.home-loader {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.home-loader .loader {
+  margin-top: 10em;
+}

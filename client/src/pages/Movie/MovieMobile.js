@@ -20,7 +20,13 @@ const MovieMobile = props => {
   const hours = Math.floor(details.runtime / 60);
   const min = details.runtime - hours * 60;
 
-  if (isLoading) return <CircularProgress className="loader" />;
+  if (isLoading) {
+    return (
+      <div className="movie-loader">
+        <CircularProgress className="loader" />;
+      </div>
+    );
+  }
 
   return (
     <div className="mobile-movie-page-container">

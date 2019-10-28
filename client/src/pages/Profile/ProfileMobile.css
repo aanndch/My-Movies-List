@@ -29,3 +29,13 @@
   height: 185px;
   width: 120px;
 }
+
+.profile-loader {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-loader .loader {
+  margin-top: 10em;
+}

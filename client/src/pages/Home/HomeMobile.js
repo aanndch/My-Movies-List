@@ -32,7 +32,13 @@ const HomeMobile = props => {
     loadMovie
   } = props;
 
-  if (isLoading) return <CircularProgress className="loader" />;
+  if (isLoading) {
+    return (
+      <div className="home-loader">
+        <CircularProgress className="loader" />;
+      </div>
+    );
+  }
 
   let movies = [];
   let heading = "";
