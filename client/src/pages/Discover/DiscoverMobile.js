@@ -45,33 +45,32 @@ const DiscoverMobile = props => {
         {isLoading ? (
           <CircularProgress className="loader" />
         ) : (
-          <div className="filtered-movies">
-            <InfiniteScroll
-              pageStart={0}
-              loadMore={getMore}
-              hasMore={hasMore}
-              loader={<h4>Loading...</h4>}
-            >
-              {filteredMovies && filteredMovies.length > 0 ? (
-                filteredMovies.map(movie => (
-                  <Link
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={getMore}
+            hasMore={hasMore}
+            loader={<h4>Loading...</h4>}
+            className="filtered-movies"
+          >
+            {filteredMovies && filteredMovies.length > 0 ? (
+              filteredMovies.map(movie => (
+                <Link
+                  key={movie.id}
+                  to={`/movie/${movie.id}`}
+                  style={{ textDecoration: "none", margin: "0.8rem" }}
+                >
+                  <MovieCard
                     key={movie.id}
-                    to={`/movie/${movie.id}`}
-                    style={{ textDecoration: "none", margin: "0.8rem" }}
-                  >
-                    <MovieCard
-                      key={movie.id}
-                      title={movie.title}
-                      poster={movie.poster_path}
-                      rating={movie.vote_average}
-                    />
-                  </Link>
-                ))
-              ) : (
-                <h1>NO RESULTS</h1>
-              )}
-            </InfiniteScroll>
-          </div>
+                    title={movie.title}
+                    poster={movie.poster_path}
+                    rating={movie.vote_average}
+                  />
+                </Link>
+              ))
+            ) : (
+              <h1>NO RESULTS</h1>
+            )}
+          </InfiniteScroll>
         )}
       </div>
       <Drawer anchor="right" open={open}>
