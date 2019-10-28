@@ -30,11 +30,6 @@ const MovieMobile = props => {
 
   return (
     <div className="mobile-movie-page-container">
-      {/* <img
-        src={`https://image.tmdb.org/t/p/original${details.backdrop_path}`}
-        alt={details.title}
-        className="background-image"
-      /> */}
       <div className="movie-info">
         <div className="title">
           <h1>{details.title}</h1>
