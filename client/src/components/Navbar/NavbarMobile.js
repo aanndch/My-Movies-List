@@ -22,7 +22,6 @@ import {
 import { NavLink } from "react-router-dom";
 import { tokenLogIn } from "../../actions/registrationActions";
 import Cookie from "js-cookie";
-import history from "../../history";
 
 import "./NavbarMobile.css";
 import { setOpenSearch } from "../../actions/userActions";
@@ -72,7 +71,7 @@ class NavbarMobile extends Component {
 
   render() {
     const { open } = this.state;
-    const { token, username, openSearch } = this.props;
+    const { token, username } = this.props;
 
     return (
       <div className="navbar-mobile">
@@ -115,7 +114,6 @@ class NavbarMobile extends Component {
                 to="/"
                 exact
                 isActive={this.onMoviePage}
-                onClick={this.toggleDrawer}
                 style={{ textDecoration: "none" }}
                 onClick={() => this.toggleSearchBar(false)}
               >
