@@ -6,7 +6,7 @@ import { Success, Error } from "./components/Notification";
 
 const toggleSelection = (id, info) => {
   axios
-    .post(`http://localhost:5000/api/users/lists/${id}`, info)
+    .post(`https://lit-forest-80154.herokuapp.com/api/users/lists/${id}`, info)
     .then(({ data }) => {
       getUserInfo(data._id, data.token);
       Success(data.operation);
@@ -16,7 +16,7 @@ const toggleSelection = (id, info) => {
 
 const getUserInfo = (id, token) => {
   axios
-    .get(`http://localhost:5000/api/users/${id}`)
+    .get(`https://lit-forest-80154.herokuapp.com/api/users/${id}`)
     .then(({ data }) => {
       Store.dispatch(storeUserInfo(data, token));
     })
@@ -26,7 +26,7 @@ const getUserInfo = (id, token) => {
 const getSearchedUserInfo = username => {
   Store.dispatch({ type: SET_LOADING });
   axios
-    .get(`http://localhost:5000/api/users/search/${username}`)
+    .get(`https://lit-forest-80154.herokuapp.com/api/users/search/${username}`)
     .then(({ data }) => {
       Store.dispatch(storeSearchedUserInfo(data[0]));
       Store.dispatch({ type: SET_DONE });
@@ -39,7 +39,10 @@ const getSearchedUserInfo = username => {
 
 const updateProfile = details => {
   axios
-    .post(`http://localhost:5000/api/users/update/${details.id}`, details)
+    .post(
+      `https://lit-forest-80154.herokuapp.com/api/users/update/${details.id}`,
+      details
+    )
     .then(({ data }) => {
       Store.dispatch(storeSearchedUserInfo(data));
       Success("Updated!");

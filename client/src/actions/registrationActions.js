@@ -7,7 +7,7 @@ import { Success, Error } from "../components/Notification";
 
 export const createUser = user => dispatch => {
   axios
-    .post("http://localhost:5000/api/register", user)
+    .post("https://lit-forest-80154.herokuapp.com/api/register", user)
     .then(({ data }) => {
       Cookies.set("token", data.token);
       dispatch(storeUserInfo(data.user, data.token));
@@ -19,7 +19,7 @@ export const createUser = user => dispatch => {
 
 export const checkUser = user => dispatch => {
   axios
-    .post("http://localhost:5000/api/login", user)
+    .post("https://lit-forest-80154.herokuapp.com/api/login", user)
     .then(({ data }) => {
       Cookies.set("token", data.token);
       dispatch(storeUserInfo(data.user, data.token));
@@ -31,7 +31,7 @@ export const checkUser = user => dispatch => {
 
 export const tokenLogIn = tokenObj => dispatch => {
   axios
-    .post("http://localhost:5000/api/token", tokenObj)
+    .post("https://lit-forest-80154.herokuapp.com/api/token", tokenObj)
     .then(({ data }) => {
       dispatch(storeUserInfo(data.user, data.token));
     })
