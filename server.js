@@ -33,13 +33,10 @@ app.use("/api/users/search", searchUser);
 app.use("/api/users/update", updateUser);
 app.use("/api/users/lists", lists);
 
-// Serve static assests if in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+app.use(express.static(path.join(__dirname, "client", "build")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(process.env.PORT || 5000, () => console.log(`Server started!`));
