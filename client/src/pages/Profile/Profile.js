@@ -135,7 +135,7 @@ class Profile extends Component {
           location={location}
           tempLocation={this.state.location}
           gender={gender}
-          tempGender={this.gender}
+          tempGender={this.state.gender}
           image={image}
           editProfile={editProfile}
           isLoading={isLoading}
