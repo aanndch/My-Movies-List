@@ -4,10 +4,11 @@ import Cookies from "js-cookie";
 import history from "../history";
 import { storeUserInfo } from "./userActions";
 import { Success, Error } from "../components/Notification";
+import { API_URL } from "../config";
 
 export const createUser = user => dispatch => {
   axios
-    .post("https://lit-forest-80154.herokuapp.com/api/register", user)
+    .post(`${API_URL}/api/register`, user)
     .then(({ data }) => {
       Cookies.set("token", data.token);
       dispatch(storeUserInfo(data.user, data.token));
@@ -19,7 +20,7 @@ export const createUser = user => dispatch => {
 
 export const checkUser = user => dispatch => {
   axios
-    .post("https://lit-forest-80154.herokuapp.com/api/login", user)
+    .post(`${API_URL}/api/login`, user)
     .then(({ data }) => {
       Cookies.set("token", data.token);
       dispatch(storeUserInfo(data.user, data.token));
@@ -31,7 +32,7 @@ export const checkUser = user => dispatch => {
 
 export const tokenLogIn = tokenObj => dispatch => {
   axios
-    .post("https://lit-forest-80154.herokuapp.com/api/token", tokenObj)
+    .post(`${API_URL}/api/token`, tokenObj)
     .then(({ data }) => {
       dispatch(storeUserInfo(data.user, data.token));
     })
