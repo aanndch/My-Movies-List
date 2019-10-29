@@ -33,7 +33,8 @@ class Profile extends Component {
       prevProps.firstName !== newProps.firstName ||
       prevProps.lastName !== newProps.lastName ||
       prevProps.location !== newProps.location ||
-      prevProps.gender !== newProps.gender
+      prevProps.gender !== newProps.gender ||
+      prevProps.match.params.username !== newProps.match.params.username
     ) {
       this.setState({
         firstName: newProps.firstName,
@@ -41,6 +42,7 @@ class Profile extends Component {
         location: newProps.location,
         gender: newProps.gender
       });
+      getSearchedUserInfo(newProps.match.params.username);
     }
   };
 
@@ -56,7 +58,6 @@ class Profile extends Component {
     const { user } = this.state;
 
     history.push(`/profile/${user}`);
-    getSearchedUserInfo(user);
   };
 
   handleChange = (e, value) => {
