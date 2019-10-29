@@ -1,6 +1,9 @@
-import { SET_LOADING, SET_DONE, EDIT_PROFILE, SAVE_PROFILE } from "../actions/types";
+import { SET_LOADING, SET_DONE } from "../actions/types";
 
-const loadingReducers = (state = { isloading: false, editProfile: false }, action) => {
+const loadingReducers = (
+  state = { isLoading: false, editProfile: false },
+  action
+) => {
   switch (action.type) {
     case SET_LOADING: {
       return {
@@ -14,18 +17,6 @@ const loadingReducers = (state = { isloading: false, editProfile: false }, actio
         isLoading: false
       };
     }
-    case EDIT_PROFILE: {
-      return {
-        ...state,
-        editProfile: true
-      }
-    };
-    case SAVE_PROFILE: {
-      return {
-        ...state,
-        editProfile: false
-      }
-    };
     default:
       return state;
   }

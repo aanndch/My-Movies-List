@@ -5,7 +5,7 @@ import { CircularProgress, Typography, Box } from "@material-ui/core";
 import { updateProfile, getSearchedUserInfo } from "../../userInteractions";
 import Store from "../../store";
 
-import { EDIT_PROFILE, SAVE_PROFILE } from "../../actions/types";
+import { EDIT_PROFILE } from "../../actions/types";
 import ProfileMobile from "./ProfileMobile";
 import ProfileDesktop from "./ProfileDesktop";
 
@@ -14,7 +14,11 @@ class Profile extends Component {
     super(props);
     this.state = {
       tab: 0,
-      user: ""
+      user: "",
+      firstName: "",
+      lastName: "",
+      location: "",
+      gender: ""
     };
   }
 
@@ -80,7 +84,6 @@ class Profile extends Component {
       token,
       id
     };
-    Store.dispatch({ type: SAVE_PROFILE });
     updateProfile(details);
   };
 
@@ -126,11 +129,11 @@ class Profile extends Component {
         <ProfileMobile
           username={username}
           firstName={firstName}
-          tempFirstName={this.firstName}
+          tempFirstName={this.state.firstName}
           lastName={lastName}
-          tempLastName={this.lastName}
+          tempLastName={this.state.lastName}
           location={location}
-          tempLocation={this.location}
+          tempLocation={this.state.location}
           gender={gender}
           tempGender={this.gender}
           image={image}
@@ -155,13 +158,13 @@ class Profile extends Component {
         <ProfileDesktop
           username={username}
           firstName={firstName}
-          tempFirstName={this.firstName}
+          tempFirstName={this.state.firstName}
           lastName={lastName}
-          tempLastName={this.lastName}
+          tempLastName={this.state.lastName}
           location={location}
-          tempLocation={this.location}
+          tempLocation={this.state.location}
           gender={gender}
-          tempGender={this.gender}
+          tempGender={this.state.gender}
           image={image}
           editProfile={editProfile}
           isLoading={isLoading}
@@ -196,7 +199,7 @@ const mapStateToProps = ({ searchedUser, user, loading }) => ({
   image: searchedUser.image,
   id: searchedUser._id,
   token: user.token,
-  editProfile: loading.editProfile,
+  editProfile: searchedUser.editProfile,
   isLoading: loading.isLoading,
   currentUser: user.username
 });

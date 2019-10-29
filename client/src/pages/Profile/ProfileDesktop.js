@@ -44,8 +44,6 @@ const ProfileMobile = props => {
     currentUser
   } = props;
 
-  console.log(currentUser);
-
   if (isLoading) return <CircularProgress className="loader" />;
 
   return (

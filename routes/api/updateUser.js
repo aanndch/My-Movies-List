@@ -12,6 +12,7 @@ router.post("/:id", verify, async (req, res) => {
       location: req.body.location,
       gender: req.body.gender
     },
+    { new: true },
     (err, docs) => {
       res.send(docs);
     }

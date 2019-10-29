@@ -1,11 +1,18 @@
-import { STORE_SEARCHED_USER_INFO } from "../actions/types";
+import { STORE_SEARCHED_USER_INFO, EDIT_PROFILE } from "../actions/types";
 
-const searchedUserReducers = (state = {}, action) => {
+const searchedUserReducers = (state = { editProfile: false }, action) => {
   switch (action.type) {
     case STORE_SEARCHED_USER_INFO: {
       return {
         ...state,
-        ...action.user
+        ...action.user,
+        editProfile: false
+      };
+    }
+    case EDIT_PROFILE: {
+      return {
+        ...state,
+        editProfile: true
       };
     }
     default:
