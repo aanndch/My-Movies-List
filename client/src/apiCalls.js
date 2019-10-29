@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { API_KEY } from "./config/config";
+import { API_KEY } from "./config";
 import {
   setMovies,
   setMovieDetails,
