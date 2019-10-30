@@ -69,7 +69,6 @@ class Movie extends Component {
 const mapStateToProps = ({ user, api, loading }) => {
   return {
     details: api.details,
-    loading: api.loading,
     favorites: user.favorites,
     watchlist: user.watchlist,
     watched: user.watched,

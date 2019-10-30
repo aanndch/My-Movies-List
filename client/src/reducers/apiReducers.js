@@ -15,7 +15,6 @@ const initialState = {
   },
   loadSearch: false,
   details: [],
-  loading: false,
   filteredMovies: [],
   hasMore: true
 };
@@ -26,40 +25,35 @@ const apiReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: { ...state.movies, ...action.movies },
-        loadSearch: false,
-        loading: false
+        loadSearch: false
       };
     }
     case SET_MOVIE_DETAILS: {
       return {
         ...state,
         details: action.details,
-        loadSearch: false,
-        loading: false
+        loadSearch: false
       };
     }
     case SET_MOVIE_SEARCH: {
       return {
         ...state,
         movies: { ...state.movies, search: action.movies.search },
-        loadSearch: true,
-        loading: false
+        loadSearch: true
       };
     }
     case SET_FILTERED_MOVIES: {
       return {
         ...state,
         filteredMovies: action.movies,
-        hasMore: true,
-        loading: false
+        hasMore: true
       };
     }
     case ADD_FILTERED_MOVIES: {
       return {
         ...state,
         filteredMovies: [...state.filteredMovies, ...action.movies],
-        hasMore: action.hasMore,
-        loading: false
+        hasMore: action.hasMore
       };
     }
     default:
