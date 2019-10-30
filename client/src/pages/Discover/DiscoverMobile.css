@@ -27,3 +27,10 @@
   height: 230px;
   width: 150px;
 }
+
+.infinite-loader {
+  margin: 1rem;
+  width: 100%;
+  color: white;
+  text-align: center;
+}

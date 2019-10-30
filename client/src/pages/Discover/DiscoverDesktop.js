@@ -36,7 +36,11 @@ const DiscoverDesktop = props => {
             pageStart={0}
             loadMore={getMore}
             hasMore={hasMore}
-            loader={<h4 key={0}>Loading...</h4>}
+            loader={
+              <h4 className="infinite-loader" key={0}>
+                Loading...
+              </h4>
+            }
             className="filtered-movies"
           >
             {filteredMovies && filteredMovies.length > 0 ? (
