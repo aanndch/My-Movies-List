@@ -12,7 +12,7 @@ import { Search } from "@material-ui/icons";
 
 import MovieCard from "../../components/MovieCard";
 
-import "./Home.css";
+import "./HomeDesktop.css";
 
 const HomeDesktop = props => {
   const {
