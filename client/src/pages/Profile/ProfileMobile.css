@@ -3,6 +3,10 @@
   margin-bottom: 2em;
 }
 
+.mobile-profile .user-search > .MuiInputBase-root {
+  width: 80% !important;
+}
+
 .mobile-profile .profile-pic {
   margin: 0;
   margin-bottom: 1em;
@@ -22,7 +26,8 @@
 }
 
 .mobile-profile .MuiBox-root {
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 10px;
 }
 
 .mobile-profile .movie-card {
@@ -38,4 +43,9 @@
 
 .profile-loader .loader {
   margin-top: 10em;
+}
+
+.mobile-profile .MuiTab-root {
+  font-size: 0.7rem;
+  padding: 6px 10px;
 }
