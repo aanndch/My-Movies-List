@@ -33,8 +33,7 @@ class Profile extends Component {
       prevProps.firstName !== newProps.firstName ||
       prevProps.lastName !== newProps.lastName ||
       prevProps.location !== newProps.location ||
-      prevProps.gender !== newProps.gender ||
-      prevProps.match.params.username !== newProps.match.params.username
+      prevProps.gender !== newProps.gender
     ) {
       this.setState({
         firstName: newProps.firstName,
@@ -42,8 +41,10 @@ class Profile extends Component {
         location: newProps.location,
         gender: newProps.gender
       });
-      getSearchedUserInfo(newProps.match.params.username);
     }
+
+    if (prevProps.match.params.username !== newProps.match.params.username)
+      getSearchedUserInfo(newProps.match.params.username);
   };
 
   handleInputChange = e => {
