@@ -1,3 +1,7 @@
+.mobile-profile {
+  padding: 1.5rem !important;
+}
+
 .mobile-profile .top-part {
   flex-direction: column;
   margin-bottom: 2em;
@@ -13,16 +17,22 @@
 }
 
 .mobile-profile .profile-input {
-  margin: 0 0.7em 0.7em 0 !important;
-  width: 150px;
+  margin: 0.5em 0.8em !important;
+  width: 130px;
+}
+
+.mobile-profile .MuiFormLabel-root {
+  font-size: 0.85rem;
 }
 
 .mobile-profile .MuiFilledInput-root {
-  width: 150px;
+  width: 130px;
+  font-size: 0.9rem;
 }
 
 .mobile-profile .edit-button {
   margin: 1em !important;
+  height: 50px;
 }
 
 .mobile-profile .MuiBox-root {
@@ -31,8 +41,8 @@
 }
 
 .mobile-profile .movie-card {
-  height: 185px;
-  width: 120px;
+  height: 170px;
+  width: 107px;
 }
 
 .profile-loader {
