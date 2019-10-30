@@ -61,7 +61,3 @@
   display: flex;
   justify-content: center;
 }
-
-.movie-loader .loader {
-  margin-top: 10em;
-}

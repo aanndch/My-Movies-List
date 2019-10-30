@@ -32,7 +32,12 @@ const HomeDesktop = props => {
     loadMovie
   } = props;
 
-  if (isLoading) return <CircularProgress className="loader" />;
+  if (isLoading)
+    return (
+      <div id="loader">
+        <CircularProgress />;
+      </div>
+    );
 
   let movies = [];
   let heading = "";

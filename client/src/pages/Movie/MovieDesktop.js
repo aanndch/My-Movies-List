@@ -20,7 +20,12 @@ const MovieDesktop = props => {
   const hours = Math.floor(details.runtime / 60);
   const min = details.runtime - hours * 60;
 
-  if (isLoading) return <CircularProgress className="loader" />;
+  if (isLoading)
+    return (
+      <div id="loader">
+        <CircularProgress />;
+      </div>
+    );
 
   return (
     <div className="movie-page-container">

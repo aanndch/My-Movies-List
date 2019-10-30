@@ -34,8 +34,8 @@ const HomeMobile = props => {
 
   if (isLoading) {
     return (
-      <div className="home-loader">
-        <CircularProgress className="loader" />;
+      <div id="loader">
+        <CircularProgress />;
       </div>
     );
   }

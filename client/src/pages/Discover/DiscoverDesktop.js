@@ -30,7 +30,9 @@ const DiscoverDesktop = props => {
       <div className="discover-movies">
         <h1>Discover</h1>
         {isLoading ? (
-          <CircularProgress className="loader" />
+          <div id="loader">
+            <CircularProgress />;
+          </div>
         ) : (
           <InfiniteScroll
             pageStart={0}

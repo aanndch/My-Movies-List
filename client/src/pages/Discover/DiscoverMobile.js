@@ -43,7 +43,9 @@ const DiscoverMobile = props => {
           </Button>
         </div>
         {isLoading ? (
-          <CircularProgress className="loader" />
+          <div id="loader">
+            <CircularProgress />;
+          </div>
         ) : (
           <InfiniteScroll
             pageStart={0}

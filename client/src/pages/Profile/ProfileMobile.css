@@ -51,10 +51,6 @@
   justify-content: center;
 }
 
-.profile-loader .loader {
-  margin-top: 10em;
-}
-
 .mobile-profile .MuiTab-root {
   font-size: 0.7rem;
   padding: 6px 10px;

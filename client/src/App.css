@@ -47,3 +47,14 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   align-items: center;
 }
+
+#loader {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loader .MuiCircularProgress-colorPrimary {
+  color: #31db91;
+}

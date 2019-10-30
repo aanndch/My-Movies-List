@@ -22,8 +22,8 @@ const MovieMobile = props => {
 
   if (isLoading) {
     return (
-      <div className="movie-loader">
-        <CircularProgress className="loader" />;
+      <div id="loader">
+        <CircularProgress />;
       </div>
     );
   }

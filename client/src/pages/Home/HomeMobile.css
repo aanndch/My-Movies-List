@@ -30,7 +30,3 @@
   display: flex;
   justify-content: center;
 }
-
-.home-loader .loader {
-  margin-top: 10em;
-}

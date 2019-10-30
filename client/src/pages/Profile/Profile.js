@@ -123,7 +123,12 @@ class Profile extends Component {
 
     const { tab, user } = this.state;
 
-    if (isLoading) return <CircularProgress className="loader" />;
+    if (isLoading)
+      return (
+        <div id="loader">
+          <CircularProgress />;
+        </div>
+      );
 
     if (window.innerWidth < 769) {
       return (

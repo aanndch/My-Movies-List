@@ -44,7 +44,13 @@ const ProfileMobile = props => {
     currentUser
   } = props;
 
-  if (isLoading) return <CircularProgress className="loader" />;
+  if (isLoading) {
+    return (
+      <div id="loader">
+        <CircularProgress />;
+      </div>
+    );
+  }
 
   return (
     <div className="profile-container">
