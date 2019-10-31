@@ -15,10 +15,6 @@
   justify-content: space-between;
 }
 
-.select-genres-mobile .genre-checkboxes {
-  height: 85% !important;
-}
-
 .select-genres-mobile .filter-button {
   margin-bottom: 3.5em;
 }
