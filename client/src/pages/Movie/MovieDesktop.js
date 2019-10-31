@@ -30,7 +30,7 @@ const MovieDesktop = props => {
   return (
     <div className="movie-page-container">
       <img
-        src={`https://image.tmdb.org/t/p/original${details.backdrop_path}`}
+        src={`https://image.tmdb.org/t/p/original/${details.backdrop_path}`}
         alt={details.title}
         className="background-image"
       />
