@@ -85,7 +85,6 @@ class NavbarMobile extends Component {
             >
               <Menu />
             </IconButton>
-            <AccountCircle />
           </Toolbar>
         </AppBar>
         <SwipeableDrawer
