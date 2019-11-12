@@ -33,6 +33,12 @@ app.use("/api/users/search", searchUser);
 app.use("/api/users/update", updateUser);
 app.use("/api/users/lists", lists);
 
-app.use(express.static(path.join(__dirname, "client", "build")));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"), err => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
 
 app.listen(process.env.PORT, () => console.log(`Server started!`));
