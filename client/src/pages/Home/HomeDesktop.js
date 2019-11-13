@@ -62,7 +62,7 @@ const HomeDesktop = props => {
       <div className="heading search-part">
         {openSearch ? (
           <Fade in={openSearch}>
-            <form type="GET" onSubmit={searchMovie}>
+            <form method="GET" onSubmit={searchMovie}>
               <Search className="search-icon" />
               <Input
                 className="search-input"

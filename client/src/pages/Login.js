@@ -50,7 +50,7 @@ class Login extends Component {
     return (
       <div className="container">
         <div className="registration">
-          <form type="POST" className="resgitration-form">
+          <form method="POST" className="resgitration-form">
             <input
               name="email"
               type="email"

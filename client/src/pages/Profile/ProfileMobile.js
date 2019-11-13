@@ -55,7 +55,7 @@ const ProfileMobile = props => {
 
   return (
     <div className="profile-container mobile-profile">
-      <form type="GET" onSubmit={searchUser} className="user-search">
+      <form method="GET" onSubmit={searchUser} className="user-search">
         <Search className="search-icon" />
         <Input
           className="search-input"

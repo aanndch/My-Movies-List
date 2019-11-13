@@ -52,7 +52,7 @@ class Register extends Component {
     return (
       <div className="container">
         <div className="registration">
-          <form type="POST">
+          <form method="POST">
             <input
               name="email"
               type="email"
