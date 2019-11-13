@@ -90,10 +90,7 @@ class Register extends Component {
               SIGN UP
             </Button>
           </form>
-          <Link
-            to="/login"
-            style={{ textDecoration: "none", width: "80%", margin: "0 auto" }}
-          >
+          <Link to="/login" style={{ textDecoration: "none" }}>
             <h3 className="register-button">Already have an account</h3>
           </Link>
         </div>
@@ -110,7 +107,4 @@ const mapDispatchToProps = dispatch => ({
   createUser: user => dispatch(createUser(user))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
